@@ -1,0 +1,37 @@
+{
+  "name": "json-schema-to-valibot",
+  "version": "0.1.0",
+  "description": "Convert JSON Schema to Valibot schema",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "bin": {
+    "json-schema-to-valibot": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest",
+    "fmt": "biome check --fix --unsafe",
+    "lint": "npm run lint:biome && npm run lint:tsc",
+    "lint:biome": "biome check .",
+    "lint:tsc": "tsc --noEmit",
+    "update-deps": "npm update --save && npm update --save-dev"
+  },
+  "keywords": ["json-schema", "valibot", "converter", "validation", "schema"],
+  "author": "MH4GF",
+  "license": "MIT",
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@mh4gf/configs": "0.4.1",
+    "@types/node": "22.13.1",
+    "tsup": "8.3.6",
+    "typescript": "5.7.3",
+    "valibot": "0.42.1",
+    "vitest": "3.0.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
