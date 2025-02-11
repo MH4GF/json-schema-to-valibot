@@ -25,6 +25,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@mh4gf/configs": "0.4.1",
+    "@types/json-schema": "^7.0.15",
     "@types/node": "22.13.1",
     "tsup": "8.3.6",
     "typescript": "5.7.3",
