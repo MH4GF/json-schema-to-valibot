@@ -4,4 +4,6 @@ export type Options = {
   type?: boolean | string
   noImport?: boolean
   withJsdocs?: boolean
+  withoutDefaults?: boolean
+  withoutDescriptions?: boolean
 }

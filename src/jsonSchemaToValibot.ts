@@ -2,7 +2,11 @@ import type { JSONSchema4 } from 'json-schema'
 import type { Options } from './types.ts'
 
 export function jsonSchemaToValibot(schema: JSONSchema4, options: Options = {}) {
-  const schemaCode = parseSchema(schema)
+  if (options.type && (!options.name || options.module !== 'esm')) {
+    throw new Error('Option `type` requires `name` to be set and `module` to be `esm`')
+  }
+
+  const schemaCode = parseSchema(schema, options)
   return generateModule(schemaCode, options)
 }
 
@@ -49,30 +53,56 @@ function generateExports(schemaCode: string, options: Options): string[] {
     : [`module.exports = ${schemaCode};`]
 }
 
-function parseSchema(schema: JSONSchema4): string {
+function parseSchema(schema: JSONSchema4, options: Options): string {
   if (!schema.type) {
     return 'v.any()'
   }
 
   switch (schema.type) {
     case 'string':
-      return 'v.string()'
+      return parseString(schema, options)
     case 'number':
-      return 'v.number()'
+      return parseNumber(schema, options)
     case 'boolean':
-      return 'v.boolean()'
+      return parseBoolean(schema, options)
     case 'null':
       return 'v.null()'
     case 'object':
-      return parseObject(schema)
+      return parseObject(schema, options)
     case 'array':
-      return parseArray(schema)
+      return parseArray(schema, options)
     default:
       return 'v.any()'
   }
 }
 
-function parseObject(schema: JSONSchema4): string {
+function parseString(schema: JSONSchema4, options: Options = {}): string {
+  if (!options.withoutDefaults && schema.default !== undefined) {
+    return `v.optional(v.string(), '${schema.default}')`
+  }
+
+  if (!options.withoutDescriptions && schema.description) {
+    return `v.pipe(v.string(), v.description('${schema.description}'))`
+  }
+
+  return 'v.string()'
+}
+
+function parseNumber(schema: JSONSchema4, options: Options = {}): string {
+  if (!options.withoutDefaults && schema.default !== undefined) {
+    return `v.optional(v.number(), ${schema.default})`
+  }
+  return 'v.number()'
+}
+
+function parseBoolean(schema: JSONSchema4, options: Options = {}): string {
+  if (!options.withoutDefaults && schema.default !== undefined) {
+    return `v.optional(v.boolean(), ${schema.default})`
+  }
+  return 'v.boolean()'
+}
+
+function parseObject(schema: JSONSchema4, options: Options): string {
   if (!schema.properties) {
     return 'v.object({})'
   }
@@ -80,7 +110,10 @@ function parseObject(schema: JSONSchema4): string {
   const required = new Set(Array.isArray(schema.required) ? schema.required : [])
   const properties = Object.entries(schema.properties)
     .map(([key, value]) => {
-      const parsed = parseSchema(value)
+      const parsed = parseSchema(value, options)
+      if (!options.withoutDefaults && value.default !== undefined) {
+        return `${key}: v.optional(v.string(), '${value.default}')`
+      }
       return `${key}: ${required.has(key) ? parsed : `v.optional(${parsed})`}`
     })
     .join(',')
@@ -88,10 +121,10 @@ function parseObject(schema: JSONSchema4): string {
   return `v.object({${properties}})`
 }
 
-function parseArray(schema: JSONSchema4): string {
+function parseArray(schema: JSONSchema4, options: Options): string {
   if (!schema.items) {
     return 'v.array(v.any())'
   }
 
-  return `v.array(${parseSchema(schema.items)})`
+  return `v.array(${parseSchema(schema.items, options)})`
 }
