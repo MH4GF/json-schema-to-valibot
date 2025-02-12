@@ -1,4 +1,7 @@
 {
   "extends": "@mh4gf/configs/tsconfig/base.json",
-  "include": ["src"]
+  "include": ["src"],
+  "compilerOptions": {
+    "allowImportingTsExtensions": true
+  }
 }

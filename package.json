@@ -33,5 +33,9 @@
   },
   "engines": {
     "node": ">=18"
-  }
+  },
+  "dependencies": {
+    "commander": "13.1.0"
+  },
+  "type": "module"
 }
