@@ -5,6 +5,12 @@
     "rules": {
       "performance": {
         "noBarrelFile": "off"
+      },
+      "complexity": {
+        "useLiteralKeys": "off"
+      },
+      "correctness": {
+        "noNodejsModules": "off"
       }
     }
   }
