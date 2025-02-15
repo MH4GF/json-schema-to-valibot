@@ -280,6 +280,7 @@ describe('jsonSchemaToValibot', () => {
       type: 'object',
       properties: {
         type: {
+          description: 'Type of module',
           type: 'string',
           enum: ['commonjs', 'module'],
           default: 'commonjs',
@@ -289,7 +290,7 @@ describe('jsonSchemaToValibot', () => {
 
     const result = jsonSchemaToValibot(schema)
     expect(result).toMatchInlineSnapshot(
-      `"v.object({type: v.optional(v.picklist(["commonjs","module"]), 'commonjs')})"`,
+      `"v.object({type: v.pipe(v.optional(v.picklist(["commonjs","module"]), 'commonjs'), v.description("Type of module"))})"`,
     )
   })
 })

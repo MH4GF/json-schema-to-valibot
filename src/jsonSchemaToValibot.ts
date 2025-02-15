@@ -171,13 +171,14 @@ function parseArray(schema: JSONSchema4, options: Options): string {
 function parseEnum(schema: JSONSchema4, options: Options): string {
   const picklistSchema = `v.picklist(${JSON.stringify(schema.enum)})`
 
+  let baseSchema = picklistSchema
   if (!options.withoutDefaults && schema.default !== undefined) {
-    return `v.optional(${picklistSchema}, '${escapeString(schema.default)}')`
+    baseSchema = `v.optional(${picklistSchema}, '${escapeString(schema.default)}')`
   }
 
   if (!options.withoutDescriptions && schema.description) {
-    return `v.pipe(${picklistSchema}, v.description("${escapeString(schema.description)}"))`
+    return `v.pipe(${baseSchema}, v.description("${escapeString(schema.description)}"))`
   }
 
-  return picklistSchema
+  return baseSchema
 }
