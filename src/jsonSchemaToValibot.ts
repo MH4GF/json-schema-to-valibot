@@ -1,6 +1,6 @@
 import type { JSONSchema4 } from 'json-schema'
-import type { Options } from './types.ts'
 import { parseSchema } from './parsers/parseSchema.ts'
+import type { Options } from './types.ts'
 
 export function jsonSchemaToValibot(schema: JSONSchema4, options: Options = {}) {
   if (options.type && (!options.name || options.module !== 'esm')) {

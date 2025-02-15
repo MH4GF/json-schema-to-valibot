@@ -1,11 +1,11 @@
 import type { JSONSchema4 } from 'json-schema'
 import type { Options } from '../types.ts'
-import { parseString } from './parseString.ts'
-import { parseNumber } from './parseNumber.ts'
-import { parseBoolean } from './parseBoolean.ts'
-import { parseObject } from './parseObject.ts'
 import { parseArray } from './parseArray.ts'
+import { parseBoolean } from './parseBoolean.ts'
 import { parseEnum } from './parseEnum.ts'
+import { parseNumber } from './parseNumber.ts'
+import { parseObject } from './parseObject.ts'
+import { parseString } from './parseString.ts'
 
 export function parseSchema(schema: JSONSchema4, options: Options): string {
   if (Array.isArray(schema.enum)) {

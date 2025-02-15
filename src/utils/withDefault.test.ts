@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest'
-import { withDefault } from './withDefault.ts'
 import type { JSONSchema4 } from 'json-schema'
+import { describe, expect, it } from 'vitest'
+import { withDefault } from './withDefault.ts'
 
 describe('withDefault', () => {
   it('returns base schema when no default value is provided', () => {

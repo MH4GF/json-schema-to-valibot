@@ -1,7 +1,7 @@
 import type { JSONSchema4 } from 'json-schema'
 import type { Options } from '../types.ts'
-import { withDefault } from '../utils/withDefault.ts'
 import { escapeString } from '../utils/escapeString.ts'
+import { withDefault } from '../utils/withDefault.ts'
 
 export function parseString(schema: JSONSchema4, options: Options = {}): string {
   const validations: string[] = ['v.string()']

@@ -1,6 +1,6 @@
 import type { JSONSchema4 } from 'json-schema'
 import type { Options } from '../types.ts'
-import { escapeString } from '../utils/escapeString.ts'
+import { withDescription } from '../utils/withDescription.ts'
 import { parseSchema } from './parseSchema.ts'
 
 export function parseObject(schema: JSONSchema4, options: Options): string {
@@ -21,8 +21,5 @@ export function parseObject(schema: JSONSchema4, options: Options): string {
     .join(',')
 
   const objectSchema = `v.object({${properties}})`
-  if (!options.withoutDescriptions && schema.description) {
-    return `v.pipe(${objectSchema}, v.description("${escapeString(schema.description)}"))`
-  }
-  return objectSchema
+  return withDescription(schema, objectSchema, options)
 }

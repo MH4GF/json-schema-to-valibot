@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest'
-import { parseBoolean } from './parseBoolean.ts'
 import type { JSONSchema4 } from 'json-schema'
+import { describe, expect, it } from 'vitest'
+import { parseBoolean } from './parseBoolean.ts'
 
 describe('parseBoolean', () => {
   it('converts basic boolean schema', () => {

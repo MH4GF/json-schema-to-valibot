@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest'
-import { parseString } from './parseString.ts'
 import type { JSONSchema4 } from 'json-schema'
+import { describe, expect, it } from 'vitest'
+import { parseString } from './parseString.ts'
 
 describe('parseString', () => {
   it('converts basic string schema', () => {

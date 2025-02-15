@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest'
-import { parseNumber } from './parseNumber.ts'
 import type { JSONSchema4 } from 'json-schema'
+import { describe, expect, it } from 'vitest'
+import { parseNumber } from './parseNumber.ts'
 
 describe('parseNumber', () => {
   it('converts basic number schema', () => {

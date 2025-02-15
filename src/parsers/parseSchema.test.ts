@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest'
-import { parseSchema } from './parseSchema.ts'
 import type { JSONSchema4, JSONSchema4TypeName } from 'json-schema'
+import { describe, expect, it } from 'vitest'
+import { parseSchema } from './parseSchema.ts'
 
 describe('parseSchema', () => {
   it('handles schema without type', () => {
