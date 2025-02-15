@@ -12,6 +12,9 @@ export default defineConfig({
         '**/*.test.ts',
         'src/test/output/**',
         'vite.config.ts',
+        'src/index.ts',
+        'src/cli.ts',
+        'src/types.ts',
       ],
       thresholds: {
         statements: 80,
