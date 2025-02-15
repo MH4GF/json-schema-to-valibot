@@ -274,4 +274,22 @@ describe('jsonSchemaToValibot', () => {
       `"v.pipe(v.union([v.string(), v.picklist(["AGPL-3.0-only","MIT","Apache-2.0"])]), v.description("License type"))"`,
     )
   })
+
+  it('should handle enum with default value', () => {
+    const schema: JSONSchema4 = {
+      type: 'object',
+      properties: {
+        type: {
+          type: 'string',
+          enum: ['commonjs', 'module'],
+          default: 'commonjs',
+        },
+      },
+    }
+
+    const result = jsonSchemaToValibot(schema)
+    expect(result).toMatchInlineSnapshot(
+      `"v.object({type: v.optional(v.picklist(["commonjs","module"]), 'commonjs')})"`,
+    )
+  })
 })

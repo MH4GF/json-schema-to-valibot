@@ -55,11 +55,7 @@ function generateExports(schemaCode: string, options: Options): string[] {
 
 function parseSchema(schema: JSONSchema4, options: Options): string {
   if (Array.isArray(schema.enum)) {
-    const picklistSchema = `v.picklist(${JSON.stringify(schema.enum)})`
-    if (!options.withoutDescriptions && schema.description) {
-      return `v.pipe(${picklistSchema}, v.description("${escapeString(schema.description)}"))`
-    }
-    return picklistSchema
+    return parseEnum(schema, options)
   }
 
   if (!schema.type) {
@@ -153,10 +149,7 @@ function parseObject(schema: JSONSchema4, options: Options): string {
   const properties = Object.entries(schema.properties)
     .map(([key, value]) => {
       const parsed = parseSchema(value, options)
-      if (!options.withoutDefaults && value.default !== undefined) {
-        return `${key}: v.optional(v.string(), '${value.default}')`
-      }
-      return `${key}: ${required.has(key) ? parsed : `v.optional(${parsed})`}`
+      return `${key}: ${required.has(key) || (!options.withoutDefaults && value.default !== undefined) ? parsed : `v.optional(${parsed})`}`
     })
     .join(',')
 
@@ -173,4 +166,18 @@ function parseArray(schema: JSONSchema4, options: Options): string {
   }
 
   return `v.array(${parseSchema(schema.items, options)})`
+}
+
+function parseEnum(schema: JSONSchema4, options: Options): string {
+  const picklistSchema = `v.picklist(${JSON.stringify(schema.enum)})`
+
+  if (!options.withoutDefaults && schema.default !== undefined) {
+    return `v.optional(${picklistSchema}, '${escapeString(schema.default)}')`
+  }
+
+  if (!options.withoutDescriptions && schema.description) {
+    return `v.pipe(${picklistSchema}, v.description("${escapeString(schema.description)}"))`
+  }
+
+  return picklistSchema
 }
