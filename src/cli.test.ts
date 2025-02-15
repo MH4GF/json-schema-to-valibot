@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process'
-import { readFileSync, readdirSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 import { mkdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { describe, expect, it } from 'vitest'
@@ -36,7 +36,7 @@ describe('CLI', () => {
         '--no-warnings',
         'src/cli.ts',
         '-i',
-        'src/test/fixtures/json-schema/default.json',
+        'test/fixtures/schemastore/src/schemas/json/package.json',
       ],
       {
         encoding: 'utf8',
@@ -56,7 +56,7 @@ describe('CLI', () => {
   })
 
   it('should write to output file', () => {
-    const outputPath = 'src/test/output/default.js'
+    const outputPath = 'test/output/default.js'
     mkdirSync(dirname(outputPath), { recursive: true })
 
     const { stderr } = spawnSync(
@@ -65,7 +65,7 @@ describe('CLI', () => {
         '--no-warnings',
         'src/cli.ts',
         '-i',
-        'src/test/fixtures/json-schema/default.json',
+        'test/fixtures/schemastore/src/schemas/json/package.json',
         '--output',
         outputPath,
       ],
@@ -81,7 +81,7 @@ describe('CLI', () => {
   })
 
   it('should write to output file without import', () => {
-    const outputPath = 'src/test/output/default-no-import.js'
+    const outputPath = 'test/output/default-no-import.js'
     mkdirSync(dirname(outputPath), { recursive: true })
 
     const { stderr } = spawnSync(
@@ -90,7 +90,7 @@ describe('CLI', () => {
         '--no-warnings',
         'src/cli.ts',
         '-i',
-        'src/test/fixtures/json-schema/default.json',
+        'test/fixtures/schemastore/src/schemas/json/package.json',
         '--output',
         outputPath,
         '--no-import',
@@ -107,7 +107,7 @@ describe('CLI', () => {
   })
 
   it('should write to output file with JSDoc comments', () => {
-    const outputPath = 'src/test/output/default-with-jsdoc.js'
+    const outputPath = 'test/output/default-with-jsdoc.js'
     mkdirSync(dirname(outputPath), { recursive: true })
 
     const { stderr } = spawnSync(
@@ -116,7 +116,7 @@ describe('CLI', () => {
         '--no-warnings',
         'src/cli.ts',
         '-i',
-        'src/test/fixtures/json-schema/default.json',
+        'test/fixtures/schemastore/src/schemas/json/package.json',
         '--output',
         outputPath,
         '--with-jsdocs',
@@ -151,7 +151,7 @@ describe('CLI', () => {
         '--no-warnings',
         'src/cli.ts',
         '-i',
-        'src/test/fixtures/json-schema/default.json',
+        'test/fixtures/schemastore/src/schemas/json/package.json',
         '-m',
         'invalid',
       ],
@@ -166,27 +166,34 @@ describe('CLI', () => {
     `)
   })
 
-  describe('JSON Schema Test Suite', () => {
-    const testDir = 'src/test/fixtures/json-schema'
-    const testFiles = readdirSync(testDir).filter((file) => file.endsWith('.json'))
+  describe('SchemaStore Integration Tests', () => {
+    it('should convert package.json schema', () => {
+      const schemaPath = 'src/schemas/json/package.json'
+      const fullPath = join('test/fixtures/schemastore', schemaPath)
+      const outputPath = 'test/output/schemastore/package.json.ts'
+      mkdirSync(dirname(outputPath), { recursive: true })
 
-    for (const testFile of testFiles) {
-      it(testFile, () => {
-        const outputPath = `src/test/output/${testFile}.ts`
-        mkdirSync(dirname(outputPath), { recursive: true })
+      const { stderr } = spawnSync(
+        'node',
+        [
+          '--no-warnings',
+          'src/cli.ts',
+          '-i',
+          fullPath,
+          '--output',
+          outputPath,
+          '--name',
+          'PackageSchema',
+          '--with-jsdocs',
+        ],
+        {
+          encoding: 'utf8',
+        },
+      )
 
-        const { stderr } = spawnSync(
-          'node',
-          ['--no-warnings', 'src/cli.ts', '-i', join(testDir, testFile), '--output', outputPath],
-          {
-            encoding: 'utf8',
-          },
-        )
-
-        expect(stderr).toBeFalsy()
-        const output = readFileSync(outputPath, 'utf8')
-        expect(output).toMatchSnapshot()
-      })
-    }
+      expect(stderr).toBeFalsy()
+      const output = readFileSync(outputPath, 'utf8')
+      expect(output).toMatchSnapshot()
+    })
   })
 })

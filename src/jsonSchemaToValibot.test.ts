@@ -84,7 +84,7 @@ describe('jsonSchemaToValibot', () => {
       type: 'string',
       description: 'foo',
     } as JSONSchema4)
-    expect(result).toMatchInlineSnapshot(`"v.pipe(v.string(), v.description('foo'))"`)
+    expect(result).toMatchInlineSnapshot(`"v.pipe(v.string(), v.description("foo"))"`)
   })
 
   it('can exclude descriptions', () => {
@@ -188,5 +188,29 @@ describe('jsonSchemaToValibot', () => {
 
     const result = jsonSchemaToValibot(schema)
     expect(result).toMatchInlineSnapshot(`"v.object({})"`)
+  })
+
+  it('should handle description with single quotes', () => {
+    const schema: JSONSchema4 = {
+      type: 'string',
+      description: "A string with 'quotes'",
+    }
+
+    const result = jsonSchemaToValibot(schema)
+    expect(result).toMatchInlineSnapshot(
+      `"v.pipe(v.string(), v.description(\"A string with 'quotes'\"))"`,
+    )
+  })
+
+  it('should handle description with double quotes', () => {
+    const schema: JSONSchema4 = {
+      type: 'string',
+      description: 'A string with "quotes"',
+    }
+
+    const result = jsonSchemaToValibot(schema)
+    expect(result).toMatchInlineSnapshot(
+      `"v.pipe(v.string(), v.description(\"A string with \\"quotes\\"\"))"`
+    )
   })
 })

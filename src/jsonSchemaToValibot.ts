@@ -86,13 +86,20 @@ function parseSchema(schema: JSONSchema4, options: Options): string {
   }
 }
 
+function escapeString(value: unknown): string {
+  if (value === null || value === undefined) {
+    return ''
+  }
+  return String(value).replace(/[\\"]/g, '\\$&')
+}
+
 function parseString(schema: JSONSchema4, options: Options = {}): string {
   if (!options.withoutDefaults && schema.default !== undefined) {
-    return `v.optional(v.string(), '${schema.default}')`
+    return `v.optional(v.string(), '${escapeString(schema.default)}')`
   }
 
   if (!options.withoutDescriptions && schema.description) {
-    return `v.pipe(v.string(), v.description('${schema.description}'))`
+    return `v.pipe(v.string(), v.description("${escapeString(schema.description)}"))`
   }
 
   return 'v.string()'
