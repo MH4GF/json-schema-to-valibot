@@ -1,0 +1,291 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CLI > JSON Schema Test Suite > additionalProperties.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > allOf.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > anchor.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > anyOf.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > boolean_schema.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > const.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > contains.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > content.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > default.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > defs.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > dependentRequired.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > dependentSchemas.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > dynamicRef.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > enum.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > exclusiveMaximum.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > exclusiveMinimum.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > format.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > if-then-else.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > infinite-loop-detection.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > items.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > maxContains.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > maxItems.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > maxLength.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > maxProperties.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > maximum.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > minContains.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > minItems.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > minLength.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > minProperties.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > minimum.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > multipleOf.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > not.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > oneOf.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > pattern.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > patternProperties.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > prefixItems.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > properties.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > propertyNames.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > ref.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > refRemote.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > required.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > type.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > unevaluatedItems.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > unevaluatedProperties.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > uniqueItems.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > JSON Schema Test Suite > vocabulary.json 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > should write to output file 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > should write to output file with JSDoc comments 1`] = `
+"import * as v from "valibot";
+
+export default v.any();"
+`;
+
+exports[`CLI > should write to output file without import 1`] = `"export default v.any();"`;

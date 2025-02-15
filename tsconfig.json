@@ -3,5 +3,6 @@
   "include": ["src"],
   "compilerOptions": {
     "allowImportingTsExtensions": true
-  }
+  },
+  "exclude": ["node_modules", "dist", "src/test/**/*", "coverage"]
 }

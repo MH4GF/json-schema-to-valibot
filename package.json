@@ -15,7 +15,7 @@
     "fmt": "biome check --fix --unsafe",
     "lint": "npm run lint:biome && npm run lint:tsc",
     "lint:biome": "biome check .",
-    "lint:tsc": "tsc --noEmit",
+    "lint:tsc": "tsc --noEmit && tsc -p tsconfig.test.json --noEmit",
     "test:coverage": "vitest run --coverage"
   },
   "keywords": ["json-schema", "valibot", "converter", "validation", "schema"],
