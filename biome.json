@@ -15,6 +15,6 @@
     }
   },
   "files": {
-    "ignore": ["src/test/JSON-Schema-Test-Suite/**"]
+    "ignore": ["test/fixtures/**", "test/output/**"]
   }
 }
