@@ -36,7 +36,7 @@ describe('CLI', () => {
         '--no-warnings',
         'src/cli.ts',
         '-i',
-        'src/test/JSON-Schema-Test-Suite/tests/latest/default.json',
+        'src/test/fixtures/json-schema/default.json',
       ],
       {
         encoding: 'utf8',
@@ -65,7 +65,7 @@ describe('CLI', () => {
         '--no-warnings',
         'src/cli.ts',
         '-i',
-        'src/test/JSON-Schema-Test-Suite/tests/latest/default.json',
+        'src/test/fixtures/json-schema/default.json',
         '--output',
         outputPath,
       ],
@@ -90,7 +90,7 @@ describe('CLI', () => {
         '--no-warnings',
         'src/cli.ts',
         '-i',
-        'src/test/JSON-Schema-Test-Suite/tests/latest/default.json',
+        'src/test/fixtures/json-schema/default.json',
         '--output',
         outputPath,
         '--no-import',
@@ -116,7 +116,7 @@ describe('CLI', () => {
         '--no-warnings',
         'src/cli.ts',
         '-i',
-        'src/test/JSON-Schema-Test-Suite/tests/latest/default.json',
+        'src/test/fixtures/json-schema/default.json',
         '--output',
         outputPath,
         '--with-jsdocs',
@@ -151,7 +151,7 @@ describe('CLI', () => {
         '--no-warnings',
         'src/cli.ts',
         '-i',
-        'src/test/JSON-Schema-Test-Suite/tests/latest/default.json',
+        'src/test/fixtures/json-schema/default.json',
         '-m',
         'invalid',
       ],
@@ -167,7 +167,7 @@ describe('CLI', () => {
   })
 
   describe('JSON Schema Test Suite', () => {
-    const testDir = 'src/test/JSON-Schema-Test-Suite/tests/latest'
+    const testDir = 'src/test/fixtures/json-schema'
     const testFiles = readdirSync(testDir).filter((file) => file.endsWith('.json'))
 
     for (const testFile of testFiles) {

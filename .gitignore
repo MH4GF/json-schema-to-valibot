@@ -2,6 +2,3 @@ node_modules
 dist
 coverage
 src/test/output
-
-# Submodule cache
-.gitmodules.cache
