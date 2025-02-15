@@ -176,7 +176,7 @@ describe('CLI', () => {
       const outputPath = 'test/output/schemastore/package.json.ts'
       mkdirSync(dirname(outputPath), { recursive: true })
 
-      const { stderr } = spawnSync(
+      const { stderr, stdout } = spawnSync(
         'node',
         [
           '--no-warnings',
@@ -194,6 +194,8 @@ describe('CLI', () => {
         },
       )
 
+      // biome-ignore lint/suspicious/noConsole: for debugging
+      console.info(stdout)
       expect(stderr).toBeFalsy()
       const output = readFileSync(outputPath, 'utf8')
       expect(output).toMatchSnapshot()
