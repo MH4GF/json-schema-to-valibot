@@ -13,5 +13,8 @@
         "noNodejsModules": "off"
       }
     }
+  },
+  "files": {
+    "ignore": ["src/test/JSON-Schema-Test-Suite/**"]
   }
 }
