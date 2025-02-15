@@ -210,7 +210,68 @@ describe('jsonSchemaToValibot', () => {
 
     const result = jsonSchemaToValibot(schema)
     expect(result).toMatchInlineSnapshot(
-      `"v.pipe(v.string(), v.description(\"A string with \\"quotes\\"\"))"`
+      `"v.pipe(v.string(), v.description(\"A string with \\"quotes\\"\"))"`,
+    )
+  })
+
+  it('should handle string validations', () => {
+    const schema: JSONSchema4 = {
+      type: 'string',
+      minLength: 1,
+      maxLength: 214,
+      pattern: '^(?:(?:@(?:[a-z0-9-*~][a-z0-9-*._~]*)?/[a-z0-9-._~])|[a-z0-9-~])[a-z0-9-._~]*$',
+    }
+
+    const result = jsonSchemaToValibot(schema)
+    expect(result).toMatchInlineSnapshot(
+      `"v.pipe(v.string(), v.minLength(1), v.maxLength(214), v.regex(/^(?:(?:@(?:[a-z0-9-*~][a-z0-9-*._~]*)?\\/[a-z0-9-._~])|[a-z0-9-~])[a-z0-9-._~]*$/))"`,
+    )
+  })
+
+  it('should combine string validations with description', () => {
+    const schema: JSONSchema4 = {
+      type: 'string',
+      description: 'A test string',
+      minLength: 1,
+      maxLength: 10,
+    }
+
+    const result = jsonSchemaToValibot(schema)
+    expect(result).toMatchInlineSnapshot(
+      `"v.pipe(v.string(), v.minLength(1), v.maxLength(10), v.description(\"A test string\"))"`,
+    )
+  })
+
+  it('should handle enum', () => {
+    const schema: JSONSchema4 = {
+      type: 'string',
+      enum: ['AGPL-3.0-only', 'MIT', 'Apache-2.0'],
+      description: 'License type',
+    }
+
+    const result = jsonSchemaToValibot(schema)
+    expect(result).toMatchInlineSnapshot(
+      `"v.pipe(v.picklist(["AGPL-3.0-only","MIT","Apache-2.0"]), v.description("License type"))"`,
+    )
+  })
+
+  // biome-ignore lint/suspicious/noSkippedTests: <explanation>
+  it.skip('should handle anyOf', () => {
+    const schema: JSONSchema4 = {
+      anyOf: [
+        {
+          type: 'string',
+        },
+        {
+          enum: ['AGPL-3.0-only', 'MIT', 'Apache-2.0'],
+        },
+      ],
+      description: 'License type',
+    }
+
+    const result = jsonSchemaToValibot(schema)
+    expect(result).toMatchInlineSnapshot(
+      `"v.pipe(v.union([v.string(), v.picklist(["AGPL-3.0-only","MIT","Apache-2.0"])]), v.description("License type"))"`,
     )
   })
 })

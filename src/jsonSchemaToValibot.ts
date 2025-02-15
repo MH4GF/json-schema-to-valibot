@@ -54,6 +54,14 @@ function generateExports(schemaCode: string, options: Options): string[] {
 }
 
 function parseSchema(schema: JSONSchema4, options: Options): string {
+  if (Array.isArray(schema.enum)) {
+    const picklistSchema = `v.picklist(${JSON.stringify(schema.enum)})`
+    if (!options.withoutDescriptions && schema.description) {
+      return `v.pipe(${picklistSchema}, v.description("${escapeString(schema.description)}"))`
+    }
+    return picklistSchema
+  }
+
   if (!schema.type) {
     return 'v.any()'
   }
@@ -94,15 +102,32 @@ function escapeString(value: unknown): string {
 }
 
 function parseString(schema: JSONSchema4, options: Options = {}): string {
-  if (!options.withoutDefaults && schema.default !== undefined) {
-    return `v.optional(v.string(), '${escapeString(schema.default)}')`
+  const validations: string[] = ['v.string()']
+
+  if (typeof schema.minLength === 'number') {
+    validations.push(`v.minLength(${schema.minLength})`)
+  }
+
+  if (typeof schema.maxLength === 'number') {
+    validations.push(`v.maxLength(${schema.maxLength})`)
+  }
+
+  if (typeof schema.pattern === 'string') {
+    const escapedPattern = schema.pattern.replace(/\//g, '\\/')
+    validations.push(`v.regex(/${escapedPattern}/)`)
   }
 
   if (!options.withoutDescriptions && schema.description) {
-    return `v.pipe(v.string(), v.description("${escapeString(schema.description)}"))`
+    validations.push(`v.description("${escapeString(schema.description)}")`)
   }
 
-  return 'v.string()'
+  if (!options.withoutDefaults && schema.default !== undefined) {
+    const baseValidation =
+      validations.length > 1 ? `v.pipe(${validations.join(', ')})` : validations[0]
+    return `v.optional(${baseValidation}, '${escapeString(schema.default)}')`
+  }
+
+  return validations.length > 1 ? `v.pipe(${validations.join(', ')})` : 'v.string()'
 }
 
 function parseNumber(schema: JSONSchema4, options: Options = {}): string {
@@ -135,7 +160,11 @@ function parseObject(schema: JSONSchema4, options: Options): string {
     })
     .join(',')
 
-  return `v.object({${properties}})`
+  const objectSchema = `v.object({${properties}})`
+  if (!options.withoutDescriptions && schema.description) {
+    return `v.pipe(${objectSchema}, v.description("${escapeString(schema.description)}"))`
+  }
+  return objectSchema
 }
 
 function parseArray(schema: JSONSchema4, options: Options): string {
