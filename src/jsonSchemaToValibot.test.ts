@@ -145,4 +145,48 @@ describe('jsonSchemaToValibot', () => {
       }),
     ).toThrow()
   })
+
+  it('handles both nullable and optional properties', () => {
+    const schema: JSONSchema4 = {
+      type: 'object',
+      properties: {
+        name: {
+          type: ['string', 'null'],
+          optional: true,
+        },
+      },
+    }
+
+    const result = jsonSchemaToValibot(schema)
+    expect(result).toMatchInlineSnapshot(`"v.object({name: v.optional(v.nullable(v.string()))})"`)
+  })
+
+  it('handles array with null type', () => {
+    const schema: JSONSchema4 = {
+      type: 'array',
+      items: {
+        type: ['string', 'null'],
+      },
+    }
+
+    const result = jsonSchemaToValibot(schema)
+    expect(result).toMatchInlineSnapshot(`"v.array(v.nullable(v.string()))"`)
+  })
+
+  it('handles unknown types', () => {
+    const schema = {
+      type: 'unknown',
+    } as unknown as JSONSchema4
+
+    expect(() => jsonSchemaToValibot(schema)).toThrow('Unsupported type: unknown')
+  })
+
+  it('handles object without properties', () => {
+    const schema: JSONSchema4 = {
+      type: 'object',
+    }
+
+    const result = jsonSchemaToValibot(schema)
+    expect(result).toMatchInlineSnapshot(`"v.object({})"`)
+  })
 })

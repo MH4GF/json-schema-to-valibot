@@ -58,6 +58,16 @@ function parseSchema(schema: JSONSchema4, options: Options): string {
     return 'v.any()'
   }
 
+  if (Array.isArray(schema.type)) {
+    if (schema.type.includes('null')) {
+      const types = schema.type.filter((t) => t !== 'null')
+      if (types.length === 1) {
+        return `v.nullable(${parseSchema({ ...schema, type: types[0] }, options)})`
+      }
+    }
+    return `v.union([${schema.type.map((t) => parseSchema({ ...schema, type: t }, options)).join(', ')}])`
+  }
+
   switch (schema.type) {
     case 'string':
       return parseString(schema, options)
@@ -72,7 +82,7 @@ function parseSchema(schema: JSONSchema4, options: Options): string {
     case 'array':
       return parseArray(schema, options)
     default:
-      return 'v.any()'
+      throw new Error(`Unsupported type: ${schema.type}`)
   }
 }
 
