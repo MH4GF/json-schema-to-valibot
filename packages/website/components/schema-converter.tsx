@@ -166,7 +166,6 @@ export function SchemaConverter() {
               id="with-type"
               checked={withType}
               onCheckedChange={setWithType}
-              className="data-[state=checked]:bg-[#535C91]"
             />
           </div>
         </div>
