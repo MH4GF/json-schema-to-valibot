@@ -22,6 +22,13 @@ describe('parseSchema', () => {
     expect(parseSchema(schema, {})).toMatchInlineSnapshot('"v.union([v.string(), v.number()])"')
   })
 
+  it('converts basic anyOf schema', () => {
+    const schema: JSONSchema4 = {
+      anyOf: [{ type: 'string' }, { type: 'number' }],
+    }
+    expect(parseSchema(schema, {})).toMatchInlineSnapshot('"v.union([v.string(), v.number()])"')
+  })
+
   it('throws error for unsupported type', () => {
     const schema: JSONSchema4 = { type: 'invalid' as JSONSchema4TypeName }
     expect(() => parseSchema(schema, {})).toThrow('Unsupported type: invalid')

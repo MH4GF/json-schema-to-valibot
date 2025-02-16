@@ -34,7 +34,7 @@
 - [x] type (single)
 - [x] type (multiple)
 - [ ] allOf
-- [ ] anyOf
+- [x] anyOf
 - [ ] oneOf
 - [ ] not
 - [x] definitions
