@@ -39,11 +39,12 @@ export default v.object({
       v.pipe(
         v.object({
           url: v.optional(
-            v.pipe(v.string(), v.description("The url to your project's issue tracker.")),
+            v.pipe(v.string(), v.url(), v.description("The url to your project's issue tracker.")),
           ),
           email: v.optional(
             v.pipe(
               v.string(),
+              v.email(),
               v.description('The email address to which issues should be reported.'),
             ),
           ),
@@ -63,7 +64,9 @@ export default v.object({
   license: v.optional(v.any()),
   licenses: v.optional(
     v.pipe(
-      v.array(v.object({ type: v.optional(v.any()), url: v.optional(v.string()) })),
+      v.array(
+        v.object({ type: v.optional(v.any()), url: v.optional(v.pipe(v.string(), v.url())) }),
+      ),
       v.description(
         'DEPRECATED: Instead, use SPDX expressions, like this: { "license": "ISC" } or { "license": "(MIT OR Apache-2.0)" } see: \\'https://docs.npmjs.com/files/package.json#license\\'.',
       ),
@@ -72,7 +75,11 @@ export default v.object({
   author: v.optional(
     v.union([
       v.pipe(
-        v.object({ name: v.string(), url: v.optional(v.string()), email: v.optional(v.string()) }),
+        v.object({
+          name: v.string(),
+          url: v.optional(v.pipe(v.string(), v.url())),
+          email: v.optional(v.pipe(v.string(), v.email())),
+        }),
         v.description('A person who has been involved in creating or maintaining this package.'),
       ),
       v.pipe(
@@ -88,8 +95,8 @@ export default v.object({
           v.pipe(
             v.object({
               name: v.string(),
-              url: v.optional(v.string()),
-              email: v.optional(v.string()),
+              url: v.optional(v.pipe(v.string(), v.url())),
+              email: v.optional(v.pipe(v.string(), v.email())),
             }),
             v.description(
               'A person who has been involved in creating or maintaining this package.',
@@ -113,8 +120,8 @@ export default v.object({
           v.pipe(
             v.object({
               name: v.string(),
-              url: v.optional(v.string()),
-              email: v.optional(v.string()),
+              url: v.optional(v.pipe(v.string(), v.url())),
+              email: v.optional(v.pipe(v.string(), v.email())),
             }),
             v.description(
               'A person who has been involved in creating or maintaining this package.',
@@ -503,7 +510,7 @@ export default v.object({
     v.object({
       access: v.optional(v.union([v.literal('public'), v.literal('restricted')])),
       tag: v.optional(v.string()),
-      registry: v.optional(v.string()),
+      registry: v.optional(v.pipe(v.string(), v.url())),
       provenance: v.optional(v.boolean()),
     }),
   ),

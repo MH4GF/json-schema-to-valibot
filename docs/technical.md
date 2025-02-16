@@ -37,7 +37,7 @@ This document outlines the overall technical policies and design guidelines for 
 - **JSON Schema**: `json-schema` / `json-refs`
   - Used for reading schema definitions and resolving `$ref` references.
 - **Valibot**
-  - The validation library for which code is generated; the output references Valibot’s API.
+  - The validation library for which code is generated; the output references Valibot's API.
 
 ## Implementation Policy
 

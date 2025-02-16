@@ -52,24 +52,24 @@
 
 ## String Formats
 
-- [ ] date
-- [ ] time
-- [ ] date-time
-- [ ] duration
-- [ ] email
-- [ ] idn-email
-- [ ] hostname
-- [ ] idn-hostname
-- [ ] ipv4
-- [ ] ipv6
-- [ ] uri
-- [ ] uri-reference
-- [ ] iri
-- [ ] iri-reference
-- [ ] uuid
-- [ ] json-pointer
-- [ ] relative-json-pointer
-- [ ] regex
+- [x] date
+- [x] time
+- [x] date-time
+- [x] duration
+- [x] email
+- [x] idn-email
+- [x] hostname
+- [x] idn-hostname
+- [x] ipv4
+- [x] ipv6
+- [x] uri
+- [x] uri-reference
+- [x] iri
+- [x] iri-reference
+- [x] uuid
+- [x] json-pointer
+- [x] relative-json-pointer
+- [x] regex
 
 ## Conditional Subschemas
 

@@ -70,4 +70,22 @@ describe('parseString', () => {
       '"v.pipe(v.string(), v.minLength(3), v.maxLength(10), v.regex(/^[a-z]+$/), v.description("test description"))"',
     )
   })
+
+  describe('format validations', () => {
+    it('handles email format', () => {
+      const schema: JSONSchema4 = {
+        type: 'string',
+        format: 'email',
+      }
+      expect(parseString(schema)).toMatchInlineSnapshot('"v.pipe(v.string(), v.email())"')
+    })
+
+    it('ignores unsupported format', () => {
+      const schema: JSONSchema4 = {
+        type: 'string',
+        format: 'unknown-format',
+      }
+      expect(parseString(schema)).toMatchInlineSnapshot('"v.string()"')
+    })
+  })
 })

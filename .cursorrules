@@ -75,7 +75,6 @@ TASK_WORKFLOW: |
      - Implement to pass tests
      - Update status on test completion
 
-
 # Error Prevention
 VALIDATION_RULES: |
   1. Check type consistency.
