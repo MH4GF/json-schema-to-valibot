@@ -10,6 +10,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { Switch } from '@/components/ui/switch'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { useToast } from '@/hooks/use-toast'
 import { javascript } from '@codemirror/lang-javascript'
 import { json } from '@codemirror/lang-json'
@@ -17,7 +19,7 @@ import { vscodeDarkInit } from '@uiw/codemirror-theme-vscode'
 import CodeMirror from '@uiw/react-codemirror'
 import { resolveRefs } from 'json-refs'
 import { type Options, jsonSchemaToValibot } from 'json-schema-to-valibot'
-import { Copy } from 'lucide-react'
+import { Copy, HelpCircle } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
 
 const editorTheme = vscodeDarkInit({
@@ -32,6 +34,7 @@ export function SchemaConverter() {
   const [schemaName, setSchemaName] = useState('')
   const [module, setModule] = useState<Options['module']>('esm')
   const [recursionDepth, setRecursionDepth] = useState('0')
+  const [withType, setWithType] = useState(false)
   const [jsonSchema, setJsonSchema] = useState(`{
   "type": "object",
   "properties": {
@@ -50,6 +53,7 @@ export function SchemaConverter() {
       const options = {
         module,
         name: schemaName || undefined,
+        type: withType,
         recursionDepth: Number.parseInt(recursionDepth, 10),
       }
 
@@ -66,7 +70,7 @@ export function SchemaConverter() {
         variant: 'destructive',
       })
     }
-  }, [jsonSchema, module, schemaName, recursionDepth, toast])
+  }, [jsonSchema, module, schemaName, recursionDepth, toast, withType])
 
   useEffect(() => {
     convertSchema()
@@ -135,6 +139,34 @@ export function SchemaConverter() {
               value={recursionDepth}
               onChange={(e) => setRecursionDepth(e.target.value)}
               className="bg-[#050a1f] border-[#535C91] text-slate-50 focus:ring-[#1B1A55] focus:ring-offset-2 focus:ring-offset-[#070F2B] focus:border-[#535C91]"
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Label htmlFor="with-type" className="text-[#9290C3]">
+                With Type
+              </Label>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="ghost" size="icon" className="w-6 h-6 rounded-full p-0">
+                      <HelpCircle className="h-4 w-4 text-[#9290C3]" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent className="border-[#535C91]">
+                    <p>
+                      Export a named type along with the schema. Requires `name` to be set and
+                      `module` to be `esm`.
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+            <Switch
+              id="with-type"
+              checked={withType}
+              onCheckedChange={setWithType}
+              className="data-[state=checked]:bg-[#535C91]"
             />
           </div>
         </div>
