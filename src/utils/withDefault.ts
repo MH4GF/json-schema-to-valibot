@@ -8,8 +8,19 @@ export function withDefault(
   options: Options = {},
 ): string {
   if (!options.withoutDefaults && schema.default !== undefined) {
-    const defaultValue =
-      schema.type === 'string' ? `'${escapeString(schema.default)}'` : schema.default
+    let defaultValue = schema.default
+
+    if (typeof defaultValue === 'string') {
+      const numberValue = Number(defaultValue)
+      if (!Number.isNaN(numberValue)) {
+        defaultValue = numberValue
+      } else if (defaultValue === 'true' || defaultValue === 'false') {
+        defaultValue = defaultValue === 'true'
+      } else {
+        defaultValue = `'${escapeString(defaultValue)}'`
+      }
+    }
+
     return `v.optional(${baseSchema}, ${defaultValue})`
   }
   return baseSchema
