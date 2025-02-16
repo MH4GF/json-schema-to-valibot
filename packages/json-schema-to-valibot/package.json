@@ -2,15 +2,19 @@
   "name": "json-schema-to-valibot",
   "version": "0.1.0",
   "description": "Convert JSON Schema to Valibot schema",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
   "files": ["dist"],
   "bin": {
     "json-schema-to-valibot": "./dist/cli.js"
   },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "scripts": {
-    "build": "tsup src/index.ts src/cli.ts",
+    "build": "tsup src/index.ts src/cli.ts --dts --external commander --format esm,cjs",
     "test": "vitest",
     "fmt": "biome check --fix --unsafe",
     "lint": "npm run lint:biome && npm run lint:tsc",
