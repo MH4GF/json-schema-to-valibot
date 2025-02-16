@@ -202,5 +202,38 @@ describe('CLI', () => {
       const output = readFileSync(outputPath, 'utf8')
       expect(output).toMatchSnapshot()
     })
+
+    it('should convert tbls.schema.json_schema.json schema', () => {
+      const fullPath = 'test/fixtures/resolved/tbls.schema.json_schema.json.resolved.json'
+      const outputPath = 'test/output/tbls.schema.json_schema.json.ts'
+      mkdirSync(dirname(outputPath), { recursive: true })
+
+      const { stderr, stdout } = spawnSync(
+        'node',
+        [
+          '--no-warnings',
+          'src/cli.ts',
+          '-i',
+          fullPath,
+          '--output',
+          outputPath,
+          '--name',
+          'TblsSchema',
+          '--with-jsdocs',
+        ],
+        {
+          encoding: 'utf8',
+        },
+      )
+
+      // biome-ignore lint/suspicious/noConsole: for debugging
+      console.info(stdout)
+      expect(stderr).toBeFalsy()
+
+      spawnSync('biome', ['format', '--fix', outputPath, '--vcs-use-ignore-file=false'])
+
+      const output = readFileSync(outputPath, 'utf8')
+      expect(output).toMatchSnapshot()
+    })
   })
 })

@@ -1480,6 +1480,144 @@ export default v.object({
 "
 `;
 
+exports[`CLI > SchemaStore Integration Tests > should convert tbls.schema.json_schema.json schema 1`] = `
+"import * as v from 'valibot'
+
+export default v.object({
+  name: v.optional(v.string()),
+  desc: v.optional(v.string()),
+  tables: v.array(
+    v.object({
+      name: v.string(),
+      type: v.string(),
+      comment: v.optional(v.string()),
+      columns: v.array(
+        v.object({
+          name: v.string(),
+          type: v.string(),
+          nullable: v.boolean(),
+          default: v.optional(v.any()),
+          extra_def: v.optional(v.string()),
+          labels: v.optional(
+            v.array(v.object({ name: v.string(), virtual: v.optional(v.boolean()) })),
+          ),
+          comment: v.optional(v.string()),
+        }),
+      ),
+      indexes: v.optional(
+        v.array(
+          v.object({
+            name: v.string(),
+            def: v.string(),
+            table: v.string(),
+            columns: v.array(v.string()),
+            comment: v.optional(v.string()),
+          }),
+        ),
+      ),
+      constraints: v.optional(
+        v.array(
+          v.object({
+            name: v.string(),
+            type: v.string(),
+            def: v.string(),
+            table: v.string(),
+            referenced_table: v.optional(v.string()),
+            columns: v.optional(v.array(v.string())),
+            referenced_columns: v.optional(v.array(v.string())),
+            comment: v.optional(v.string()),
+          }),
+        ),
+      ),
+      triggers: v.optional(
+        v.array(v.object({ name: v.string(), def: v.string(), comment: v.optional(v.string()) })),
+      ),
+      def: v.optional(v.string()),
+      labels: v.optional(v.array(v.object({ name: v.string(), virtual: v.optional(v.boolean()) }))),
+      referenced_tables: v.optional(v.array(v.string())),
+    }),
+  ),
+  relations: v.optional(
+    v.array(
+      v.object({
+        table: v.string(),
+        columns: v.array(v.string()),
+        cardinality: v.optional(
+          v.union([
+            v.literal('zero_or_one'),
+            v.literal('exactly_one'),
+            v.literal('zero_or_more'),
+            v.literal('one_or_more'),
+            v.literal(''),
+          ]),
+        ),
+        parent_table: v.string(),
+        parent_columns: v.array(v.string()),
+        parent_cardinality: v.optional(
+          v.union([
+            v.literal('zero_or_one'),
+            v.literal('exactly_one'),
+            v.literal('zero_or_more'),
+            v.literal('one_or_more'),
+            v.literal(''),
+          ]),
+        ),
+        def: v.string(),
+        virtual: v.optional(v.boolean()),
+      }),
+    ),
+  ),
+  functions: v.optional(
+    v.array(
+      v.object({
+        name: v.string(),
+        return_type: v.string(),
+        arguments: v.string(),
+        type: v.string(),
+      }),
+    ),
+  ),
+  enums: v.optional(v.array(v.object({ name: v.string(), values: v.array(v.string()) }))),
+  driver: v.optional(
+    v.object({
+      name: v.string(),
+      database_version: v.optional(v.string()),
+      meta: v.optional(
+        v.object({
+          current_schema: v.optional(v.string()),
+          search_paths: v.optional(v.array(v.string())),
+          dict: v.optional(v.object({})),
+        }),
+      ),
+    }),
+  ),
+  labels: v.optional(v.array(v.object({ name: v.string(), virtual: v.optional(v.boolean()) }))),
+  viewpoints: v.optional(
+    v.array(
+      v.object({
+        name: v.string(),
+        desc: v.string(),
+        labels: v.optional(v.array(v.string())),
+        tables: v.optional(v.array(v.string())),
+        distance: v.optional(v.pipe(v.number(), v.integer())),
+        groups: v.optional(
+          v.array(
+            v.object({
+              name: v.string(),
+              desc: v.string(),
+              labels: v.optional(v.array(v.string())),
+              tables: v.optional(v.array(v.string())),
+              color: v.optional(v.string()),
+            }),
+          ),
+        ),
+      }),
+    ),
+  ),
+})
+"
+`;
+
 exports[`CLI > should write to output file 1`] = `
 "import * as v from "valibot";
 
