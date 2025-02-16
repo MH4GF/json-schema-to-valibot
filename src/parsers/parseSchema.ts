@@ -32,6 +32,7 @@ export function parseSchema(schema: JSONSchema4, options: Options): string {
     case 'string':
       return parseString(schema, options)
     case 'number':
+    case 'integer':
       return parseNumber(schema, options)
     case 'boolean':
       return parseBoolean(schema, options)

@@ -3,5 +3,7 @@ import type { Options } from '../types.ts'
 import { withDefault } from '../utils/withDefault.ts'
 
 export function parseNumber(schema: JSONSchema4, options: Options = {}): string {
-  return withDefault(schema, 'v.number()', options)
+  const baseSchema = schema.type === 'integer' ? 'v.pipe(v.number(), v.integer())' : 'v.number()'
+
+  return withDefault(schema, baseSchema, options)
 }

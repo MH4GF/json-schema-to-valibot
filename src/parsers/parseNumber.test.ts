@@ -23,4 +23,23 @@ describe('parseNumber', () => {
     }
     expect(parseNumber(schema, { withoutDefaults: true })).toMatchInlineSnapshot('"v.number()"')
   })
+
+  describe('integer type', () => {
+    it('should parse basic integer schema', () => {
+      const schema: JSONSchema4 = {
+        type: 'integer',
+      }
+      expect(parseNumber(schema)).toMatchInlineSnapshot('"v.pipe(v.number(), v.integer())"')
+    })
+
+    it('should handle integer with default value', () => {
+      const schema: JSONSchema4 = {
+        type: 'integer',
+        default: 42,
+      }
+      expect(parseNumber(schema)).toMatchInlineSnapshot(
+        '"v.optional(v.pipe(v.number(), v.integer()), 42)"',
+      )
+    })
+  })
 })
