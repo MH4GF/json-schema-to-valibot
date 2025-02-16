@@ -26,6 +26,15 @@ describe('jsonSchemaToValibot', () => {
     `)
   })
 
+  it('should generate ESM module with name', () => {
+    const result = jsonSchemaToValibot(myObject, { module: 'esm', name: 'mySchema' })
+    expect(result).toMatchInlineSnapshot(`
+      "import * as v from "valibot";
+
+      export const mySchema = v.object({hello: v.optional(v.string())});"
+    `)
+  })
+
   it('should generate ESM module with type', () => {
     const result = jsonSchemaToValibot(myObject, {
       name: 'mySchema',

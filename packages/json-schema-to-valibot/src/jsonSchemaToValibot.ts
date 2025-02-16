@@ -35,20 +35,35 @@ function generateImports(options: Options): string[] {
 
 function generateExports(schemaCode: string, options: Options): string[] {
   if (options.module === 'esm') {
-    if (options.type && options.name) {
-      const typeName =
-        typeof options.type === 'string'
-          ? options.type
-          : options.name.charAt(0).toUpperCase() + options.name.slice(1)
+    return generateEsmExports(schemaCode, options)
+  }
+  return generateCjsExports(schemaCode, options)
+}
 
-      return [
-        `export const ${options.name} = ${schemaCode};`,
-        `export type ${typeName} = v.Input<typeof ${options.name}>;`,
-      ]
-    }
-    return [`export default ${schemaCode};`]
+function generateEsmExports(schemaCode: string, options: Options): string[] {
+  if (options.name) {
+    return [`export const ${options.name} = ${schemaCode};`, ...generateTypeExport(options)].filter(
+      Boolean,
+    )
   }
 
+  return [`export default ${schemaCode};`]
+}
+
+function generateTypeExport(options: Options): string[] {
+  if (!(options.type && options.name)) {
+    return []
+  }
+
+  const typeName =
+    typeof options.type === 'string'
+      ? options.type
+      : options.name.charAt(0).toUpperCase() + options.name.slice(1)
+
+  return [`export type ${typeName} = v.Input<typeof ${options.name}>;`]
+}
+
+function generateCjsExports(schemaCode: string, options: Options): string[] {
   return options.name
     ? [`module.exports = { ${options.name}: ${schemaCode} };`]
     : [`module.exports = ${schemaCode};`]
