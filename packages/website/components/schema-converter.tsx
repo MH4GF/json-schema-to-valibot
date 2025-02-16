@@ -76,11 +76,11 @@ export function SchemaConverter() {
   }
 
   return (
-    <div className="px-8 h-full w-full py-6">
-      <div className="grid grid-cols-[250px_minmax(0,1fr)_minmax(0,1fr)] gap-8 h-full w-full">
+    <div className="h-full w-full">
+      <div className="grid grid-cols-[250px_minmax(0,1fr)_minmax(0,1fr)] gap-4 h-full w-full">
         {/* Settings Panel */}
-        <div className="space-y-6">
-          <div className="space-y-2">
+        <div className="flex flex-col gap-2">
+          <div>
             <Label htmlFor="schema-name" className="text-[#9290C3]">
               Schema name
             </Label>
@@ -89,21 +89,21 @@ export function SchemaConverter() {
               placeholder="schema"
               value={schemaName}
               onChange={(e) => setSchemaName(e.target.value)}
-              className="bg-[#1B1A55] border-[#535C91] text-slate-50 focus:ring-[#1B1A55] focus:ring-offset-2 focus:ring-offset-[#070F2B] focus:border-[#535C91] placeholder-[#535C91]"
+              className="bg-[#050a1f] border-[#535C91] text-slate-50 focus:ring-[#1B1A55] focus:ring-offset-2 focus:ring-offset-[#070F2B] focus:border-[#535C91] placeholder-[#535C91]"
             />
           </div>
-          <div className="space-y-2">
+          <div>
             <Label htmlFor="module" className="text-[#9290C3]">
               Module
             </Label>
             <Select value={module} onValueChange={(value) => setModule(value as Options['module'])}>
               <SelectTrigger
                 id="module"
-                className="bg-[#1B1A55] border-[#535C91] text-slate-50 focus:ring-[#1B1A55] focus:ring-offset-2 focus:ring-offset-[#070F2B] focus:border-[#535C91]"
+                className="bg-[#050a1f] border-[#535C91] text-slate-50 focus:ring-[#1B1A55] focus:ring-offset-2 focus:ring-offset-[#070F2B] focus:border-[#535C91]"
               >
                 <SelectValue placeholder="Select module type" />
               </SelectTrigger>
-              <SelectContent className="bg-[#1B1A55] border-[#535C91]">
+              <SelectContent className="bg-[#050a1f] border-[#535C91]">
                 <SelectItem
                   value="esm"
                   className="text-slate-50 focus:bg-[#535C91] hover:bg-[#535C91]"
@@ -119,7 +119,7 @@ export function SchemaConverter() {
               </SelectContent>
             </Select>
           </div>
-          <div className="space-y-2">
+          <div>
             <Label htmlFor="recursion" className="text-[#9290C3]">
               Recursion depth
             </Label>
@@ -129,7 +129,7 @@ export function SchemaConverter() {
               min="0"
               value={recursionDepth}
               onChange={(e) => setRecursionDepth(e.target.value)}
-              className="bg-[#1B1A55] border-[#535C91] text-slate-50 focus:ring-[#1B1A55] focus:ring-offset-2 focus:ring-offset-[#070F2B] focus:border-[#535C91]"
+              className="bg-[#050a1f] border-[#535C91] text-slate-50 focus:ring-[#1B1A55] focus:ring-offset-2 focus:ring-offset-[#070F2B] focus:border-[#535C91]"
             />
           </div>
         </div>
@@ -146,7 +146,7 @@ export function SchemaConverter() {
               theme={editorTheme}
               extensions={[json()]}
               onChange={(value) => setJsonSchema(value)}
-              className="border border-[#535C91] rounded-md overflow-hidden h-full"
+              className="border border-[#535C91] bg-[#050a1f] rounded-md overflow-hidden h-full"
             />
           </div>
         </div>
@@ -161,7 +161,7 @@ export function SchemaConverter() {
               theme={editorTheme}
               extensions={[javascript()]}
               editable={false}
-              className="border border-[#535C91] rounded-md overflow-hidden h-full"
+              className="border border-[#535C91] bg-[#050a1f] rounded-md overflow-hidden h-full"
             />
             <Button
               onClick={handleCopy}
