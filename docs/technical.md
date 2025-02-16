@@ -2,9 +2,29 @@
 
 ## Project Structure (Monorepo)
 
-This repository is organized as a monorepo. The root-level package.json manages shared build, test, formatting, and linting tasks across all packages. The primary CLI tool is located in `packages/json-schema-to-valibot`. Additional packages may be added under the `packages/` directory as the project scales.
+This repository is organized as a monorepo with the following packages:
 
-## Overview
+### packages/json-schema-to-valibot (CLI Tool)
+
+The main CLI tool for converting JSON Schema to Valibot schemas.
+
+### packages/website
+
+A Next.js-based web application that provides an interactive playground for the JSON Schema to Valibot conversion.
+
+The root-level package.json manages shared build, test, formatting, and linting tasks across all packages.
+
+## Shared Development Standards
+
+- **Type Safety**: Strict TypeScript usage across all packages
+- **Code Quality**: ESLint for linting, Prettier for formatting
+- **Documentation**: JSDoc for functions and components
+- **Testing**: Maintain high test coverage
+- **Git Workflow**: Conventional commits and branch naming
+
+## CLI Package
+
+### Overview
 
 - **CLI (cli.ts)**
 
@@ -27,7 +47,7 @@ This repository is organized as a monorepo. The root-level package.json manages 
   - `withDefault.ts`: Applies the `default` value from JSON Schema to the validation chain.
   - `withDescription.ts`: Leverages the `description` field to generate `v.description()` in Valibot.
 
-## Build and Dependencies
+### Build and Dependencies
 
 - **Build Tool**: `tsup`
   - Uses the `build` script from the root-level package.json (i.e. `npm run build --workspaces`) to execute build tasks in all packages. Specifically, the CLI tool in `packages/json-schema-to-valibot` is built using `tsup src/index.ts src/cli.ts`.
@@ -41,7 +61,7 @@ This repository is organized as a monorepo. The root-level package.json manages 
 - **Valibot**
   - The validation library for which code is generated; the output references Valibot's API.
 
-## Implementation Policy
+### Implementation Policy
 
 1. **Flow Centered on CLI**
 
@@ -68,14 +88,14 @@ This repository is organized as a monorepo. The root-level package.json manages 
    - Snapshot tests help visualize how any changes to the code might affect the generated output.
    - Integration tests with `spawnSync` verify CLI usage from a user's standpoint.
 
-## Coding Standards and Style
+### Coding Standards and Style
 
 - **Type Safety**: Employ TypeScript's strict mode and avoid careless use of `any`.
 - **Parser Extensibility**: Future features like `oneOf`, `allOf`, `anyOf` may be added, so keep the code open to enhancements within `parseSchema.ts`.
 - **Minimal Side Effects**: Emphasize a functional approach that transforms the input JSON with minimal side effects, deferring file I/O tasks to the CLI.
 - **JSDoc Comments**: Provide concise JSDoc comments for functions and public methods (also relevant when using the `--withJsdocs` feature to document the output).
 
-## Testing and Quality Assurance
+### Testing and Quality Assurance
 
 - **Unit Tests**
   - Create file-based tests (e.g., `parseSchema.test.ts`) to verify correctness of the type conversion logic, including snapshots.
@@ -84,8 +104,49 @@ This repository is organized as a monorepo. The root-level package.json manages 
 - **Coverage**
   - Use coverage tools in `vitest` to measure how much of the core logic is tested.
 
-## Operations and Future Outlook
+### Operations and Future Outlook
 
 - Since JSON Schema includes multiple drafts (post–Draft 4), additional scenarios (e.g., heavy use of `$ref`, complex schemas, format restrictions) might require more advanced handling.
 - Consider extending CLI options, such as an `--overrideParser` mechanism to inject custom parsers (already some placeholders in the code).
 - For very large or complex JSON Schemas, watch out for deep nesting in `v.union` or `v.object`, which may impact code size and readability.
+
+## Website Package
+
+### Overview
+
+- **Interactive Playground**
+
+  - Real-time conversion of JSON Schema to Valibot code
+  - Built with Next.js 14 and shadcn/ui components
+  - Uses the core conversion logic from the CLI package
+
+- **Key Components**
+  - `SchemaConverter`: Main component handling the conversion interface
+  - UI Components: Leverages shadcn/ui for consistent design
+  - Layout: Responsive design with header and footer components
+
+### Build and Dependencies
+
+- **Framework**: Next.js 14
+- **UI Components**: shadcn/ui
+- **Styling**: Tailwind CSS
+- **Development**:
+  - `next dev` for local development
+  - `next build` for production builds
+
+### Implementation
+
+1. **Interactive Conversion**
+
+   - Real-time preview of conversion results
+   - Error handling and validation feedback
+   - Copy-to-clipboard functionality
+
+2. **User Experience**
+   - Responsive design for various screen sizes
+   - Intuitive interface for schema input
+   - Clear display of conversion results
+
+### Testing
+
+No tests are implemented yet.
