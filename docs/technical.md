@@ -1,6 +1,8 @@
 # Technical Specifications and Guidelines
 
-This document outlines the overall technical policies and design guidelines for converting JSON Schema into Valibot-type definitions within a TypeScript/Node.js-based CLI tool.
+## Project Structure (Monorepo)
+
+This repository is organized as a monorepo. The root-level package.json manages shared build, test, formatting, and linting tasks across all packages. The primary CLI tool is located in `packages/json-schema-to-valibot`. Additional packages may be added under the `packages/` directory as the project scales.
 
 ## Overview
 
@@ -28,7 +30,7 @@ This document outlines the overall technical policies and design guidelines for 
 ## Build and Dependencies
 
 - **Build Tool**: `tsup`
-  - Uses the `build` script in `package.json` to run `tsup src/index.ts src/cli.ts` and produce the bundle.
+  - Uses the `build` script from the root-level package.json (i.e. `npm run build --workspaces`) to execute build tasks in all packages. Specifically, the CLI tool in `packages/json-schema-to-valibot` is built using `tsup src/index.ts src/cli.ts`.
 - **Testing**: `vitest`
   - Employs unit tests and snapshot tests to verify individual parsers and CLI behavior.
   - Generates coverage reports to ensure major logic is sufficiently tested.
@@ -64,11 +66,11 @@ This document outlines the overall technical policies and design guidelines for 
 4. **Test-Driven Development (TDD) and Snapshots**
    - Use `vitest` to cover individual parser modules and the CLI.
    - Snapshot tests help visualize how any changes to the code might affect the generated output.
-   - Integration tests with `spawnSync` verify CLI usage from a user’s standpoint.
+   - Integration tests with `spawnSync` verify CLI usage from a user's standpoint.
 
 ## Coding Standards and Style
 
-- **Type Safety**: Employ TypeScript’s strict mode and avoid careless use of `any`.
+- **Type Safety**: Employ TypeScript's strict mode and avoid careless use of `any`.
 - **Parser Extensibility**: Future features like `oneOf`, `allOf`, `anyOf` may be added, so keep the code open to enhancements within `parseSchema.ts`.
 - **Minimal Side Effects**: Emphasize a functional approach that transforms the input JSON with minimal side effects, deferring file I/O tasks to the CLI.
 - **JSDoc Comments**: Provide concise JSDoc comments for functions and public methods (also relevant when using the `--withJsdocs` feature to document the output).

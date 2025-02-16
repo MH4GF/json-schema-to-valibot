@@ -1,43 +1,14 @@
 {
-  "name": "json-schema-to-valibot",
-  "version": "0.1.0",
-  "description": "Convert JSON Schema to Valibot schema",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "files": ["dist"],
-  "bin": {
-    "json-schema-to-valibot": "./dist/cli.js"
-  },
+  "name": "json-schema-to-valibot-monorepo",
+  "private": true,
+  "workspaces": ["packages/*"],
   "scripts": {
-    "build": "tsup src/index.ts src/cli.ts",
-    "test": "vitest",
-    "fmt": "biome check --fix --unsafe",
-    "lint": "npm run lint:biome && npm run lint:tsc",
-    "lint:biome": "biome check .",
-    "lint:tsc": "tsc --noEmit && tsc -p tsconfig.test.json --noEmit",
-    "test:coverage": "vitest run --coverage"
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "fmt": "npm run fmt --workspaces",
+    "lint": "npm run lint --workspaces"
   },
-  "keywords": ["json-schema", "valibot", "converter", "validation", "schema"],
-  "author": "MH4GF",
-  "license": "MIT",
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@mh4gf/configs": "0.4.1",
-    "@types/json-schema": "^7.0.15",
-    "@types/node": "22.13.1",
-    "@vitest/coverage-v8": "^3.0.5",
-    "json-refs": "^3.0.15",
-    "tsup": "8.3.6",
-    "typescript": "5.7.3",
-    "valibot": "0.42.1",
-    "vitest": "3.0.5"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "dependencies": {
-    "commander": "13.1.0"
-  },
-  "type": "module"
+    "typescript": "5.7.3"
+  }
 }

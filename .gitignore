@@ -1,4 +1,4 @@
 node_modules
 dist
 coverage
-test/output
+packages/json-schema-to-valibot/test/output

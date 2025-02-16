@@ -1,7 +1,7 @@
 import type { JSONSchema4 } from 'json-schema'
 import type { Options } from '../types.ts'
-import { parseArray } from './parseArray.ts'
 import { parseAnyOf } from './parseAnyOf.ts'
+import { parseArray } from './parseArray.ts'
 import { parseBoolean } from './parseBoolean.ts'
 import { parseEnum } from './parseEnum.ts'
 import { parseNumber } from './parseNumber.ts'
