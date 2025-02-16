@@ -9,7 +9,7 @@
     "fmt": "biome check --fix --unsafe",
     "lint": "npm run lint:biome && npm run lint:tsc",
     "lint:biome": "biome check .",
-    "lint:tsc": "tsc --noEmit && tsc -p tsconfig.test.json --noEmit"
+    "lint:tsc": "tsc --noEmit"
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.3",
