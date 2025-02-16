@@ -2,7 +2,7 @@
 
 import { javascript } from '@codemirror/lang-javascript'
 import { json } from '@codemirror/lang-json'
-import { vscodeDark } from '@uiw/codemirror-theme-vscode'
+import { vscodeDarkInit } from '@uiw/codemirror-theme-vscode'
 import CodeMirror from '@uiw/react-codemirror'
 import { Copy } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
@@ -19,6 +19,14 @@ import {
 } from '@/components/ui/select'
 import { useToast } from '@/hooks/use-toast'
 import { type Options, jsonSchemaToValibot } from 'json-schema-to-valibot'
+
+const editorTheme = vscodeDarkInit({
+  theme: 'dark',
+  settings: {
+    background: '#050a1f',
+    gutterBackground: '#050a1f',
+  },
+})
 
 export function SchemaConverter() {
   const [schemaName, setSchemaName] = useState('')
@@ -135,7 +143,7 @@ export function SchemaConverter() {
             <CodeMirror
               value={jsonSchema}
               height="70vh"
-              theme={vscodeDark}
+              theme={editorTheme}
               extensions={[json()]}
               onChange={(value) => setJsonSchema(value)}
               className="border border-[#535C91] rounded-md overflow-hidden h-full"
@@ -150,7 +158,7 @@ export function SchemaConverter() {
             <CodeMirror
               value={result}
               height="70vh"
-              theme={vscodeDark}
+              theme={editorTheme}
               extensions={[javascript()]}
               editable={false}
               className="border border-[#535C91] rounded-md overflow-hidden h-full"
