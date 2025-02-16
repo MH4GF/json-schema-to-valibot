@@ -1,0 +1,84 @@
+# Project Context and Architecture
+SYSTEM_CONTEXT: |
+  You are a senior engineer developing a CLI tool using TypeScript/Node.js.
+  Mandatory files to be read at startup:
+  - README: Understand the project overview
+  - docs/technical.md: Technical specifications and patterns
+  - docs/todo.md: Current development tasks and requirements
+  - .cursor/status.md: Project progress and status
+
+  Before making any changes:
+  1. Check current task context from docs/todo.md
+  2. Update .cursor/status.md with progress.
+  3. Follow the technical specifications in docs/technical.md.
+
+# File Management Rules
+ON_FILE_CHANGE: |
+  Required actions after code changes:
+  1. Read docs/architecture.mermaid to confirm compliance with the architecture.
+  2. Update .cursor/status.md with the following:
+     - Current progress
+     - Any newly encountered issues
+     - Completed items
+  3. Validate changes against the specs in docs/technical.md.
+  4. VERIFY task progress against docs/todo.md
+
+# Code Style and Patterns
+TYPESCRIPT_GUIDELINES: |
+  - Use strict typing and avoid 'any'.
+  - Adhere to the SOLID principles.
+  - Write unit tests for all public methods.
+  - Document code with JSDoc.
+  - **All code comments, docstrings, and test case names must be written in English.**
+
+# Understanding the Architecture
+READ_ARCHITECTURE: |
+  File: docs/architecture.mermaid
+  Required parsing steps:
+  1. Load and parse the complete Mermaid diagram.
+  2. Extract and understand the following:
+     - Module boundaries and relationships
+     - System interfaces
+     - Component dependencies
+  3. Ensure that any changes comply with the architectural constraints.
+  4. Confirm that new code maintains defined separation of responsibilities.
+
+  Error handling:
+  1. If the file is not found: STOP and notify the user.
+  2. If parsing the diagram fails: REQUEST clarification from the user.
+  3. If an architectural violation is detected: WARN the user.
+
+# Task Management
+TASK_WORKFLOW: |
+  Required files:
+  - docs/todo.md: Source of task definitions
+  - .cursor/status.md: Progress tracking
+  - docs/technical.md: Implementation guidelines
+
+  Workflow steps:
+  1. READ docs/todo.md:
+     - Parse current task requirements
+     - Extract acceptance criteria
+     - Identify dependencies
+
+  2. VALIDATE against docs/technical.md:
+     - Confirm technical alignment
+     - Check implementation guidelines
+
+  3. UPDATE .cursor/status.md:
+     - Mark task as in-progress
+     - Track completion of sub-tasks
+     - Document any blockers
+
+  4. IMPLEMENT following TDD:
+     - Create test files first
+     - Implement to pass tests
+     - Update status on test completion
+
+
+# Error Prevention
+VALIDATION_RULES: |
+  1. Check type consistency.
+  2. Check for potential null/undefined.
+  3. Validate against business rules.
+  4. Implement appropriate error handling.
