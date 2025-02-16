@@ -34,4 +34,17 @@ describe('parseObject', () => {
       '"v.object({name: v.string(),age: v.optional(v.number())})"',
     )
   })
+
+  it('handles property names with hyphens', () => {
+    const schema: JSONSchema4 = {
+      type: 'object',
+      properties: {
+        'shared-node-browser': { type: 'boolean' },
+        normalName: { type: 'string' },
+      },
+    }
+    expect(parseObject(schema, {})).toMatchInlineSnapshot(
+      '"v.object({"shared-node-browser": v.optional(v.boolean()),normalName: v.optional(v.string())})"',
+    )
+  })
 })
