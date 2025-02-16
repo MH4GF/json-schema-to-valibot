@@ -1,7 +1,7 @@
 import { spawnSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
 import { mkdirSync } from 'node:fs'
-import { dirname, join } from 'node:path'
+import { dirname } from 'node:path'
 import { describe, expect, it } from 'vitest'
 
 describe('CLI', () => {
@@ -171,8 +171,7 @@ describe('CLI', () => {
 
   describe('SchemaStore Integration Tests', () => {
     it('should convert package.json schema', () => {
-      const schemaPath = 'src/schemas/json/package.json'
-      const fullPath = join('test/fixtures/schemastore', schemaPath)
+      const fullPath = 'test/fixtures/resolved/package.json.resolved.json'
       const outputPath = 'test/output/schemastore/package.json.ts'
       mkdirSync(dirname(outputPath), { recursive: true })
 
