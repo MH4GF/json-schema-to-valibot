@@ -31,11 +31,11 @@ export function Header() {
               asChild
             >
               <a
-                href="https://github.com/fabian-hiller/valibot/issues"
+                href="https://github.com/liam-hq/json-schema-to-valibot"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github className="w-4 h-4 mr-2" />
+                <Github className="w-4 h-4" />
                 GitHub
               </a>
             </Button>
