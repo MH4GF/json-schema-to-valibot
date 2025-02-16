@@ -1,14 +1,14 @@
 {
-  "name": "json-schema-to-valibot-monorepo",
-  "private": true,
-  "workspaces": ["packages/*"],
-  "scripts": {
-    "build": "npm run build --workspaces",
-    "test": "npm run test --workspaces",
-    "fmt": "npm run fmt --workspaces",
-    "lint": "npm run lint --workspaces"
-  },
-  "devDependencies": {
-    "typescript": "5.7.3"
-  }
+	"name": "json-schema-to-valibot-monorepo",
+	"private": true,
+	"workspaces": ["packages/*"],
+	"scripts": {
+		"build": "npm run build --workspaces",
+		"test": "npm run test --workspaces",
+		"fmt": "npm run fmt --workspaces",
+		"lint": "npm run lint --workspaces"
+	},
+	"devDependencies": {
+		"typescript": "5.7.3"
+	}
 }

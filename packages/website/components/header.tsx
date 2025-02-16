@@ -4,7 +4,7 @@ import { Github } from 'lucide-react'
 export function Header() {
   return (
     <div className="border-b border-[#1B1A55]">
-      <div className="container mx-auto py-4 px-8">
+      <div className="mx-auto py-4 px-8">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold bg-gradient-to-r from-[#535C91] to-[#9290C3] bg-clip-text text-transparent">
             JSON Schema to Valibot

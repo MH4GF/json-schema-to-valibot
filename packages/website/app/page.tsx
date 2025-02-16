@@ -4,11 +4,11 @@ import { SchemaConverter } from '@/components/schema-converter'
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-[#070F2B] text-slate-50">
+    <div className="flex flex-col h-screen w-screen bg-[#070F2B] text-slate-50">
       <Header />
-      <div className="container mx-auto py-8 px-8">
+      <main className="flex-1 w-full py-8 px-8">
         <SchemaConverter />
-      </div>
+      </main>
       <Footer />
     </div>
   )

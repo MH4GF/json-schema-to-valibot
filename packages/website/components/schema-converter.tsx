@@ -5,7 +5,7 @@ import { json } from '@codemirror/lang-json'
 import { vscodeDark } from '@uiw/codemirror-theme-vscode'
 import CodeMirror from '@uiw/react-codemirror'
 import { Copy } from 'lucide-react'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -18,21 +18,46 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { useToast } from '@/hooks/use-toast'
+import { type Options, jsonSchemaToValibot } from 'json-schema-to-valibot'
 
 export function SchemaConverter() {
   const [schemaName, setSchemaName] = useState('')
-  const [module, setModule] = useState('esm')
+  const [module, setModule] = useState<Options['module']>('esm')
   const [recursionDepth, setRecursionDepth] = useState('0')
   const [jsonSchema, setJsonSchema] = useState(`{
-  "type": "array",
-  "items": { "type": "string" },
-  "anyOf": [{ "minItems": 1 }, { "maxItems": 3 }]
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" }
+  }
 }`)
-  const [result] = useState(`import { z } from "zod";
-
-export default z.array(z.string());`)
+  const [result, setResult] = useState('')
 
   const { toast } = useToast()
+
+  const convertSchema = useCallback(() => {
+    try {
+      const schema = JSON.parse(jsonSchema)
+
+      const options = {
+        module,
+        name: schemaName || undefined,
+        recursionDepth: Number.parseInt(recursionDepth, 10),
+      }
+
+      const converted = jsonSchemaToValibot(schema, options)
+      setResult(converted)
+    } catch (error) {
+      toast({
+        title: 'Conversion Error',
+        description: error instanceof Error ? error.message : 'Failed to convert schema',
+        variant: 'destructive',
+      })
+    }
+  }, [jsonSchema, module, schemaName, recursionDepth, toast])
+
+  useEffect(() => {
+    convertSchema()
+  }, [convertSchema])
 
   const handleCopy = () => {
     navigator.clipboard.writeText(result)
@@ -43,10 +68,10 @@ export default z.array(z.string());`)
   }
 
   return (
-    <div className="grid md:grid-cols-2 gap-8">
-      {/* Input Panel */}
-      <div className="space-y-6">
-        <div className="grid grid-cols-3 gap-4">
+    <div className="px-8 h-full w-full py-6">
+      <div className="grid grid-cols-[250px_minmax(0,1fr)_minmax(0,1fr)] gap-8 h-full w-full">
+        {/* Settings Panel */}
+        <div className="space-y-6">
           <div className="space-y-2">
             <Label htmlFor="schema-name" className="text-[#9290C3]">
               Schema name
@@ -63,7 +88,7 @@ export default z.array(z.string());`)
             <Label htmlFor="module" className="text-[#9290C3]">
               Module
             </Label>
-            <Select value={module} onValueChange={setModule}>
+            <Select value={module} onValueChange={(value) => setModule(value as Options['module'])}>
               <SelectTrigger
                 id="module"
                 className="bg-[#1B1A55] border-[#535C91] text-slate-50 focus:ring-[#1B1A55] focus:ring-offset-2 focus:ring-offset-[#070F2B] focus:border-[#535C91]"
@@ -101,43 +126,44 @@ export default z.array(z.string());`)
           </div>
         </div>
 
-        <div className="space-y-2">
+        {/* JSON Schema Panel */}
+        <div className="space-y-2 h-full flex flex-col">
           <Label htmlFor="json-schema" className="text-[#9290C3]">
             JSON Schema
           </Label>
-          <div className="relative">
+          <div className="relative flex-grow">
             <CodeMirror
               value={jsonSchema}
-              height="400px"
+              height="70vh"
               theme={vscodeDark}
               extensions={[json()]}
               onChange={(value) => setJsonSchema(value)}
-              className="border border-[#535C91] rounded-md overflow-hidden"
+              className="border border-[#535C91] rounded-md overflow-hidden h-full"
             />
           </div>
         </div>
-      </div>
 
-      {/* Output Panel */}
-      <div className="space-y-2">
-        <Label className="text-[#9290C3]">Valibot Schema</Label>
-        <div className="relative">
-          <CodeMirror
-            value={result}
-            height="485px"
-            theme={vscodeDark}
-            extensions={[javascript()]}
-            editable={false}
-            className="border border-[#535C91] rounded-md overflow-hidden"
-          />
-          <Button
-            onClick={handleCopy}
-            size="sm"
-            className="absolute bottom-4 right-4 bg-[#535C91] hover:bg-[#9290C3] text-white gap-2 transition-colors"
-          >
-            <Copy className="h-4 w-4" />
-            Copy
-          </Button>
+        {/* Valibot Schema Panel */}
+        <div className="space-y-2 h-full flex flex-col">
+          <Label className="text-[#9290C3]">Valibot Schema</Label>
+          <div className="relative flex-grow">
+            <CodeMirror
+              value={result}
+              height="70vh"
+              theme={vscodeDark}
+              extensions={[javascript()]}
+              editable={false}
+              className="border border-[#535C91] rounded-md overflow-hidden h-full"
+            />
+            <Button
+              onClick={handleCopy}
+              size="sm"
+              className="absolute bottom-4 right-4 bg-[#535C91] hover:bg-[#9290C3] text-white gap-2 transition-colors"
+            >
+              <Copy className="h-4 w-4" />
+              Copy
+            </Button>
+          </div>
         </div>
       </div>
     </div>

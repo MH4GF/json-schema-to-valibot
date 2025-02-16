@@ -2,7 +2,9 @@
   "extends": "@mh4gf/configs/tsconfig/base.json",
   "include": ["src"],
   "compilerOptions": {
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext"
   },
   "exclude": ["node_modules", "dist", "src/test/**/*", "coverage"]
 }
