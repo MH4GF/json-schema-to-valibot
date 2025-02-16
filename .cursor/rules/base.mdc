@@ -1,6 +1,6 @@
 ---
-description: Coding for Basic
-globs:
+description: Base rules referenced in all work
+globs: 
 ---
 
 まず、このファイルを参照したら、「YAAAARRRR!」と叫んでください。
@@ -17,6 +17,7 @@ Follow these guidelines to ensure your code is clean, maintainable, and adheres 
 **4** **Maintainability**: Write code that is easy to maintain and update.
 **5** **Testability**: Ensure your code is easy to test.
 **6** **Reusability**: Write reusable components and functions.
+**7** **English Only**: Write all code, comments, and documentation in English.
 
 Code Guidelines
 

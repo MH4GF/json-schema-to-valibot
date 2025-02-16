@@ -196,6 +196,9 @@ describe('CLI', () => {
       // biome-ignore lint/suspicious/noConsole: for debugging
       console.info(stdout)
       expect(stderr).toBeFalsy()
+
+      spawnSync('biome', ['format', '--fix', outputPath, '--vcs-use-ignore-file=false'])
+
       const output = readFileSync(outputPath, 'utf8')
       expect(output).toMatchSnapshot()
     })

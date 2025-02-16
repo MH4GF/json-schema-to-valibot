@@ -1,5 +1,5 @@
 ---
-description: package.json supporting
+description: implementation rules
 globs: *.ts
 ---
 # JSONSchema to Valibot Implementation Rules
@@ -8,7 +8,7 @@ globs: *.ts
 - [jsonSchemaToValibot.ts](mdc:src/jsonSchemaToValibot.ts): Main implementation
 - [jsonSchemaToValibot.test.ts](mdc:src/jsonSchemaToValibot.test.ts): Unit tests
 - [cli.ts](mdc:src/cli.ts): CLI interface
-- [cli.test.ts](mdc:src/cli.test.ts): CLI tests
+- [cli.test.ts](mdc:src/cli.test.ts): CLI integration tests
 - [package.json](mdc:test/fixtures/schemastore/src/schemas/json/package.json): JSON Schema fixture
 - [package.json.ts](mdc:test/output/schemastore/package.json.ts): Output file
 

@@ -1,9 +1,1470 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`CLI > SchemaStore Integration Tests > should convert package.json schema 1`] = `
-"import * as v from "valibot";
+"import * as v from 'valibot'
 
-export default v.object({name: v.optional(v.pipe(v.string(), v.minLength(1), v.maxLength(214), v.regex(/^(?:(?:@(?:[a-z0-9-*~][a-z0-9-*._~]*)?\\/[a-z0-9-._~])|[a-z0-9-~])[a-z0-9-._~]*$/), v.description("The name of the package."))),version: v.optional(v.pipe(v.string(), v.description("Version must be parseable by node-semver, which is bundled with npm as a dependency."))),description: v.optional(v.pipe(v.string(), v.description("This helps people discover your package, as it's listed in 'npm search'."))),keywords: v.optional(v.pipe(v.array(v.string()), v.description("This helps people discover your package as it's listed in 'npm search'."))),homepage: v.optional(v.pipe(v.string(), v.description("The url to the project homepage."))),bugs: v.optional(v.union([v.pipe(v.object({url: v.optional(v.pipe(v.string(), v.description("The url to your project's issue tracker."))),email: v.optional(v.pipe(v.string(), v.description("The email address to which issues should be reported.")))}), v.description("The url to your project's issue tracker and / or the email address to which issues should be reported. These are helpful for people who encounter issues with your package.")), v.pipe(v.string(), v.description("The url to your project's issue tracker and / or the email address to which issues should be reported. These are helpful for people who encounter issues with your package."))])),license: v.optional(v.any()),licenses: v.optional(v.pipe(v.array(v.object({type: v.optional(v.any()),url: v.optional(v.string())})), v.description("DEPRECATED: Instead, use SPDX expressions, like this: { \\"license\\": \\"ISC\\" } or { \\"license\\": \\"(MIT OR Apache-2.0)\\" } see: 'https://docs.npmjs.com/files/package.json#license'."))),author: v.optional(v.union([v.pipe(v.object({name: v.string(),url: v.optional(v.string()),email: v.optional(v.string())}), v.description("A person who has been involved in creating or maintaining this package.")), v.pipe(v.string(), v.description("A person who has been involved in creating or maintaining this package."))])),contributors: v.optional(v.pipe(v.array(v.union([v.pipe(v.object({name: v.string(),url: v.optional(v.string()),email: v.optional(v.string())}), v.description("A person who has been involved in creating or maintaining this package.")), v.pipe(v.string(), v.description("A person who has been involved in creating or maintaining this package."))])), v.description("A list of people who contributed to this package."))),maintainers: v.optional(v.pipe(v.array(v.union([v.pipe(v.object({name: v.string(),url: v.optional(v.string()),email: v.optional(v.string())}), v.description("A person who has been involved in creating or maintaining this package.")), v.pipe(v.string(), v.description("A person who has been involved in creating or maintaining this package."))])), v.description("A list of people who maintains this package."))),files: v.optional(v.pipe(v.array(v.string()), v.description("The 'files' field is an array of files to include in your project. If you name a folder in the array, then it will also include the files inside that folder."))),main: v.optional(v.pipe(v.string(), v.description("The main field is a module ID that is the primary entry point to your program."))),exports: v.optional(v.any()),imports: v.optional(v.object({})),bin: v.optional(v.union([v.string(), v.object({})])),type: v.pipe(v.optional(v.picklist(["commonjs","module"]), 'commonjs'), v.description("When set to \\"module\\", the type field allows a package to specify all .js files within are ES modules. If the \\"type\\" field is omitted or set to \\"commonjs\\", all .js files are treated as CommonJS.")),types: v.optional(v.pipe(v.string(), v.description("Set the types property to point to your bundled declaration file."))),typings: v.optional(v.pipe(v.string(), v.description("Note that the \\"typings\\" field is synonymous with \\"types\\", and could be used as well."))),typesVersions: v.optional(v.object({})),man: v.optional(v.union([v.pipe(v.array(v.string()), v.description("Specify either a single file or an array of filenames to put in place for the man program to find.")), v.pipe(v.string(), v.description("Specify either a single file or an array of filenames to put in place for the man program to find."))])),directories: v.optional(v.object({bin: v.optional(v.pipe(v.string(), v.description("If you specify a 'bin' directory, then all the files in that folder will be used as the 'bin' hash."))),doc: v.optional(v.pipe(v.string(), v.description("Put markdown files in here. Eventually, these will be displayed nicely, maybe, someday."))),example: v.optional(v.pipe(v.string(), v.description("Put example scripts in here. Someday, it might be exposed in some clever way."))),lib: v.optional(v.pipe(v.string(), v.description("Tell people where the bulk of your library is. Nothing special is done with the lib folder in any way, but it's useful meta info."))),man: v.optional(v.pipe(v.string(), v.description("A folder that is full of man pages. Sugar to generate a 'man' array by walking the folder."))),test: v.optional(v.string())})),repository: v.optional(v.union([v.pipe(v.object({type: v.optional(v.string()),url: v.optional(v.string()),directory: v.optional(v.string())}), v.description("Specify the place where your code lives. This is helpful for people who want to contribute.")), v.pipe(v.string(), v.description("Specify the place where your code lives. This is helpful for people who want to contribute."))])),funding: v.optional(v.any()),scripts: v.optional(v.pipe(v.object({lint: v.optional(v.pipe(v.string(), v.description("Run code quality tools, e.g. ESLint, TSLint, etc."))),prepublish: v.optional(v.pipe(v.string(), v.description("Run BEFORE the package is published (Also run on local npm install without any arguments)."))),prepare: v.optional(v.pipe(v.string(), v.description("Run both BEFORE the package is packed and published, and on local npm install without any arguments. This is run AFTER prepublish, but BEFORE prepublishOnly."))),prepublishOnly: v.optional(v.pipe(v.string(), v.description("Run BEFORE the package is prepared and packed, ONLY on npm publish."))),prepack: v.optional(v.pipe(v.string(), v.description("run BEFORE a tarball is packed (on npm pack, npm publish, and when installing git dependencies)."))),postpack: v.optional(v.pipe(v.string(), v.description("Run AFTER the tarball has been generated and moved to its final destination."))),publish: v.optional(v.pipe(v.string(), v.description("Publishes a package to the registry so that it can be installed by name. See https://docs.npmjs.com/cli/v8/commands/npm-publish"))),postpublish: v.optional(v.pipe(v.string(), v.description("Run AFTER the package is published."))),preinstall: v.optional(v.pipe(v.string(), v.description("Run BEFORE the package is installed."))),install: v.optional(v.pipe(v.string(), v.description("Run AFTER the package is installed."))),postinstall: v.optional(v.pipe(v.string(), v.description("Run AFTER the package is installed."))),preuninstall: v.optional(v.pipe(v.string(), v.description("Run BEFORE the package is uninstalled."))),uninstall: v.optional(v.pipe(v.string(), v.description("Run BEFORE the package is uninstalled."))),postuninstall: v.optional(v.pipe(v.string(), v.description("Run AFTER the package is uninstalled."))),preversion: v.optional(v.pipe(v.string(), v.description("Run BEFORE bump the package version."))),version: v.optional(v.pipe(v.string(), v.description("Run BEFORE bump the package version."))),postversion: v.optional(v.pipe(v.string(), v.description("Run AFTER bump the package version."))),pretest: v.optional(v.pipe(v.string(), v.description("Run by the 'npm test' command."))),test: v.optional(v.pipe(v.string(), v.description("Run by the 'npm test' command."))),posttest: v.optional(v.pipe(v.string(), v.description("Run by the 'npm test' command."))),prestop: v.optional(v.pipe(v.string(), v.description("Run by the 'npm stop' command."))),stop: v.optional(v.pipe(v.string(), v.description("Run by the 'npm stop' command."))),poststop: v.optional(v.pipe(v.string(), v.description("Run by the 'npm stop' command."))),prestart: v.optional(v.pipe(v.string(), v.description("Run by the 'npm start' command."))),start: v.optional(v.pipe(v.string(), v.description("Run by the 'npm start' command."))),poststart: v.optional(v.pipe(v.string(), v.description("Run by the 'npm start' command."))),prerestart: v.optional(v.pipe(v.string(), v.description("Run by the 'npm restart' command. Note: 'npm restart' will run the stop and start scripts if no restart script is provided."))),restart: v.optional(v.pipe(v.string(), v.description("Run by the 'npm restart' command. Note: 'npm restart' will run the stop and start scripts if no restart script is provided."))),postrestart: v.optional(v.pipe(v.string(), v.description("Run by the 'npm restart' command. Note: 'npm restart' will run the stop and start scripts if no restart script is provided."))),serve: v.optional(v.pipe(v.string(), v.description("Start dev server to serve application files")))}), v.description("The 'scripts' member is an object hash of script commands that are run at various times in the lifecycle of your package. The key is the lifecycle event, and the value is the command to run at that point."))),config: v.optional(v.object({})),dependencies: v.optional(v.object({})),devDependencies: v.optional(v.object({})),optionalDependencies: v.optional(v.object({})),peerDependencies: v.optional(v.object({})),peerDependenciesMeta: v.optional(v.object({})),bundleDependencies: v.optional(v.any()),bundledDependencies: v.optional(v.any()),resolutions: v.optional(v.object({})),overrides: v.optional(v.object({})),packageManager: v.optional(v.pipe(v.string(), v.regex(/(npm|pnpm|yarn|bun)@\\d+\\.\\d+\\.\\d+(-.+)?/), v.description("Defines which package manager is expected to be used when working on the current project. This field is currently experimental and needs to be opted-in; see https://nodejs.org/api/corepack.html"))),engines: v.optional(v.object({node: v.optional(v.string())})),volta: v.optional(v.pipe(v.object({extends: v.optional(v.pipe(v.string(), v.description("The value of that entry should be a path to another JSON file which also has a \\"volta\\" section")))}), v.description("Defines which tools and versions are expected to be used when Volta is installed."))),engineStrict: v.optional(v.boolean()),os: v.optional(v.pipe(v.array(v.string()), v.description("Specify which operating systems your module will run on."))),cpu: v.optional(v.pipe(v.array(v.string()), v.description("Specify that your code only runs on certain cpu architectures."))),preferGlobal: v.optional(v.boolean()),private: v.optional(v.any()),publishConfig: v.optional(v.object({access: v.optional(v.picklist(["public","restricted"])),tag: v.optional(v.string()),registry: v.optional(v.string()),provenance: v.optional(v.boolean())})),dist: v.optional(v.object({shasum: v.optional(v.string()),tarball: v.optional(v.string())})),readme: v.optional(v.string()),module: v.optional(v.pipe(v.string(), v.description("An ECMAScript module ID that is the primary entry point to your program."))),esnext: v.optional(v.union([v.pipe(v.string(), v.description("A module ID with untranspiled code that is the primary entry point to your program.")), v.pipe(v.object({main: v.optional(v.string()),browser: v.optional(v.string())}), v.description("A module ID with untranspiled code that is the primary entry point to your program."))])),workspaces: v.optional(v.any()),jspm: v.optional(v.any()),eslintConfig: v.optional(v.object({ecmaFeatures: v.optional(v.pipe(v.object({arrowFunctions: v.optional(v.boolean()),binaryLiterals: v.optional(v.boolean()),blockBindings: v.optional(v.boolean()),classes: v.optional(v.boolean()),defaultParams: v.optional(v.boolean()),destructuring: v.optional(v.boolean()),experimentalObjectRestSpread: v.optional(v.boolean()),forOf: v.optional(v.boolean()),generators: v.optional(v.boolean()),globalReturn: v.optional(v.boolean()),impliedStrict: v.optional(v.boolean()),jsx: v.optional(v.boolean()),modules: v.optional(v.boolean()),objectLiteralComputedProperties: v.optional(v.boolean()),objectLiteralDuplicateProperties: v.optional(v.boolean()),objectLiteralShorthandMethods: v.optional(v.boolean()),objectLiteralShorthandProperties: v.optional(v.boolean()),octalLiterals: v.optional(v.boolean()),regexUFlag: v.optional(v.boolean()),regexYFlag: v.optional(v.boolean()),restParams: v.optional(v.boolean()),spread: v.optional(v.boolean()),superInFunctions: v.optional(v.boolean()),templateStrings: v.optional(v.boolean()),unicodeCodePointEscapes: v.optional(v.boolean())}), v.description("By default, ESLint supports only ECMAScript 5 syntax. You can override that setting to enable support for ECMAScript 6 as well as JSX by using configuration settings."))),env: v.optional(v.pipe(v.object({amd: v.optional(v.boolean()),applescript: v.optional(v.boolean()),atomtest: v.optional(v.boolean()),browser: v.optional(v.boolean()),commonjs: v.optional(v.boolean()),shared-node-browser: v.optional(v.boolean()),embertest: v.optional(v.boolean()),es6: v.optional(v.boolean()),greasemonkey: v.optional(v.boolean()),jasmine: v.optional(v.boolean()),jest: v.optional(v.boolean()),jquery: v.optional(v.boolean()),meteor: v.optional(v.boolean()),mocha: v.optional(v.boolean()),mongo: v.optional(v.boolean()),nashorn: v.optional(v.boolean()),node: v.optional(v.boolean()),phantomjs: v.optional(v.boolean()),prototypejs: v.optional(v.boolean()),protractor: v.optional(v.boolean()),qunit: v.optional(v.boolean()),serviceworker: v.optional(v.boolean()),shelljs: v.optional(v.boolean()),webextensions: v.optional(v.boolean()),worker: v.optional(v.boolean())}), v.description("An environment defines global variables that are predefined."))),extends: v.optional(v.any()),globals: v.optional(v.object({})),noInlineConfig: v.optional(v.boolean()),reportUnusedDisableDirectives: v.optional(v.boolean()),parser: v.optional(v.string()),parserOptions: v.optional(v.pipe(v.object({ecmaFeatures: v.optional(v.pipe(v.object({arrowFunctions: v.optional(v.boolean()),binaryLiterals: v.optional(v.boolean()),blockBindings: v.optional(v.boolean()),classes: v.optional(v.boolean()),defaultParams: v.optional(v.boolean()),destructuring: v.optional(v.boolean()),experimentalObjectRestSpread: v.optional(v.boolean()),forOf: v.optional(v.boolean()),generators: v.optional(v.boolean()),globalReturn: v.optional(v.boolean()),impliedStrict: v.optional(v.boolean()),jsx: v.optional(v.boolean()),modules: v.optional(v.boolean()),objectLiteralComputedProperties: v.optional(v.boolean()),objectLiteralDuplicateProperties: v.optional(v.boolean()),objectLiteralShorthandMethods: v.optional(v.boolean()),objectLiteralShorthandProperties: v.optional(v.boolean()),octalLiterals: v.optional(v.boolean()),regexUFlag: v.optional(v.boolean()),regexYFlag: v.optional(v.boolean()),restParams: v.optional(v.boolean()),spread: v.optional(v.boolean()),superInFunctions: v.optional(v.boolean()),templateStrings: v.optional(v.boolean()),unicodeCodePointEscapes: v.optional(v.boolean())}), v.description("By default, ESLint supports only ECMAScript 5 syntax. You can override that setting to enable support for ECMAScript 6 as well as JSX by using configuration settings."))),ecmaVersion: v.pipe(v.optional(v.picklist([3,5,6,2015,7,2016,8,2017,9,2018,10,2019,11,2020,12,2021,13,2022,14,2023,15,2024,"latest"]), '5'), v.description("Set to 3, 5 (default), 6, 7, 8, 9, 10, 11, 12, 13, 14, or 15 to specify the version of ECMAScript syntax you want to use. You can also set it to 2015 (same as 6), 2016 (same as 7), 2017 (same as 8), 2018 (same as 9), 2019 (same as 10), 2020 (same as 11), 2021 (same as 12), 2022 (same as 13), 2023 (same as 14), or 2024 (same as 15) to use the year-based naming. You can also set \\"latest\\" to use the most recently supported version.")),sourceType: v.pipe(v.optional(v.picklist(["script","module","commonjs"]), 'script'), v.description("set to \\"script\\" (default), \\"commonjs\\", or \\"module\\" if your code is in ECMAScript modules"))}), v.description("The JavaScript language options to be supported"))),plugins: v.optional(v.pipe(v.array(v.string()), v.description("ESLint supports the use of third-party plugins. Before using the plugin, you have to install it using npm."))),root: v.optional(v.boolean()),ignorePatterns: v.optional(v.any()),rules: v.optional(v.object({})),settings: v.optional(v.object({})),overrides: v.optional(v.pipe(v.array(v.object({files: v.any(),extends: v.optional(v.any()),excludedFiles: v.optional(v.any()),ecmaFeatures: v.optional(v.pipe(v.object({arrowFunctions: v.optional(v.boolean()),binaryLiterals: v.optional(v.boolean()),blockBindings: v.optional(v.boolean()),classes: v.optional(v.boolean()),defaultParams: v.optional(v.boolean()),destructuring: v.optional(v.boolean()),experimentalObjectRestSpread: v.optional(v.boolean()),forOf: v.optional(v.boolean()),generators: v.optional(v.boolean()),globalReturn: v.optional(v.boolean()),impliedStrict: v.optional(v.boolean()),jsx: v.optional(v.boolean()),modules: v.optional(v.boolean()),objectLiteralComputedProperties: v.optional(v.boolean()),objectLiteralDuplicateProperties: v.optional(v.boolean()),objectLiteralShorthandMethods: v.optional(v.boolean()),objectLiteralShorthandProperties: v.optional(v.boolean()),octalLiterals: v.optional(v.boolean()),regexUFlag: v.optional(v.boolean()),regexYFlag: v.optional(v.boolean()),restParams: v.optional(v.boolean()),spread: v.optional(v.boolean()),superInFunctions: v.optional(v.boolean()),templateStrings: v.optional(v.boolean()),unicodeCodePointEscapes: v.optional(v.boolean())}), v.description("By default, ESLint supports only ECMAScript 5 syntax. You can override that setting to enable support for ECMAScript 6 as well as JSX by using configuration settings."))),env: v.optional(v.pipe(v.object({amd: v.optional(v.boolean()),applescript: v.optional(v.boolean()),atomtest: v.optional(v.boolean()),browser: v.optional(v.boolean()),commonjs: v.optional(v.boolean()),shared-node-browser: v.optional(v.boolean()),embertest: v.optional(v.boolean()),es6: v.optional(v.boolean()),greasemonkey: v.optional(v.boolean()),jasmine: v.optional(v.boolean()),jest: v.optional(v.boolean()),jquery: v.optional(v.boolean()),meteor: v.optional(v.boolean()),mocha: v.optional(v.boolean()),mongo: v.optional(v.boolean()),nashorn: v.optional(v.boolean()),node: v.optional(v.boolean()),phantomjs: v.optional(v.boolean()),prototypejs: v.optional(v.boolean()),protractor: v.optional(v.boolean()),qunit: v.optional(v.boolean()),serviceworker: v.optional(v.boolean()),shelljs: v.optional(v.boolean()),webextensions: v.optional(v.boolean()),worker: v.optional(v.boolean())}), v.description("An environment defines global variables that are predefined."))),globals: v.optional(v.object({})),parser: v.optional(v.string()),parserOptions: v.optional(v.pipe(v.object({ecmaFeatures: v.optional(v.pipe(v.object({arrowFunctions: v.optional(v.boolean()),binaryLiterals: v.optional(v.boolean()),blockBindings: v.optional(v.boolean()),classes: v.optional(v.boolean()),defaultParams: v.optional(v.boolean()),destructuring: v.optional(v.boolean()),experimentalObjectRestSpread: v.optional(v.boolean()),forOf: v.optional(v.boolean()),generators: v.optional(v.boolean()),globalReturn: v.optional(v.boolean()),impliedStrict: v.optional(v.boolean()),jsx: v.optional(v.boolean()),modules: v.optional(v.boolean()),objectLiteralComputedProperties: v.optional(v.boolean()),objectLiteralDuplicateProperties: v.optional(v.boolean()),objectLiteralShorthandMethods: v.optional(v.boolean()),objectLiteralShorthandProperties: v.optional(v.boolean()),octalLiterals: v.optional(v.boolean()),regexUFlag: v.optional(v.boolean()),regexYFlag: v.optional(v.boolean()),restParams: v.optional(v.boolean()),spread: v.optional(v.boolean()),superInFunctions: v.optional(v.boolean()),templateStrings: v.optional(v.boolean()),unicodeCodePointEscapes: v.optional(v.boolean())}), v.description("By default, ESLint supports only ECMAScript 5 syntax. You can override that setting to enable support for ECMAScript 6 as well as JSX by using configuration settings."))),ecmaVersion: v.pipe(v.optional(v.picklist([3,5,6,2015,7,2016,8,2017,9,2018,10,2019,11,2020,12,2021,13,2022,14,2023,15,2024,"latest"]), '5'), v.description("Set to 3, 5 (default), 6, 7, 8, 9, 10, 11, 12, 13, 14, or 15 to specify the version of ECMAScript syntax you want to use. You can also set it to 2015 (same as 6), 2016 (same as 7), 2017 (same as 8), 2018 (same as 9), 2019 (same as 10), 2020 (same as 11), 2021 (same as 12), 2022 (same as 13), 2023 (same as 14), or 2024 (same as 15) to use the year-based naming. You can also set \\"latest\\" to use the most recently supported version.")),sourceType: v.pipe(v.optional(v.picklist(["script","module","commonjs"]), 'script'), v.description("set to \\"script\\" (default), \\"commonjs\\", or \\"module\\" if your code is in ECMAScript modules"))}), v.description("The JavaScript language options to be supported"))),plugins: v.optional(v.pipe(v.array(v.string()), v.description("ESLint supports the use of third-party plugins. Before using the plugin, you have to install it using npm."))),processor: v.optional(v.pipe(v.string(), v.description("To specify a processor, specify the plugin name and processor name joined by a forward slash"))),rules: v.optional(v.object({})),settings: v.optional(v.object({})),overrides: v.optional(v.any())})), v.description("Allows to override configuration for files and folders, specified by glob patterns")))})),prettier: v.optional(v.any()),stylelint: v.optional(v.object({extends: v.optional(v.union([v.string(), v.array(v.any())])),plugins: v.optional(v.array(v.string())),customSyntax: v.optional(v.pipe(v.string(), v.description("Specify a custom syntax to use on your code."))),overrides: v.optional(v.pipe(v.array(v.object({files: v.optional(v.array(v.string())),customSyntax: v.optional(v.string()),rules: v.optional(v.object({}))})), v.description("Provide rule and behavior overrides for files that match particular glob patterns."))),processors: v.optional(v.pipe(v.array(v.any()), v.description("Processors are functions that hook into stylelint's pipeline, modifying code on its way into stylelint and modifying results on their way out"))),ignoreDisables: v.optional(v.boolean()),ignoreFiles: v.optional(v.union([v.string(), v.array(v.any())])),defaultSeverity: v.optional(v.pipe(v.picklist(["warning","error"]), v.description("The default severity level for all rules that do not have a severity specified in their secondary options"))),reportDescriptionlessDisables: v.union([v.null(), v.optional(v.boolean(), true), v.array(v.any())]),reportInvalidScopeDisables: v.union([v.null(), v.optional(v.boolean(), true), v.array(v.any())]),reportNeedlessDisables: v.union([v.null(), v.optional(v.boolean(), true), v.array(v.any())]),rules: v.optional(v.object({}))})),ava: v.optional(v.pipe(v.object({files: v.optional(v.array(v.pipe(v.string(), v.minLength(1)))),ignoredByWatcher: v.optional(v.array(v.pipe(v.string(), v.minLength(1)))),match: v.optional(v.array(v.pipe(v.string(), v.minLength(1)))),cache: v.optional(v.boolean(), true),concurrency: v.optional(v.number()),workerThreads: v.optional(v.boolean(), true),failFast: v.optional(v.boolean(), false),failWithoutAssertions: v.optional(v.boolean(), true),environmentVariables: v.optional(v.object({})),serial: v.optional(v.boolean(), false),tap: v.optional(v.boolean(), false),verbose: v.optional(v.boolean(), false),snapshotDir: v.optional(v.pipe(v.string(), v.minLength(1))),extensions: v.any(),require: v.optional(v.array(v.pipe(v.string(), v.minLength(1)))),timeout: v.any(),nodeArguments: v.optional(v.array(v.string())),utilizeParallelBuilds: v.optional(v.boolean(), true),typescript: v.optional(v.pipe(v.object({extensions: v.optional(v.array(v.pipe(v.string(), v.minLength(1)))),rewritePaths: v.optional(v.object({})),compile: v.pipe(v.optional(v.picklist([false,"tsc"]), 'false'), v.description("If \`false\`, AVA will assume you have already compiled your project. If set to \`'tsc'\`, AVA will run the TypeScript compiler before running your tests. This can be inefficient when using AVA in watch mode"))}), v.description("Configures @ava/typescript for projects that precompile TypeScript. Alternatively, you can use \`ts-node\` to do live testing without transpiling, in which case you shouldn't use the \`typescript\` property")))}), v.description("Configuration Schema for the JavaScript test runner AVA"))),release: v.optional(v.object({extends: v.optional(v.any()),branches: v.any(),repositoryUrl: v.optional(v.pipe(v.string(), v.description("The git repository URL"))),tagFormat: v.optional(v.pipe(v.string(), v.description("The Git tag format used by semantic-release to identify releases. The tag name is generated with Lodash template and will be compiled with the version variable.")), 'v\${version}'),plugins: v.pipe(v.array(v.any()), v.description("Define the list of plugins to use. Plugins will run in series, in the order defined")),dryRun: v.optional(v.boolean()),ci: v.optional(v.boolean(), true)})),jscpd: v.optional(v.object({minLines: v.optional(v.pipe(v.number(), v.integer()), 5),maxLines: v.optional(v.pipe(v.number(), v.integer()), 1000),maxSize: v.any(),minTokens: v.optional(v.pipe(v.number(), v.integer()), 50),threshold: v.optional(v.number()),formatsExts: v.object({}),output: v.optional(v.pipe(v.string(), v.description("path to directory for non-console reports")), './report'),path: v.optional(v.pipe(v.array(v.string()), v.description("paths that should be included in duplicate detection (default: [process.cwd()])"))),pattern: v.optional(v.pipe(v.string(), v.description("glob pattern for files that should be included in duplicate detection (e.g., **/*.txt); only used to filter directories configured via path option")), '**/*'),ignorePattern: v.pipe(v.array(v.string()), v.description("ignore code blocks matching these regular expressions")),mode: v.pipe(v.optional(v.picklist(["mild","strict","weak"]), 'mild'), v.description("mode of detection quality; see https://github.com/kucherenko/jscpd/blob/master/packages/jscpd/README.md#mode")),ignore: v.pipe(v.array(v.string()), v.description("glob pattern for files that should be excluded from duplicate detection")),format: v.optional(v.pipe(v.array(v.picklist(["abap","actionscript","ada","apacheconf","apl","applescript","arduino","arff","asciidoc","asm6502","aspnet","autohotkey","autoit","bash","basic","batch","bison","brainfuck","bro","c","c-header","clike","clojure","coffeescript","comments","cpp","cpp-header","crystal","csharp","csp","css-extras","css","d","dart","diff","django","docker","eiffel","elixir","elm","erb","erlang","flow","fortran","fsharp","gedcom","gherkin","git","glsl","go","graphql","groovy","haml","handlebars","haskell","haxe","hpkp","hsts","http","ichigojam","icon","inform7","ini","io","j","java","javascript","jolie","json","jsx","julia","keymap","kotlin","latex","less","liquid","lisp","livescript","lolcode","lua","makefile","markdown","markup","matlab","mel","mizar","monkey","n4js","nasm","nginx","nim","nix","nsis","objectivec","ocaml","opencl","oz","parigp","pascal","perl","php","plsql","powershell","processing","prolog","properties","protobuf","pug","puppet","pure","python","q","qore","r","reason","renpy","rest","rip","roboconf","ruby","rust","sas","sass","scala","scheme","scss","smalltalk","smarty","soy","sql","stylus","swift","tap","tcl","textile","tsx","tt2","twig","typescript","vbnet","velocity","verilog","vhdl","vim","visual-basic","wasm","url","wiki","xeora","xojo","xquery","yaml"])), v.description("list of formats for which to detect duplication (default: all); see https://github.com/kucherenko/jscpd/blob/master/supported_formats.md"))),store: v.optional(v.pipe(v.picklist(["leveldb","redis"]), v.description("store used to collect information about code (default: in-memory store); install @jscpd/leveldb-store and use leveldb for big repositories"))),reporters: v.pipe(v.array(v.picklist(["xml","json","csv","markdown","consoleFull","html","console","silent","threshold","xcode"])), v.description("a list of reporters to use to output information about duplication; see https://github.com/kucherenko/jscpd/blob/master/packages/jscpd/README.md#reporters")),blame: v.optional(v.boolean(), false),silent: v.optional(v.boolean(), false),verbose: v.optional(v.boolean(), false),absolute: v.optional(v.boolean(), false),noSymlinks: v.optional(v.boolean(), false),skipLocal: v.optional(v.boolean(), false),ignoreCase: v.optional(v.boolean(), false),gitignore: v.optional(v.boolean(), false),reportersOptions: v.object({badge: v.optional(v.object({path: v.optional(v.pipe(v.string(), v.description("output path for duplication level badge (default: path.join(output, 'jscpd-badge.svg'))"))),label: v.optional(v.pipe(v.string(), v.description("badge subject text (URL-encoding needed for spaces or special characters)")), 'Copy/Paste'),labelColor: v.optional(v.any()),status: v.optional(v.pipe(v.string(), v.description("badge value text (URL-encoding needed for spaces or special characters, default: duplication %)"))),color: v.optional(v.any()),style: v.pipe(v.optional(v.picklist(["flat","classic"]), 'classic'), v.description("badge look: flat or classic")),icon: v.optional(v.pipe(v.string(), v.description("URL for icon to display in front of badge subject text (e.g., data:image/svg+xml;base64,...)"))),iconWidth: v.optional(v.number(), 13),scale: v.optional(v.number(), 1)}))}),exitCode: v.optional(v.pipe(v.number(), v.integer()), 0)})),pnpm: v.optional(v.pipe(v.object({overrides: v.optional(v.object({})),packageExtensions: v.optional(v.object({})),peerDependencyRules: v.optional(v.any()),neverBuiltDependencies: v.optional(v.pipe(v.array(v.string()), v.description("A list of dependencies to skip the builds."))),onlyBuiltDependencies: v.optional(v.pipe(v.array(v.string()), v.description("A list of dependencies to skip the builds."))),onlyBuiltDependenciesFile: v.optional(v.pipe(v.string(), v.description("Specifies a JSON file that lists the only packages permitted to run installation scripts during the pnpm install process."))),allowedDeprecatedVersions: v.optional(v.object({})),patchedDependencies: v.optional(v.object({})),allowNonAppliedPatches: v.optional(v.boolean()),updateConfig: v.optional(v.object({ignoreDependencies: v.optional(v.pipe(v.array(v.string()), v.description("A list of packages that should be ignored when running \\"pnpm outdated\\" or \\"pnpm update --latest\\".")))})),auditConfig: v.optional(v.object({ignoreCves: v.optional(v.pipe(v.array(v.pipe(v.string(), v.regex(/^CVE-\\d{4}-\\d{4,7}$/))), v.description("A list of CVE IDs that will be ignored by \\"pnpm audit\\"."))),ignoreGhsas: v.optional(v.pipe(v.array(v.pipe(v.string(), v.regex(/^GHSA(-[23456789cfghjmpqrvwx]{4}){3}$/))), v.description("A list of GHSA Codes that will be ignored by \\"pnpm audit\\".")))})),requiredScripts: v.optional(v.pipe(v.array(v.string()), v.description("A list of scripts that must exist in each project."))),supportedArchitectures: v.optional(v.pipe(v.object({os: v.optional(v.array(v.string())),cpu: v.optional(v.array(v.string())),libc: v.optional(v.array(v.string()))}), v.description("Specifies architectures for which you'd like to install optional dependencies, even if they don't match the architecture of the system running the install."))),ignoredOptionalDependencies: v.optional(v.pipe(v.array(v.string()), v.description("A list of optional dependencies that the install should be skipped."))),executionEnv: v.optional(v.object({nodeVersion: v.optional(v.pipe(v.string(), v.description("Specifies which exact Node.js version should be used for the project's runtime.")))}))}), v.description("Defines pnpm specific configuration.")))});"
+export default v.object({
+  name: v.optional(
+    v.pipe(
+      v.string(),
+      v.minLength(1),
+      v.maxLength(214),
+      v.regex(/^(?:(?:@(?:[a-z0-9-*~][a-z0-9-*._~]*)?\\/[a-z0-9-._~])|[a-z0-9-~])[a-z0-9-._~]*$/),
+      v.description('The name of the package.'),
+    ),
+  ),
+  version: v.optional(
+    v.pipe(
+      v.string(),
+      v.description(
+        'Version must be parseable by node-semver, which is bundled with npm as a dependency.',
+      ),
+    ),
+  ),
+  description: v.optional(
+    v.pipe(
+      v.string(),
+      v.description("This helps people discover your package, as it's listed in 'npm search'."),
+    ),
+  ),
+  keywords: v.optional(
+    v.pipe(
+      v.array(v.string()),
+      v.description("This helps people discover your package as it's listed in 'npm search'."),
+    ),
+  ),
+  homepage: v.optional(v.pipe(v.string(), v.description('The url to the project homepage.'))),
+  bugs: v.optional(
+    v.union([
+      v.pipe(
+        v.object({
+          url: v.optional(
+            v.pipe(v.string(), v.description("The url to your project's issue tracker.")),
+          ),
+          email: v.optional(
+            v.pipe(
+              v.string(),
+              v.description('The email address to which issues should be reported.'),
+            ),
+          ),
+        }),
+        v.description(
+          "The url to your project's issue tracker and / or the email address to which issues should be reported. These are helpful for people who encounter issues with your package.",
+        ),
+      ),
+      v.pipe(
+        v.string(),
+        v.description(
+          "The url to your project's issue tracker and / or the email address to which issues should be reported. These are helpful for people who encounter issues with your package.",
+        ),
+      ),
+    ]),
+  ),
+  license: v.optional(v.any()),
+  licenses: v.optional(
+    v.pipe(
+      v.array(v.object({ type: v.optional(v.any()), url: v.optional(v.string()) })),
+      v.description(
+        'DEPRECATED: Instead, use SPDX expressions, like this: { "license": "ISC" } or { "license": "(MIT OR Apache-2.0)" } see: \\'https://docs.npmjs.com/files/package.json#license\\'.',
+      ),
+    ),
+  ),
+  author: v.optional(
+    v.union([
+      v.pipe(
+        v.object({ name: v.string(), url: v.optional(v.string()), email: v.optional(v.string()) }),
+        v.description('A person who has been involved in creating or maintaining this package.'),
+      ),
+      v.pipe(
+        v.string(),
+        v.description('A person who has been involved in creating or maintaining this package.'),
+      ),
+    ]),
+  ),
+  contributors: v.optional(
+    v.pipe(
+      v.array(
+        v.union([
+          v.pipe(
+            v.object({
+              name: v.string(),
+              url: v.optional(v.string()),
+              email: v.optional(v.string()),
+            }),
+            v.description(
+              'A person who has been involved in creating or maintaining this package.',
+            ),
+          ),
+          v.pipe(
+            v.string(),
+            v.description(
+              'A person who has been involved in creating or maintaining this package.',
+            ),
+          ),
+        ]),
+      ),
+      v.description('A list of people who contributed to this package.'),
+    ),
+  ),
+  maintainers: v.optional(
+    v.pipe(
+      v.array(
+        v.union([
+          v.pipe(
+            v.object({
+              name: v.string(),
+              url: v.optional(v.string()),
+              email: v.optional(v.string()),
+            }),
+            v.description(
+              'A person who has been involved in creating or maintaining this package.',
+            ),
+          ),
+          v.pipe(
+            v.string(),
+            v.description(
+              'A person who has been involved in creating or maintaining this package.',
+            ),
+          ),
+        ]),
+      ),
+      v.description('A list of people who maintains this package.'),
+    ),
+  ),
+  files: v.optional(
+    v.pipe(
+      v.array(v.string()),
+      v.description(
+        "The 'files' field is an array of files to include in your project. If you name a folder in the array, then it will also include the files inside that folder.",
+      ),
+    ),
+  ),
+  main: v.optional(
+    v.pipe(
+      v.string(),
+      v.description(
+        'The main field is a module ID that is the primary entry point to your program.',
+      ),
+    ),
+  ),
+  exports: v.optional(v.any()),
+  imports: v.optional(
+    v.pipe(
+      v.object({}),
+      v.description(
+        'The "imports" field is used to create private mappings that only apply to import specifiers from within the package itself.',
+      ),
+    ),
+  ),
+  bin: v.optional(v.union([v.string(), v.object({})])),
+  type: v.pipe(
+    v.optional(v.picklist(['commonjs', 'module']), 'commonjs'),
+    v.description(
+      'When set to "module", the type field allows a package to specify all .js files within are ES modules. If the "type" field is omitted or set to "commonjs", all .js files are treated as CommonJS.',
+    ),
+  ),
+  types: v.optional(
+    v.pipe(
+      v.string(),
+      v.description('Set the types property to point to your bundled declaration file.'),
+    ),
+  ),
+  typings: v.optional(
+    v.pipe(
+      v.string(),
+      v.description(
+        'Note that the "typings" field is synonymous with "types", and could be used as well.',
+      ),
+    ),
+  ),
+  typesVersions: v.optional(
+    v.pipe(
+      v.object({}),
+      v.description(
+        'The "typesVersions" field is used since TypeScript 3.1 to support features that were only made available in newer TypeScript versions.',
+      ),
+    ),
+  ),
+  man: v.optional(
+    v.union([
+      v.pipe(
+        v.array(v.string()),
+        v.description(
+          'Specify either a single file or an array of filenames to put in place for the man program to find.',
+        ),
+      ),
+      v.pipe(
+        v.string(),
+        v.description(
+          'Specify either a single file or an array of filenames to put in place for the man program to find.',
+        ),
+      ),
+    ]),
+  ),
+  directories: v.optional(
+    v.object({
+      bin: v.optional(
+        v.pipe(
+          v.string(),
+          v.description(
+            "If you specify a 'bin' directory, then all the files in that folder will be used as the 'bin' hash.",
+          ),
+        ),
+      ),
+      doc: v.optional(
+        v.pipe(
+          v.string(),
+          v.description(
+            'Put markdown files in here. Eventually, these will be displayed nicely, maybe, someday.',
+          ),
+        ),
+      ),
+      example: v.optional(
+        v.pipe(
+          v.string(),
+          v.description(
+            'Put example scripts in here. Someday, it might be exposed in some clever way.',
+          ),
+        ),
+      ),
+      lib: v.optional(
+        v.pipe(
+          v.string(),
+          v.description(
+            "Tell people where the bulk of your library is. Nothing special is done with the lib folder in any way, but it's useful meta info.",
+          ),
+        ),
+      ),
+      man: v.optional(
+        v.pipe(
+          v.string(),
+          v.description(
+            "A folder that is full of man pages. Sugar to generate a 'man' array by walking the folder.",
+          ),
+        ),
+      ),
+      test: v.optional(v.string()),
+    }),
+  ),
+  repository: v.optional(
+    v.union([
+      v.pipe(
+        v.object({
+          type: v.optional(v.string()),
+          url: v.optional(v.string()),
+          directory: v.optional(v.string()),
+        }),
+        v.description(
+          'Specify the place where your code lives. This is helpful for people who want to contribute.',
+        ),
+      ),
+      v.pipe(
+        v.string(),
+        v.description(
+          'Specify the place where your code lives. This is helpful for people who want to contribute.',
+        ),
+      ),
+    ]),
+  ),
+  funding: v.optional(v.any()),
+  scripts: v.optional(
+    v.pipe(
+      v.object({
+        lint: v.optional(
+          v.pipe(v.string(), v.description('Run code quality tools, e.g. ESLint, TSLint, etc.')),
+        ),
+        prepublish: v.optional(
+          v.pipe(
+            v.string(),
+            v.description(
+              'Run BEFORE the package is published (Also run on local npm install without any arguments).',
+            ),
+          ),
+        ),
+        prepare: v.optional(
+          v.pipe(
+            v.string(),
+            v.description(
+              'Run both BEFORE the package is packed and published, and on local npm install without any arguments. This is run AFTER prepublish, but BEFORE prepublishOnly.',
+            ),
+          ),
+        ),
+        prepublishOnly: v.optional(
+          v.pipe(
+            v.string(),
+            v.description('Run BEFORE the package is prepared and packed, ONLY on npm publish.'),
+          ),
+        ),
+        prepack: v.optional(
+          v.pipe(
+            v.string(),
+            v.description(
+              'run BEFORE a tarball is packed (on npm pack, npm publish, and when installing git dependencies).',
+            ),
+          ),
+        ),
+        postpack: v.optional(
+          v.pipe(
+            v.string(),
+            v.description(
+              'Run AFTER the tarball has been generated and moved to its final destination.',
+            ),
+          ),
+        ),
+        publish: v.optional(
+          v.pipe(
+            v.string(),
+            v.description(
+              'Publishes a package to the registry so that it can be installed by name. See https://docs.npmjs.com/cli/v8/commands/npm-publish',
+            ),
+          ),
+        ),
+        postpublish: v.optional(
+          v.pipe(v.string(), v.description('Run AFTER the package is published.')),
+        ),
+        preinstall: v.optional(
+          v.pipe(v.string(), v.description('Run BEFORE the package is installed.')),
+        ),
+        install: v.optional(
+          v.pipe(v.string(), v.description('Run AFTER the package is installed.')),
+        ),
+        postinstall: v.optional(
+          v.pipe(v.string(), v.description('Run AFTER the package is installed.')),
+        ),
+        preuninstall: v.optional(
+          v.pipe(v.string(), v.description('Run BEFORE the package is uninstalled.')),
+        ),
+        uninstall: v.optional(
+          v.pipe(v.string(), v.description('Run BEFORE the package is uninstalled.')),
+        ),
+        postuninstall: v.optional(
+          v.pipe(v.string(), v.description('Run AFTER the package is uninstalled.')),
+        ),
+        preversion: v.optional(
+          v.pipe(v.string(), v.description('Run BEFORE bump the package version.')),
+        ),
+        version: v.optional(
+          v.pipe(v.string(), v.description('Run BEFORE bump the package version.')),
+        ),
+        postversion: v.optional(
+          v.pipe(v.string(), v.description('Run AFTER bump the package version.')),
+        ),
+        pretest: v.optional(v.pipe(v.string(), v.description("Run by the 'npm test' command."))),
+        test: v.optional(v.pipe(v.string(), v.description("Run by the 'npm test' command."))),
+        posttest: v.optional(v.pipe(v.string(), v.description("Run by the 'npm test' command."))),
+        prestop: v.optional(v.pipe(v.string(), v.description("Run by the 'npm stop' command."))),
+        stop: v.optional(v.pipe(v.string(), v.description("Run by the 'npm stop' command."))),
+        poststop: v.optional(v.pipe(v.string(), v.description("Run by the 'npm stop' command."))),
+        prestart: v.optional(v.pipe(v.string(), v.description("Run by the 'npm start' command."))),
+        start: v.optional(v.pipe(v.string(), v.description("Run by the 'npm start' command."))),
+        poststart: v.optional(v.pipe(v.string(), v.description("Run by the 'npm start' command."))),
+        prerestart: v.optional(
+          v.pipe(
+            v.string(),
+            v.description(
+              "Run by the 'npm restart' command. Note: 'npm restart' will run the stop and start scripts if no restart script is provided.",
+            ),
+          ),
+        ),
+        restart: v.optional(
+          v.pipe(
+            v.string(),
+            v.description(
+              "Run by the 'npm restart' command. Note: 'npm restart' will run the stop and start scripts if no restart script is provided.",
+            ),
+          ),
+        ),
+        postrestart: v.optional(
+          v.pipe(
+            v.string(),
+            v.description(
+              "Run by the 'npm restart' command. Note: 'npm restart' will run the stop and start scripts if no restart script is provided.",
+            ),
+          ),
+        ),
+        serve: v.optional(
+          v.pipe(v.string(), v.description('Start dev server to serve application files')),
+        ),
+      }),
+      v.description(
+        "The 'scripts' member is an object hash of script commands that are run at various times in the lifecycle of your package. The key is the lifecycle event, and the value is the command to run at that point.",
+      ),
+    ),
+  ),
+  config: v.optional(
+    v.pipe(
+      v.object({}),
+      v.description(
+        "A 'config' hash can be used to set configuration parameters used in package scripts that persist across upgrades.",
+      ),
+    ),
+  ),
+  dependencies: v.optional(
+    v.pipe(
+      v.object({}),
+      v.description(
+        'Dependencies are specified with a simple hash of package name to version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.',
+      ),
+    ),
+  ),
+  devDependencies: v.optional(
+    v.pipe(
+      v.object({}),
+      v.description(
+        'Dependencies are specified with a simple hash of package name to version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.',
+      ),
+    ),
+  ),
+  optionalDependencies: v.optional(
+    v.pipe(
+      v.object({}),
+      v.description(
+        'Dependencies are specified with a simple hash of package name to version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.',
+      ),
+    ),
+  ),
+  peerDependencies: v.optional(
+    v.pipe(
+      v.object({}),
+      v.description(
+        'Dependencies are specified with a simple hash of package name to version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.',
+      ),
+    ),
+  ),
+  peerDependenciesMeta: v.optional(
+    v.pipe(
+      v.object({}),
+      v.description(
+        'When a user installs your package, warnings are emitted if packages specified in "peerDependencies" are not already installed. The "peerDependenciesMeta" field serves to provide more information on how your peer dependencies are utilized. Most commonly, it allows peer dependencies to be marked as optional. Metadata for this field is specified with a simple hash of the package name to a metadata object.',
+      ),
+    ),
+  ),
+  bundleDependencies: v.optional(v.any()),
+  bundledDependencies: v.optional(v.any()),
+  resolutions: v.optional(
+    v.pipe(
+      v.object({}),
+      v.description(
+        'Resolutions is used to support selective version resolutions using yarn, which lets you define custom package versions or ranges inside your dependencies. For npm, use overrides instead. See: https://classic.yarnpkg.com/en/docs/selective-version-resolutions',
+      ),
+    ),
+  ),
+  overrides: v.optional(
+    v.pipe(
+      v.object({}),
+      v.description(
+        'Overrides is used to support selective version overrides using npm, which lets you define custom package versions or ranges inside your dependencies. For yarn, use resolutions instead. See: https://docs.npmjs.com/cli/v9/configuring-npm/package-json#overrides',
+      ),
+    ),
+  ),
+  packageManager: v.optional(
+    v.pipe(
+      v.string(),
+      v.regex(/(npm|pnpm|yarn|bun)@\\d+\\.\\d+\\.\\d+(-.+)?/),
+      v.description(
+        'Defines which package manager is expected to be used when working on the current project. This field is currently experimental and needs to be opted-in; see https://nodejs.org/api/corepack.html',
+      ),
+    ),
+  ),
+  engines: v.optional(v.object({ node: v.optional(v.string()) })),
+  volta: v.optional(
+    v.pipe(
+      v.object({
+        extends: v.optional(
+          v.pipe(
+            v.string(),
+            v.description(
+              'The value of that entry should be a path to another JSON file which also has a "volta" section',
+            ),
+          ),
+        ),
+      }),
+      v.description(
+        'Defines which tools and versions are expected to be used when Volta is installed.',
+      ),
+    ),
+  ),
+  engineStrict: v.optional(v.boolean()),
+  os: v.optional(
+    v.pipe(
+      v.array(v.string()),
+      v.description('Specify which operating systems your module will run on.'),
+    ),
+  ),
+  cpu: v.optional(
+    v.pipe(
+      v.array(v.string()),
+      v.description('Specify that your code only runs on certain cpu architectures.'),
+    ),
+  ),
+  preferGlobal: v.optional(v.boolean()),
+  private: v.optional(v.any()),
+  publishConfig: v.optional(
+    v.object({
+      access: v.optional(v.picklist(['public', 'restricted'])),
+      tag: v.optional(v.string()),
+      registry: v.optional(v.string()),
+      provenance: v.optional(v.boolean()),
+    }),
+  ),
+  dist: v.optional(v.object({ shasum: v.optional(v.string()), tarball: v.optional(v.string()) })),
+  readme: v.optional(v.string()),
+  module: v.optional(
+    v.pipe(
+      v.string(),
+      v.description('An ECMAScript module ID that is the primary entry point to your program.'),
+    ),
+  ),
+  esnext: v.optional(
+    v.union([
+      v.pipe(
+        v.string(),
+        v.description(
+          'A module ID with untranspiled code that is the primary entry point to your program.',
+        ),
+      ),
+      v.pipe(
+        v.object({ main: v.optional(v.string()), browser: v.optional(v.string()) }),
+        v.description(
+          'A module ID with untranspiled code that is the primary entry point to your program.',
+        ),
+      ),
+    ]),
+  ),
+  workspaces: v.optional(v.any()),
+  jspm: v.optional(v.any()),
+  eslintConfig: v.optional(
+    v.object({
+      ecmaFeatures: v.optional(
+        v.pipe(
+          v.object({
+            arrowFunctions: v.optional(v.boolean()),
+            binaryLiterals: v.optional(v.boolean()),
+            blockBindings: v.optional(v.boolean()),
+            classes: v.optional(v.boolean()),
+            defaultParams: v.optional(v.boolean()),
+            destructuring: v.optional(v.boolean()),
+            experimentalObjectRestSpread: v.optional(v.boolean()),
+            forOf: v.optional(v.boolean()),
+            generators: v.optional(v.boolean()),
+            globalReturn: v.optional(v.boolean()),
+            impliedStrict: v.optional(v.boolean()),
+            jsx: v.optional(v.boolean()),
+            modules: v.optional(v.boolean()),
+            objectLiteralComputedProperties: v.optional(v.boolean()),
+            objectLiteralDuplicateProperties: v.optional(v.boolean()),
+            objectLiteralShorthandMethods: v.optional(v.boolean()),
+            objectLiteralShorthandProperties: v.optional(v.boolean()),
+            octalLiterals: v.optional(v.boolean()),
+            regexUFlag: v.optional(v.boolean()),
+            regexYFlag: v.optional(v.boolean()),
+            restParams: v.optional(v.boolean()),
+            spread: v.optional(v.boolean()),
+            superInFunctions: v.optional(v.boolean()),
+            templateStrings: v.optional(v.boolean()),
+            unicodeCodePointEscapes: v.optional(v.boolean()),
+          }),
+          v.description(
+            'By default, ESLint supports only ECMAScript 5 syntax. You can override that setting to enable support for ECMAScript 6 as well as JSX by using configuration settings.',
+          ),
+        ),
+      ),
+      env: v.optional(
+        v.pipe(
+          v.object({
+            amd: v.optional(v.boolean()),
+            applescript: v.optional(v.boolean()),
+            atomtest: v.optional(v.boolean()),
+            browser: v.optional(v.boolean()),
+            commonjs: v.optional(v.boolean()),
+            'shared-node-browser': v.optional(v.boolean()),
+            embertest: v.optional(v.boolean()),
+            es6: v.optional(v.boolean()),
+            greasemonkey: v.optional(v.boolean()),
+            jasmine: v.optional(v.boolean()),
+            jest: v.optional(v.boolean()),
+            jquery: v.optional(v.boolean()),
+            meteor: v.optional(v.boolean()),
+            mocha: v.optional(v.boolean()),
+            mongo: v.optional(v.boolean()),
+            nashorn: v.optional(v.boolean()),
+            node: v.optional(v.boolean()),
+            phantomjs: v.optional(v.boolean()),
+            prototypejs: v.optional(v.boolean()),
+            protractor: v.optional(v.boolean()),
+            qunit: v.optional(v.boolean()),
+            serviceworker: v.optional(v.boolean()),
+            shelljs: v.optional(v.boolean()),
+            webextensions: v.optional(v.boolean()),
+            worker: v.optional(v.boolean()),
+          }),
+          v.description('An environment defines global variables that are predefined.'),
+        ),
+      ),
+      extends: v.optional(v.any()),
+      globals: v.optional(
+        v.pipe(
+          v.object({}),
+          v.description(
+            'Set each global variable name equal to true to allow the variable to be overwritten or false to disallow overwriting.',
+          ),
+        ),
+      ),
+      noInlineConfig: v.optional(v.boolean()),
+      reportUnusedDisableDirectives: v.optional(v.boolean()),
+      parser: v.optional(v.string()),
+      parserOptions: v.optional(
+        v.pipe(
+          v.object({
+            ecmaFeatures: v.optional(
+              v.pipe(
+                v.object({
+                  arrowFunctions: v.optional(v.boolean()),
+                  binaryLiterals: v.optional(v.boolean()),
+                  blockBindings: v.optional(v.boolean()),
+                  classes: v.optional(v.boolean()),
+                  defaultParams: v.optional(v.boolean()),
+                  destructuring: v.optional(v.boolean()),
+                  experimentalObjectRestSpread: v.optional(v.boolean()),
+                  forOf: v.optional(v.boolean()),
+                  generators: v.optional(v.boolean()),
+                  globalReturn: v.optional(v.boolean()),
+                  impliedStrict: v.optional(v.boolean()),
+                  jsx: v.optional(v.boolean()),
+                  modules: v.optional(v.boolean()),
+                  objectLiteralComputedProperties: v.optional(v.boolean()),
+                  objectLiteralDuplicateProperties: v.optional(v.boolean()),
+                  objectLiteralShorthandMethods: v.optional(v.boolean()),
+                  objectLiteralShorthandProperties: v.optional(v.boolean()),
+                  octalLiterals: v.optional(v.boolean()),
+                  regexUFlag: v.optional(v.boolean()),
+                  regexYFlag: v.optional(v.boolean()),
+                  restParams: v.optional(v.boolean()),
+                  spread: v.optional(v.boolean()),
+                  superInFunctions: v.optional(v.boolean()),
+                  templateStrings: v.optional(v.boolean()),
+                  unicodeCodePointEscapes: v.optional(v.boolean()),
+                }),
+                v.description(
+                  'By default, ESLint supports only ECMAScript 5 syntax. You can override that setting to enable support for ECMAScript 6 as well as JSX by using configuration settings.',
+                ),
+              ),
+            ),
+            ecmaVersion: v.pipe(
+              v.optional(
+                v.picklist([
+                  3,
+                  5,
+                  6,
+                  2015,
+                  7,
+                  2016,
+                  8,
+                  2017,
+                  9,
+                  2018,
+                  10,
+                  2019,
+                  11,
+                  2020,
+                  12,
+                  2021,
+                  13,
+                  2022,
+                  14,
+                  2023,
+                  15,
+                  2024,
+                  'latest',
+                ]),
+                '5',
+              ),
+              v.description(
+                'Set to 3, 5 (default), 6, 7, 8, 9, 10, 11, 12, 13, 14, or 15 to specify the version of ECMAScript syntax you want to use. You can also set it to 2015 (same as 6), 2016 (same as 7), 2017 (same as 8), 2018 (same as 9), 2019 (same as 10), 2020 (same as 11), 2021 (same as 12), 2022 (same as 13), 2023 (same as 14), or 2024 (same as 15) to use the year-based naming. You can also set "latest" to use the most recently supported version.',
+              ),
+            ),
+            sourceType: v.pipe(
+              v.optional(v.picklist(['script', 'module', 'commonjs']), 'script'),
+              v.description(
+                'set to "script" (default), "commonjs", or "module" if your code is in ECMAScript modules',
+              ),
+            ),
+          }),
+          v.description('The JavaScript language options to be supported'),
+        ),
+      ),
+      plugins: v.optional(
+        v.pipe(
+          v.array(v.string()),
+          v.description(
+            'ESLint supports the use of third-party plugins. Before using the plugin, you have to install it using npm.',
+          ),
+        ),
+      ),
+      root: v.optional(v.boolean()),
+      ignorePatterns: v.optional(v.any()),
+      rules: v.optional(
+        v.pipe(
+          v.object({}),
+          v.description(
+            'ESLint comes with a large number of rules. You can modify which rules your project uses either using configuration comments or configuration files.',
+          ),
+        ),
+      ),
+      settings: v.optional(
+        v.pipe(
+          v.object({}),
+          v.description(
+            'ESLint supports adding shared settings into configuration file. You can add settings object to ESLint configuration file and it will be supplied to every rule that will be executed. This may be useful if you are adding custom rules and want them to have access to the same information and be easily configurable.',
+          ),
+        ),
+      ),
+      overrides: v.optional(
+        v.pipe(
+          v.array(
+            v.object({
+              files: v.any(),
+              extends: v.optional(v.any()),
+              excludedFiles: v.optional(v.any()),
+              ecmaFeatures: v.optional(
+                v.pipe(
+                  v.object({
+                    arrowFunctions: v.optional(v.boolean()),
+                    binaryLiterals: v.optional(v.boolean()),
+                    blockBindings: v.optional(v.boolean()),
+                    classes: v.optional(v.boolean()),
+                    defaultParams: v.optional(v.boolean()),
+                    destructuring: v.optional(v.boolean()),
+                    experimentalObjectRestSpread: v.optional(v.boolean()),
+                    forOf: v.optional(v.boolean()),
+                    generators: v.optional(v.boolean()),
+                    globalReturn: v.optional(v.boolean()),
+                    impliedStrict: v.optional(v.boolean()),
+                    jsx: v.optional(v.boolean()),
+                    modules: v.optional(v.boolean()),
+                    objectLiteralComputedProperties: v.optional(v.boolean()),
+                    objectLiteralDuplicateProperties: v.optional(v.boolean()),
+                    objectLiteralShorthandMethods: v.optional(v.boolean()),
+                    objectLiteralShorthandProperties: v.optional(v.boolean()),
+                    octalLiterals: v.optional(v.boolean()),
+                    regexUFlag: v.optional(v.boolean()),
+                    regexYFlag: v.optional(v.boolean()),
+                    restParams: v.optional(v.boolean()),
+                    spread: v.optional(v.boolean()),
+                    superInFunctions: v.optional(v.boolean()),
+                    templateStrings: v.optional(v.boolean()),
+                    unicodeCodePointEscapes: v.optional(v.boolean()),
+                  }),
+                  v.description(
+                    'By default, ESLint supports only ECMAScript 5 syntax. You can override that setting to enable support for ECMAScript 6 as well as JSX by using configuration settings.',
+                  ),
+                ),
+              ),
+              env: v.optional(
+                v.pipe(
+                  v.object({
+                    amd: v.optional(v.boolean()),
+                    applescript: v.optional(v.boolean()),
+                    atomtest: v.optional(v.boolean()),
+                    browser: v.optional(v.boolean()),
+                    commonjs: v.optional(v.boolean()),
+                    'shared-node-browser': v.optional(v.boolean()),
+                    embertest: v.optional(v.boolean()),
+                    es6: v.optional(v.boolean()),
+                    greasemonkey: v.optional(v.boolean()),
+                    jasmine: v.optional(v.boolean()),
+                    jest: v.optional(v.boolean()),
+                    jquery: v.optional(v.boolean()),
+                    meteor: v.optional(v.boolean()),
+                    mocha: v.optional(v.boolean()),
+                    mongo: v.optional(v.boolean()),
+                    nashorn: v.optional(v.boolean()),
+                    node: v.optional(v.boolean()),
+                    phantomjs: v.optional(v.boolean()),
+                    prototypejs: v.optional(v.boolean()),
+                    protractor: v.optional(v.boolean()),
+                    qunit: v.optional(v.boolean()),
+                    serviceworker: v.optional(v.boolean()),
+                    shelljs: v.optional(v.boolean()),
+                    webextensions: v.optional(v.boolean()),
+                    worker: v.optional(v.boolean()),
+                  }),
+                  v.description('An environment defines global variables that are predefined.'),
+                ),
+              ),
+              globals: v.optional(
+                v.pipe(
+                  v.object({}),
+                  v.description(
+                    'Set each global variable name equal to true to allow the variable to be overwritten or false to disallow overwriting.',
+                  ),
+                ),
+              ),
+              parser: v.optional(v.string()),
+              parserOptions: v.optional(
+                v.pipe(
+                  v.object({
+                    ecmaFeatures: v.optional(
+                      v.pipe(
+                        v.object({
+                          arrowFunctions: v.optional(v.boolean()),
+                          binaryLiterals: v.optional(v.boolean()),
+                          blockBindings: v.optional(v.boolean()),
+                          classes: v.optional(v.boolean()),
+                          defaultParams: v.optional(v.boolean()),
+                          destructuring: v.optional(v.boolean()),
+                          experimentalObjectRestSpread: v.optional(v.boolean()),
+                          forOf: v.optional(v.boolean()),
+                          generators: v.optional(v.boolean()),
+                          globalReturn: v.optional(v.boolean()),
+                          impliedStrict: v.optional(v.boolean()),
+                          jsx: v.optional(v.boolean()),
+                          modules: v.optional(v.boolean()),
+                          objectLiteralComputedProperties: v.optional(v.boolean()),
+                          objectLiteralDuplicateProperties: v.optional(v.boolean()),
+                          objectLiteralShorthandMethods: v.optional(v.boolean()),
+                          objectLiteralShorthandProperties: v.optional(v.boolean()),
+                          octalLiterals: v.optional(v.boolean()),
+                          regexUFlag: v.optional(v.boolean()),
+                          regexYFlag: v.optional(v.boolean()),
+                          restParams: v.optional(v.boolean()),
+                          spread: v.optional(v.boolean()),
+                          superInFunctions: v.optional(v.boolean()),
+                          templateStrings: v.optional(v.boolean()),
+                          unicodeCodePointEscapes: v.optional(v.boolean()),
+                        }),
+                        v.description(
+                          'By default, ESLint supports only ECMAScript 5 syntax. You can override that setting to enable support for ECMAScript 6 as well as JSX by using configuration settings.',
+                        ),
+                      ),
+                    ),
+                    ecmaVersion: v.pipe(
+                      v.optional(
+                        v.picklist([
+                          3,
+                          5,
+                          6,
+                          2015,
+                          7,
+                          2016,
+                          8,
+                          2017,
+                          9,
+                          2018,
+                          10,
+                          2019,
+                          11,
+                          2020,
+                          12,
+                          2021,
+                          13,
+                          2022,
+                          14,
+                          2023,
+                          15,
+                          2024,
+                          'latest',
+                        ]),
+                        '5',
+                      ),
+                      v.description(
+                        'Set to 3, 5 (default), 6, 7, 8, 9, 10, 11, 12, 13, 14, or 15 to specify the version of ECMAScript syntax you want to use. You can also set it to 2015 (same as 6), 2016 (same as 7), 2017 (same as 8), 2018 (same as 9), 2019 (same as 10), 2020 (same as 11), 2021 (same as 12), 2022 (same as 13), 2023 (same as 14), or 2024 (same as 15) to use the year-based naming. You can also set "latest" to use the most recently supported version.',
+                      ),
+                    ),
+                    sourceType: v.pipe(
+                      v.optional(v.picklist(['script', 'module', 'commonjs']), 'script'),
+                      v.description(
+                        'set to "script" (default), "commonjs", or "module" if your code is in ECMAScript modules',
+                      ),
+                    ),
+                  }),
+                  v.description('The JavaScript language options to be supported'),
+                ),
+              ),
+              plugins: v.optional(
+                v.pipe(
+                  v.array(v.string()),
+                  v.description(
+                    'ESLint supports the use of third-party plugins. Before using the plugin, you have to install it using npm.',
+                  ),
+                ),
+              ),
+              processor: v.optional(
+                v.pipe(
+                  v.string(),
+                  v.description(
+                    'To specify a processor, specify the plugin name and processor name joined by a forward slash',
+                  ),
+                ),
+              ),
+              rules: v.optional(
+                v.pipe(
+                  v.object({}),
+                  v.description(
+                    'ESLint comes with a large number of rules. You can modify which rules your project uses either using configuration comments or configuration files.',
+                  ),
+                ),
+              ),
+              settings: v.optional(
+                v.pipe(
+                  v.object({}),
+                  v.description(
+                    'ESLint supports adding shared settings into configuration file. You can add settings object to ESLint configuration file and it will be supplied to every rule that will be executed. This may be useful if you are adding custom rules and want them to have access to the same information and be easily configurable.',
+                  ),
+                ),
+              ),
+              overrides: v.optional(v.any()),
+            }),
+          ),
+          v.description(
+            'Allows to override configuration for files and folders, specified by glob patterns',
+          ),
+        ),
+      ),
+    }),
+  ),
+  prettier: v.optional(v.any()),
+  stylelint: v.optional(
+    v.object({
+      extends: v.optional(v.union([v.string(), v.array(v.any())])),
+      plugins: v.optional(v.array(v.string())),
+      customSyntax: v.optional(
+        v.pipe(v.string(), v.description('Specify a custom syntax to use on your code.')),
+      ),
+      overrides: v.optional(
+        v.pipe(
+          v.array(
+            v.object({
+              files: v.optional(v.array(v.string())),
+              customSyntax: v.optional(v.string()),
+              rules: v.optional(v.object({})),
+            }),
+          ),
+          v.description(
+            'Provide rule and behavior overrides for files that match particular glob patterns.',
+          ),
+        ),
+      ),
+      processors: v.optional(
+        v.pipe(
+          v.array(v.any()),
+          v.description(
+            "Processors are functions that hook into stylelint's pipeline, modifying code on its way into stylelint and modifying results on their way out",
+          ),
+        ),
+      ),
+      ignoreDisables: v.optional(v.boolean()),
+      ignoreFiles: v.optional(v.union([v.string(), v.array(v.any())])),
+      defaultSeverity: v.optional(
+        v.pipe(
+          v.picklist(['warning', 'error']),
+          v.description(
+            'The default severity level for all rules that do not have a severity specified in their secondary options',
+          ),
+        ),
+      ),
+      reportDescriptionlessDisables: v.union([
+        v.null(),
+        v.optional(v.boolean(), true),
+        v.array(v.any()),
+      ]),
+      reportInvalidScopeDisables: v.union([
+        v.null(),
+        v.optional(v.boolean(), true),
+        v.array(v.any()),
+      ]),
+      reportNeedlessDisables: v.union([v.null(), v.optional(v.boolean(), true), v.array(v.any())]),
+      rules: v.optional(v.object({})),
+    }),
+  ),
+  ava: v.optional(
+    v.pipe(
+      v.object({
+        files: v.optional(v.array(v.pipe(v.string(), v.minLength(1)))),
+        ignoredByWatcher: v.optional(v.array(v.pipe(v.string(), v.minLength(1)))),
+        match: v.optional(v.array(v.pipe(v.string(), v.minLength(1)))),
+        cache: v.optional(v.boolean(), true),
+        concurrency: v.optional(v.number()),
+        workerThreads: v.optional(v.boolean(), true),
+        failFast: v.optional(v.boolean(), false),
+        failWithoutAssertions: v.optional(v.boolean(), true),
+        environmentVariables: v.optional(
+          v.pipe(
+            v.object({}),
+            v.description(
+              'Specifies environment variables to be made available to the tests. The environment variables defined here override the ones from \`process.env\`',
+            ),
+          ),
+        ),
+        serial: v.optional(v.boolean(), false),
+        tap: v.optional(v.boolean(), false),
+        verbose: v.optional(v.boolean(), false),
+        snapshotDir: v.optional(v.pipe(v.string(), v.minLength(1))),
+        extensions: v.any(),
+        require: v.optional(v.array(v.pipe(v.string(), v.minLength(1)))),
+        timeout: v.any(),
+        nodeArguments: v.optional(v.array(v.string())),
+        utilizeParallelBuilds: v.optional(v.boolean(), true),
+        typescript: v.optional(
+          v.pipe(
+            v.object({
+              extensions: v.optional(v.array(v.pipe(v.string(), v.minLength(1)))),
+              rewritePaths: v.optional(
+                v.pipe(
+                  v.object({}),
+                  v.description(
+                    "AVA searches your entire project for \`*.js\`, \`*.cjs\`, \`*.mjs\` and \`*.ts\` files (or other extensions you've configured). It will ignore such files found in the \`rewritePaths\` targets (e.g. \`build/\`). If you use more specific paths, for instance \`build/main/\`, you may need to change AVA's \`files\` configuration to ignore other directories. Paths are relative to your project directory",
+                  ),
+                ),
+              ),
+              compile: v.pipe(
+                v.optional(v.picklist([false, 'tsc']), 'false'),
+                v.description(
+                  "If \`false\`, AVA will assume you have already compiled your project. If set to \`'tsc'\`, AVA will run the TypeScript compiler before running your tests. This can be inefficient when using AVA in watch mode",
+                ),
+              ),
+            }),
+            v.description(
+              "Configures @ava/typescript for projects that precompile TypeScript. Alternatively, you can use \`ts-node\` to do live testing without transpiling, in which case you shouldn't use the \`typescript\` property",
+            ),
+          ),
+        ),
+      }),
+      v.description('Configuration Schema for the JavaScript test runner AVA'),
+    ),
+  ),
+  release: v.optional(
+    v.object({
+      extends: v.optional(v.any()),
+      branches: v.any(),
+      repositoryUrl: v.optional(v.pipe(v.string(), v.description('The git repository URL'))),
+      tagFormat: v.optional(
+        v.pipe(
+          v.string(),
+          v.description(
+            'The Git tag format used by semantic-release to identify releases. The tag name is generated with Lodash template and will be compiled with the version variable.',
+          ),
+        ),
+        'v\${version}',
+      ),
+      plugins: v.pipe(
+        v.array(v.any()),
+        v.description(
+          'Define the list of plugins to use. Plugins will run in series, in the order defined',
+        ),
+      ),
+      dryRun: v.optional(v.boolean()),
+      ci: v.optional(v.boolean(), true),
+    }),
+  ),
+  jscpd: v.optional(
+    v.object({
+      minLines: v.optional(v.pipe(v.number(), v.integer()), 5),
+      maxLines: v.optional(v.pipe(v.number(), v.integer()), 1000),
+      maxSize: v.any(),
+      minTokens: v.optional(v.pipe(v.number(), v.integer()), 50),
+      threshold: v.optional(v.number()),
+      formatsExts: v.pipe(
+        v.object({}),
+        v.description(
+          'custom mapping from formats to file extensions (default: https://github.com/kucherenko/jscpd/blob/master/packages/tokenizer/src/formats.ts); see https://github.com/kucherenko/jscpd/blob/master/supported_formats.md',
+        ),
+      ),
+      output: v.optional(
+        v.pipe(v.string(), v.description('path to directory for non-console reports')),
+        './report',
+      ),
+      path: v.optional(
+        v.pipe(
+          v.array(v.string()),
+          v.description(
+            'paths that should be included in duplicate detection (default: [process.cwd()])',
+          ),
+        ),
+      ),
+      pattern: v.optional(
+        v.pipe(
+          v.string(),
+          v.description(
+            'glob pattern for files that should be included in duplicate detection (e.g., **/*.txt); only used to filter directories configured via path option',
+          ),
+        ),
+        '**/*',
+      ),
+      ignorePattern: v.pipe(
+        v.array(v.string()),
+        v.description('ignore code blocks matching these regular expressions'),
+      ),
+      mode: v.pipe(
+        v.optional(v.picklist(['mild', 'strict', 'weak']), 'mild'),
+        v.description(
+          'mode of detection quality; see https://github.com/kucherenko/jscpd/blob/master/packages/jscpd/README.md#mode',
+        ),
+      ),
+      ignore: v.pipe(
+        v.array(v.string()),
+        v.description('glob pattern for files that should be excluded from duplicate detection'),
+      ),
+      format: v.optional(
+        v.pipe(
+          v.array(
+            v.picklist([
+              'abap',
+              'actionscript',
+              'ada',
+              'apacheconf',
+              'apl',
+              'applescript',
+              'arduino',
+              'arff',
+              'asciidoc',
+              'asm6502',
+              'aspnet',
+              'autohotkey',
+              'autoit',
+              'bash',
+              'basic',
+              'batch',
+              'bison',
+              'brainfuck',
+              'bro',
+              'c',
+              'c-header',
+              'clike',
+              'clojure',
+              'coffeescript',
+              'comments',
+              'cpp',
+              'cpp-header',
+              'crystal',
+              'csharp',
+              'csp',
+              'css-extras',
+              'css',
+              'd',
+              'dart',
+              'diff',
+              'django',
+              'docker',
+              'eiffel',
+              'elixir',
+              'elm',
+              'erb',
+              'erlang',
+              'flow',
+              'fortran',
+              'fsharp',
+              'gedcom',
+              'gherkin',
+              'git',
+              'glsl',
+              'go',
+              'graphql',
+              'groovy',
+              'haml',
+              'handlebars',
+              'haskell',
+              'haxe',
+              'hpkp',
+              'hsts',
+              'http',
+              'ichigojam',
+              'icon',
+              'inform7',
+              'ini',
+              'io',
+              'j',
+              'java',
+              'javascript',
+              'jolie',
+              'json',
+              'jsx',
+              'julia',
+              'keymap',
+              'kotlin',
+              'latex',
+              'less',
+              'liquid',
+              'lisp',
+              'livescript',
+              'lolcode',
+              'lua',
+              'makefile',
+              'markdown',
+              'markup',
+              'matlab',
+              'mel',
+              'mizar',
+              'monkey',
+              'n4js',
+              'nasm',
+              'nginx',
+              'nim',
+              'nix',
+              'nsis',
+              'objectivec',
+              'ocaml',
+              'opencl',
+              'oz',
+              'parigp',
+              'pascal',
+              'perl',
+              'php',
+              'plsql',
+              'powershell',
+              'processing',
+              'prolog',
+              'properties',
+              'protobuf',
+              'pug',
+              'puppet',
+              'pure',
+              'python',
+              'q',
+              'qore',
+              'r',
+              'reason',
+              'renpy',
+              'rest',
+              'rip',
+              'roboconf',
+              'ruby',
+              'rust',
+              'sas',
+              'sass',
+              'scala',
+              'scheme',
+              'scss',
+              'smalltalk',
+              'smarty',
+              'soy',
+              'sql',
+              'stylus',
+              'swift',
+              'tap',
+              'tcl',
+              'textile',
+              'tsx',
+              'tt2',
+              'twig',
+              'typescript',
+              'vbnet',
+              'velocity',
+              'verilog',
+              'vhdl',
+              'vim',
+              'visual-basic',
+              'wasm',
+              'url',
+              'wiki',
+              'xeora',
+              'xojo',
+              'xquery',
+              'yaml',
+            ]),
+          ),
+          v.description(
+            'list of formats for which to detect duplication (default: all); see https://github.com/kucherenko/jscpd/blob/master/supported_formats.md',
+          ),
+        ),
+      ),
+      store: v.optional(
+        v.pipe(
+          v.picklist(['leveldb', 'redis']),
+          v.description(
+            'store used to collect information about code (default: in-memory store); install @jscpd/leveldb-store and use leveldb for big repositories',
+          ),
+        ),
+      ),
+      reporters: v.pipe(
+        v.array(
+          v.picklist([
+            'xml',
+            'json',
+            'csv',
+            'markdown',
+            'consoleFull',
+            'html',
+            'console',
+            'silent',
+            'threshold',
+            'xcode',
+          ]),
+        ),
+        v.description(
+          'a list of reporters to use to output information about duplication; see https://github.com/kucherenko/jscpd/blob/master/packages/jscpd/README.md#reporters',
+        ),
+      ),
+      blame: v.optional(v.boolean(), false),
+      silent: v.optional(v.boolean(), false),
+      verbose: v.optional(v.boolean(), false),
+      absolute: v.optional(v.boolean(), false),
+      noSymlinks: v.optional(v.boolean(), false),
+      skipLocal: v.optional(v.boolean(), false),
+      ignoreCase: v.optional(v.boolean(), false),
+      gitignore: v.optional(v.boolean(), false),
+      reportersOptions: v.object({
+        badge: v.optional(
+          v.object({
+            path: v.optional(
+              v.pipe(
+                v.string(),
+                v.description(
+                  "output path for duplication level badge (default: path.join(output, 'jscpd-badge.svg'))",
+                ),
+              ),
+            ),
+            label: v.optional(
+              v.pipe(
+                v.string(),
+                v.description(
+                  'badge subject text (URL-encoding needed for spaces or special characters)',
+                ),
+              ),
+              'Copy/Paste',
+            ),
+            labelColor: v.optional(v.any()),
+            status: v.optional(
+              v.pipe(
+                v.string(),
+                v.description(
+                  'badge value text (URL-encoding needed for spaces or special characters, default: duplication %)',
+                ),
+              ),
+            ),
+            color: v.optional(v.any()),
+            style: v.pipe(
+              v.optional(v.picklist(['flat', 'classic']), 'classic'),
+              v.description('badge look: flat or classic'),
+            ),
+            icon: v.optional(
+              v.pipe(
+                v.string(),
+                v.description(
+                  'URL for icon to display in front of badge subject text (e.g., data:image/svg+xml;base64,...)',
+                ),
+              ),
+            ),
+            iconWidth: v.optional(v.number(), 13),
+            scale: v.optional(v.number(), 1),
+          }),
+        ),
+      }),
+      exitCode: v.optional(v.pipe(v.number(), v.integer()), 0),
+    }),
+  ),
+  pnpm: v.optional(
+    v.pipe(
+      v.object({
+        overrides: v.optional(
+          v.pipe(
+            v.object({}),
+            v.description('Used to override any dependency in the dependency graph.'),
+          ),
+        ),
+        packageExtensions: v.optional(
+          v.pipe(
+            v.object({}),
+            v.description(
+              'Used to extend the existing package definitions with additional information.',
+            ),
+          ),
+        ),
+        peerDependencyRules: v.optional(v.any()),
+        neverBuiltDependencies: v.optional(
+          v.pipe(v.array(v.string()), v.description('A list of dependencies to skip the builds.')),
+        ),
+        onlyBuiltDependencies: v.optional(
+          v.pipe(v.array(v.string()), v.description('A list of dependencies to skip the builds.')),
+        ),
+        onlyBuiltDependenciesFile: v.optional(
+          v.pipe(
+            v.string(),
+            v.description(
+              'Specifies a JSON file that lists the only packages permitted to run installation scripts during the pnpm install process.',
+            ),
+          ),
+        ),
+        allowedDeprecatedVersions: v.optional(
+          v.pipe(
+            v.object({}),
+            v.description('A list of deprecated versions that the warnings are suppressed.'),
+          ),
+        ),
+        patchedDependencies: v.optional(
+          v.pipe(v.object({}), v.description('A list of dependencies that are patched.')),
+        ),
+        allowNonAppliedPatches: v.optional(v.boolean()),
+        updateConfig: v.optional(
+          v.object({
+            ignoreDependencies: v.optional(
+              v.pipe(
+                v.array(v.string()),
+                v.description(
+                  'A list of packages that should be ignored when running "pnpm outdated" or "pnpm update --latest".',
+                ),
+              ),
+            ),
+          }),
+        ),
+        auditConfig: v.optional(
+          v.object({
+            ignoreCves: v.optional(
+              v.pipe(
+                v.array(v.pipe(v.string(), v.regex(/^CVE-\\d{4}-\\d{4,7}$/))),
+                v.description('A list of CVE IDs that will be ignored by "pnpm audit".'),
+              ),
+            ),
+            ignoreGhsas: v.optional(
+              v.pipe(
+                v.array(v.pipe(v.string(), v.regex(/^GHSA(-[23456789cfghjmpqrvwx]{4}){3}$/))),
+                v.description('A list of GHSA Codes that will be ignored by "pnpm audit".'),
+              ),
+            ),
+          }),
+        ),
+        requiredScripts: v.optional(
+          v.pipe(
+            v.array(v.string()),
+            v.description('A list of scripts that must exist in each project.'),
+          ),
+        ),
+        supportedArchitectures: v.optional(
+          v.pipe(
+            v.object({
+              os: v.optional(v.array(v.string())),
+              cpu: v.optional(v.array(v.string())),
+              libc: v.optional(v.array(v.string())),
+            }),
+            v.description(
+              "Specifies architectures for which you'd like to install optional dependencies, even if they don't match the architecture of the system running the install.",
+            ),
+          ),
+        ),
+        ignoredOptionalDependencies: v.optional(
+          v.pipe(
+            v.array(v.string()),
+            v.description('A list of optional dependencies that the install should be skipped.'),
+          ),
+        ),
+        executionEnv: v.optional(
+          v.object({
+            nodeVersion: v.optional(
+              v.pipe(
+                v.string(),
+                v.description(
+                  "Specifies which exact Node.js version should be used for the project's runtime.",
+                ),
+              ),
+            ),
+          }),
+        ),
+      }),
+      v.description('Defines pnpm specific configuration.'),
+    ),
+  ),
+})
+"
 `;
 
 exports[`CLI > should write to output file 1`] = `
