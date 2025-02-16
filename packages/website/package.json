@@ -22,18 +22,19 @@
     "@uiw/react-codemirror": "^4.23.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "json-schema-to-valibot": "*",
     "lucide-react": "^0.475.0",
     "next": "14.2.16",
+    "prettier": "^3.5.1",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^3.0.1",
     "tailwind-variants": "^0.3.1",
-    "tailwindcss-animate": "^1.0.7",
-    "json-schema-to-valibot": "*"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@mh4gf/configs": "0.4.1",
     "@biomejs/biome": "1.9.4",
+    "@mh4gf/configs": "0.4.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

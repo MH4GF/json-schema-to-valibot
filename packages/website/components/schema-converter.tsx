@@ -5,6 +5,9 @@ import { json } from '@codemirror/lang-json'
 import { vscodeDarkInit } from '@uiw/codemirror-theme-vscode'
 import CodeMirror from '@uiw/react-codemirror'
 import { Copy } from 'lucide-react'
+import prettierPluginEstree from 'prettier/plugins/estree'
+import prettierPluginTypeScript from 'prettier/plugins/typescript'
+import { format } from 'prettier/standalone'
 import { useCallback, useEffect, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
@@ -42,7 +45,7 @@ export function SchemaConverter() {
 
   const { toast } = useToast()
 
-  const convertSchema = useCallback(() => {
+  const convertSchema = useCallback(async () => {
     try {
       const schema = JSON.parse(jsonSchema)
 
@@ -53,7 +56,11 @@ export function SchemaConverter() {
       }
 
       const converted = jsonSchemaToValibot(schema, options)
-      setResult(converted)
+      const formatted = await format(converted, {
+        parser: 'typescript',
+        plugins: [prettierPluginTypeScript, prettierPluginEstree],
+      })
+      setResult(formatted)
     } catch (error) {
       toast({
         title: 'Conversion Error',
