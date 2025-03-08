@@ -33,7 +33,7 @@ const editorTheme = vscodeDarkInit({
 export default function SchemaConverter() {
   const [schemaName, setSchemaName] = useState('')
   const [module, setModule] = useState<Options['module']>('esm')
-  const [recursionDepth, setRecursionDepth] = useState('0')
+  const [recursionDepth, setRecursionDepth] = useState('')
   const [withType, setWithType] = useState(false)
   const [jsonSchema, setJsonSchema] = useState(`{
   "type": "object",
@@ -50,11 +50,16 @@ export default function SchemaConverter() {
       const baseSchema = JSON.parse(jsonSchema)
       const { resolved } = await resolveRefs(baseSchema)
 
-      const options = {
+      const depth = recursionDepth === '' ? undefined : Number.parseInt(recursionDepth, 10)
+      if (depth !== undefined && (Number.isNaN(depth) || depth < 0)) {
+        throw new Error('Recursion depth must be a non-negative number')
+      }
+
+      const options: Options = {
         module,
         name: schemaName || undefined,
         type: withType,
-        recursionDepth: Number.parseInt(recursionDepth, 10),
+        depth,
       }
 
       const converted = jsonSchemaToValibot(resolved, options)
@@ -129,15 +134,39 @@ export default function SchemaConverter() {
             </Select>
           </div>
           <div>
-            <Label htmlFor="recursion" className="text-[#9290C3]">
-              Recursion depth
-            </Label>
+            <div className="flex items-center space-x-2">
+              <Label htmlFor="recursion" className="text-[#9290C3]">
+                Recursion depth
+              </Label>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="ghost" size="icon" className="w-6 h-6 rounded-full p-0">
+                      <HelpCircle className="h-4 w-4 text-[#9290C3]" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent className="border-[#535C91]">
+                    <p>
+                      Controls how deep to parse nested schemas. When the limit is reached,
+                      remaining nested schemas will be converted to v.any(). Leave empty for no
+                      limit.
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
             <Input
               id="recursion"
               type="number"
               min="0"
               value={recursionDepth}
-              onChange={(e) => setRecursionDepth(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value
+                const num = Number.parseInt(value, 10)
+                if (value === '' || (num >= 0 && !Number.isNaN(num))) {
+                  setRecursionDepth(value)
+                }
+              }}
               className="bg-[#050a1f] border-[#535C91] text-slate-50 focus:ring-[#1B1A55] focus:ring-offset-2 focus:ring-offset-[#070F2B] focus:border-[#535C91]"
             />
           </div>

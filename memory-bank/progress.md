@@ -23,6 +23,11 @@
 - [x] Basic UI components
 - [x] Project structure
 - [x] Development environment
+- [x] Depth option implementation:
+  - [x] Default undefined value
+  - [x] Input validation
+  - [x] Tooltip explanation
+  - [x] Error handling
 
 ## In Progress
 ### Core Package
@@ -126,11 +131,11 @@
 - [ ] $schema
 
 ### Website
-- [ ] Interactive converter
-- [ ] Real-time preview
-- [ ] Error handling
+- [x] Interactive converter
+- [x] Real-time preview
+- [x] Error handling
 - [ ] Responsive design
-- [ ] User feedback integration
+- [x] User feedback integration (toast notifications)
 
 ## Known Issues
 1. Complex schema conversion edge cases

@@ -1,7 +1,7 @@
 # Active Context
 
 ## Current Focus
-Successfully completed depth option implementation and fixed all test failures. All tests are now passing with the new functionality. Implementation status of JSON Schema features continues to be tracked in json-schema-support.md.
+Successfully implemented depth option in both CLI and website interfaces. All tests are passing and the website implementation matches the CLI behavior. Implementation status of JSON Schema features continues to be tracked in json-schema-support.md.
 
 ## Implementation Plan
 
@@ -86,6 +86,11 @@ flowchart TD
 - Fixed README.md to reflect accurate CLI options
 - Updated help text in CLI to include depth option
 - Fixed test snapshots to match new behavior
+- Implemented depth option in website:
+  - Default value is undefined (empty input)
+  - Added validation for non-negative numbers
+  - Updated tooltip to explain empty field means no limit
+  - Fixed all linting errors
 
 ## Active Decisions
 - Using v.any() as fallback for deep schemas
