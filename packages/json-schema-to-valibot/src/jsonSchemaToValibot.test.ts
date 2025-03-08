@@ -3,6 +3,48 @@ import { describe, expect, it } from 'vitest'
 import { jsonSchemaToValibot } from './jsonSchemaToValibot.js'
 
 describe('jsonSchemaToValibot', () => {
+  describe('depth option', () => {
+    const nestedObject = {
+      type: 'object',
+      properties: {
+        level1: {
+          type: 'object',
+          properties: {
+            level2: {
+              type: 'object',
+              properties: {
+                level3: {
+                  type: 'string'
+                }
+              }
+            }
+          }
+        }
+      }
+    } as JSONSchema4
+
+    it('should parse full depth when depth is not set', () => {
+      const result = jsonSchemaToValibot(nestedObject)
+      expect(result).toMatchInlineSnapshot(
+        `"v.object({level1: v.optional(v.object({level2: v.optional(v.object({level3: v.optional(v.string())}))}))})"`
+      )
+    })
+
+    it('should limit parsing to specified depth', () => {
+      const result = jsonSchemaToValibot(nestedObject, { depth: 1 })
+      expect(result).toMatchInlineSnapshot(
+        `"v.object({level1: v.optional(v.any())})"`
+      )
+    })
+
+    it('should use v.any() at max depth', () => {
+      const result = jsonSchemaToValibot(nestedObject, { depth: 2 })
+      expect(result).toMatchInlineSnapshot(
+        `"v.object({level1: v.optional(v.object({level2: v.optional(v.any())}))})"`
+      )
+    })
+  })
+
   const myObject = {
     type: 'object',
     properties: {

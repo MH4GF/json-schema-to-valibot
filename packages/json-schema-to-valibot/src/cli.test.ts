@@ -16,15 +16,17 @@ describe('CLI', () => {
       Convert JSON Schema to Valibot schema
 
       Options:
-        -V, --version        output the version number
-        -i, --input <path>   JSON or a source file path
-        -o, --output <path>  A file path to write to
-        -n, --name <name>    The name of the schema in the output
-        -m, --module <type>  Module syntax: 'esm', 'cjs' or 'none' (default: "esm")
-        -t, --type <name>    Export a named type along with the schema
-        --no-import          Removes the import statement from the output
-        -j, --with-jsdocs    Generate jsdocs off of the description property
-        -h, --help           display help for command
+        -V, --version         output the version number
+        -i, --input <path>    JSON or a source file path
+        -d, --depth <number>  Maximum depth of recursion before falling back to
+                              v.any()
+        -o, --output <path>   A file path to write to
+        -n, --name <name>     The name of the schema in the output
+        -m, --module <type>   Module syntax: 'esm', 'cjs' or 'none' (default: "esm")
+        -t, --type <name>     Export a named type along with the schema
+        --no-import           Removes the import statement from the output
+        -j, --with-jsdocs     Generate jsdocs off of the description property
+        -h, --help            display help for command
       "
     `)
   })
@@ -165,6 +167,41 @@ describe('CLI', () => {
 
     expect(stderr).toMatchInlineSnapshot(`
       "Invalid module syntax: invalid
+      "
+    `)
+  })
+
+  it('should respect depth option', () => {
+    const { stdout } = spawnSync(
+      'node',
+      [
+        '--no-warnings',
+        'src/cli.ts',
+        '--depth',
+        '1',
+      ],
+      {
+        input: JSON.stringify({
+          type: 'object',
+          properties: {
+            level1: {
+              type: 'object',
+              properties: {
+                level2: {
+                  type: 'string',
+                },
+              },
+            },
+          },
+        }),
+        encoding: 'utf8',
+      },
+    )
+
+    expect(stdout).toMatchInlineSnapshot(`
+      "import * as v from "valibot";
+
+      export default v.object({level1: v.optional(v.any())});
       "
     `)
   })

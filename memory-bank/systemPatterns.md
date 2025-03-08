@@ -18,9 +18,16 @@ flowchart TD
 ### Parser Architecture
 - Modular parser design
 - Recursive depth tracking system:
-  - Depth parameter propagation
+  - Depth parameter propagation through parser chain
   - Fallback to v.any() at depth limit
-  - Consistent depth handling across parsers
+  - Depth counter in parseSchema
+  - Depth handling in parseObject and parseArray
+  - Depth parameter passing in recursive calls
+  - Implementation details:
+    - CLI depth option for controlling recursion
+    - Depth check in recursive parsers only
+    - Graceful fallback to v.any() for deep structures
+    - Maintains schema validation at specified depth
 - Individual parsers for different schema types:
   - Array schemas
   - Object schemas
@@ -41,6 +48,12 @@ flowchart TD
 - Unit tests for each parser
 - Snapshot testing for CLI output
 - Fixture-based testing for complex schemas
+- Test patterns for depth handling:
+  - Simple nested object tests
+  - Array depth tests
+  - Complex schema integration tests
+  - CLI option validation tests
+  - Help text snapshot tests
 
 ### Utility Functions
 - Schema enhancement utilities
@@ -71,6 +84,11 @@ flowchart TD
 - Structured error types
 - Descriptive error messages
 - Graceful fallbacks
+- Depth-related error handling:
+  - Invalid depth parameter validation
+  - Clear error messages for depth limits
+  - Graceful fallback to v.any() for deep structures
+  - Maintains schema integrity at specified depth
 
 ### Development Practices
 - Test-Driven Development (TDD):
@@ -78,6 +96,11 @@ flowchart TD
   - Implement minimum code to pass
   - Refactor while maintaining tests
   - Test coverage for all features
+  - Focus areas:
+    - Edge case testing
+    - Performance optimization
+    - Documentation improvements
+    - Error handling enhancements
 - TypeScript for type safety
 - Biome for code formatting
 - Monorepo package management

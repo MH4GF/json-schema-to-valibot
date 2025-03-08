@@ -52,11 +52,11 @@ json-refs resolve mySchema.json | json-schema-to-valibot | prettier --parser typ
 | `--input`      | `-i`      | JSON or a source file path. Required if no data is piped.                                      |
 | `--output`     | `-o`      | A file path to write to. If not supplied stdout will be used.                                  |
 | `--name`       | `-n`      | The name of the schema in the output                                                           |
-| `--depth`      | `-d`      | Maximum depth of recursion in schema before falling back to `z.any()`. Defaults to 0.          |
-| `--module`     | `-m`      | Module syntax; `esm`, `cjs` or none. Defaults to `esm` in the CLI and `none` programmaticly.   |
+| `--depth`      | `-d`      | Maximum depth of recursion in schema before falling back to `v.any()`. Defaults to 0.          |
+| `--module`     | `-m`      | Module syntax; `esm`, `cjs` or none. Defaults to `esm` in the CLI and `none` programmatically. |
 | `--type`       | `-t`      | Export a named type along with the schema. Requires `name` to be set and `module` to be `esm`. |
-| `--noImport`   | `-ni`     | Removes the `import { z } from 'valibot';` or equivalent from the output.                      |
-| `--withJsdocs` | `-wj`     | Generate jsdocs off of the description property.                                               |
+| `--no-import`  |           | Removes the `import * as v from 'valibot';` or equivalent from the output.                     |
+| `--withJsdocs` | `-j`      | Generate jsdocs off of the description property.                                               |
 
 ### Programmatic
 

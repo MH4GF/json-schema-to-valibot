@@ -35,6 +35,7 @@ async function main() {
     .description('Convert JSON Schema to Valibot schema')
     .version('0.1.0')
     .option('-i, --input <path>', 'JSON or a source file path')
+    .option('-d, --depth <number>', 'Maximum depth of recursion before falling back to v.any()')
     .option('-o, --output <path>', 'A file path to write to')
     .option('-n, --name <name>', 'The name of the schema in the output')
     .option('-m, --module <type>', "Module syntax: 'esm', 'cjs' or 'none'", 'esm')
@@ -58,11 +59,15 @@ async function main() {
     noImport: !options['import'],
     type: options['type'],
     withJsdocs: options['withJsdocs'],
+    depth: options['depth'] ? Number.parseInt(options['depth'], 10) : undefined,
   })
 
   if (options['output']) {
     mkdirSync(dirname(options['output']), { recursive: true })
     writeFileSync(options['output'], valibotSchema)
+  } else {
+    // biome-ignore lint/suspicious/noConsole: CLI needs to output to stdout
+    console.log(valibotSchema)
   }
 }
 

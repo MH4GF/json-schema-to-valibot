@@ -1,7 +1,7 @@
 # Active Context
 
 ## Current Focus
-All tests are passing successfully. Current focus remains on CLI improvements and parser enhancements, with test coverage maintained. Implementation status of JSON Schema features is now tracked in json-schema-support.md.
+Successfully completed depth option implementation and fixed all test failures. All tests are now passing with the new functionality. Implementation status of JSON Schema features continues to be tracked in json-schema-support.md.
 
 ## Implementation Plan
 
@@ -44,11 +44,13 @@ flowchart TD
 
 ### Implementation Details
 
-1. **Depth Option**
+1. **Depth Option** ✓
    - Added depth parameter to CLI options
    - Implemented recursion depth tracking in schema parsing
    - Added fallback to v.any() when depth limit reached
    - Updated parser functions to handle depth
+   - Added tests for depth functionality
+   - Fixed all test failures and updated snapshots
 
 2. **CLI Improvements**
    - Added -ni shorthand for --noImport
@@ -68,21 +70,26 @@ flowchart TD
    - Some advanced features pending implementation
 
 ## Next Steps
-1. Add tests for depth limitation functionality
-2. Update documentation with new CLI options
-3. Add examples for depth-limited schema conversion
-4. Implement error handling for invalid depth values
-5. Continue implementing pending JSON Schema features (see json-schema-support.md)
+1. Add more test cases for edge cases in depth handling
+2. Implement error handling for invalid depth values
+3. Continue implementing pending JSON Schema features (see json-schema-support.md)
+4. Consider performance optimizations for large schemas
+5. Expand documentation with depth option examples
 
 ## Recent Changes
-- Implemented depth option for recursive schema parsing
+- Completed depth option implementation with all tests passing
 - Fixed CLI shorthand flags and documentation
 - Added type option validation
 - Updated parser functions to support depth tracking
-- Migrated JSON Schema support tracking to memory bank
+- Added and fixed tests for depth functionality
+- Fixed README.md to reflect accurate CLI options
+- Updated help text in CLI to include depth option
+- Fixed test snapshots to match new behavior
 
 ## Active Decisions
 - Using v.any() as fallback for deep schemas
 - Maintaining backward compatibility with existing options
 - Improving CLI usability with better shorthand flags
 - Tracking implementation status in memory bank for better visibility
+- Planning to add more test cases for complex nested schemas
+- Considering performance optimizations for large schemas

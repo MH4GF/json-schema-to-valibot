@@ -8,7 +8,7 @@ import { parseNumber } from './parseNumber.ts'
 import { parseObject } from './parseObject.ts'
 import { parseString } from './parseString.ts'
 
-export function parseSchema(schema: JSONSchema4, options: Options): string {
+export function parseSchema(schema: JSONSchema4, options: Options, currentDepth = 0): string {
   let baseSchema: string | undefined
 
   if (Array.isArray(schema.enum)) {
@@ -17,11 +17,11 @@ export function parseSchema(schema: JSONSchema4, options: Options): string {
     if (schema.type.includes('null')) {
       const types = schema.type.filter((t) => t !== 'null')
       if (types.length === 1) {
-        return `v.nullable(${parseSchema({ ...schema, type: types[0] }, options)})`
+        return `v.nullable(${parseSchema({ ...schema, type: types[0] }, options, currentDepth + 1)})`
       }
     }
     baseSchema = `v.union([${schema.type
-      .map((t) => parseSchema({ ...schema, type: t }, options))
+      .map((t) => parseSchema({ ...schema, type: t }, options, currentDepth + 1))
       .join(', ')}])`
   } else if (schema.type) {
     switch (schema.type) {
@@ -39,10 +39,10 @@ export function parseSchema(schema: JSONSchema4, options: Options): string {
         baseSchema = 'v.null()'
         break
       case 'object':
-        baseSchema = parseObject(schema, options)
+        baseSchema = parseObject(schema, options, currentDepth)
         break
       case 'array':
-        baseSchema = parseArray(schema, options)
+        baseSchema = parseArray(schema, options, currentDepth)
         break
       default:
         throw new Error(`Unsupported type: ${schema.type}`)

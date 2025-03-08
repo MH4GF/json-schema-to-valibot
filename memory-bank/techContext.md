@@ -33,14 +33,26 @@
   - Snapshot testing enabled
   - Test fixtures for complex cases
   - Integration tests for CLI
+  - Current test challenges:
+    - Snapshot updates needed for CLI help text
+    - Integration test failures with complex schemas
+    - Depth option test failures
+    - Need for additional edge case coverage
 - CLI features:
   - Commander.js for option parsing
-  - Depth-limited schema parsing
-  - Standardized flag patterns
+  - Depth-limited schema parsing (in progress)
+  - Standardized flag patterns (-j for withJsdocs)
+  - No-import flag handling (--no-import)
+  - Type validation with module requirements
 - Parser enhancements:
-  - Recursive depth tracking
-  - Fallback mechanisms
-  - Type validation
+  - Recursive depth tracking with currentDepth parameter
+  - Fallback to v.any() at depth limits
+  - Type validation for CLI options
+  - Depth propagation through parser chain
+  - Integration with existing parsers:
+    - parseObject with depth tracking
+    - parseArray with depth tracking
+    - parseSchema as depth controller
 
 ### Website
 - Next.js development server
@@ -53,6 +65,11 @@
 - TypeScript for type safety
 - Comprehensive test suites
 - Snapshot testing for regressions
+- Test coverage tracking
+- Integration test fixtures:
+  - package.json schema
+  - tbls schema
+  - Complex nested structures
 
 ## Project Organization
 ### Directory Structure

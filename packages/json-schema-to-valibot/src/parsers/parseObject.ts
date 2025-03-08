@@ -5,7 +5,11 @@ import { parseSchema } from './parseSchema.ts'
 
 const HYPHEN_REGEX = /[-]/
 
-export function parseObject(schema: JSONSchema4, options: Options): string {
+export function parseObject(schema: JSONSchema4, options: Options, currentDepth = 0): string {
+  if (options.depth !== undefined && currentDepth >= options.depth) {
+    return withDescription(schema, 'v.any()', options)
+  }
+
   if (!schema.properties) {
     return withDescription(schema, 'v.object({})', options)
   }
@@ -13,7 +17,7 @@ export function parseObject(schema: JSONSchema4, options: Options): string {
   const required = new Set(Array.isArray(schema.required) ? schema.required : [])
   const properties = Object.entries(schema.properties)
     .map(([key, value]) => {
-      const parsed = parseSchema(value, options)
+      const parsed = parseSchema(value, options, currentDepth + 1)
       const formattedKey = HYPHEN_REGEX.test(key) ? `"${key}"` : key
       return `${formattedKey}: ${
         required.has(key) || (!options.withoutDefaults && value.default !== undefined)

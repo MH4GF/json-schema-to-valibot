@@ -33,6 +33,10 @@
 - [ ] Edge case handling
 - [ ] Performance optimization
 - [ ] Documentation improvements
+- [x] Test fixes:
+  - [x] Update snapshots for depth option
+  - [x] Fix failing integration tests
+  - [ ] Add more test cases for complex schemas
 
 ### JSON Schema Support Status
 
@@ -132,25 +136,25 @@
 1. Complex schema conversion edge cases
 2. Performance with large schemas
 3. Documentation needs updating for new CLI options
+4. Need more test cases for:
+   - Edge cases in depth handling
+   - Complex nested schemas
+   - Invalid depth values
+5. Error handling for invalid depth parameter values
 
-Note: Tests for depth limitation feature have been implemented and are passing successfully.
+Note: Depth limitation feature has been implemented and all tests are passing.
 
 ## Next Milestones
 ### Short Term
-1. Write tests for depth option:
-   - Test depth parameter validation
-   - Test recursion limits
-   - Test v.any() fallback
-   - Test depth propagation
-2. Write tests for CLI improvements:
-   - Test shorthand flags
-   - Test type validation
-   - Test error cases
-3. Implement features following TDD:
-   - Depth option implementation
-   - CLI flag improvements
-   - Type validation
-4. Update documentation with new features
+1. Add more test coverage:
+   - Edge cases for depth handling
+   - Complex nested schemas
+   - Invalid depth values
+2. Improve error handling:
+   - Validate depth parameter
+   - Provide clear error messages
+3. Update documentation with new features
+4. Consider performance optimizations for large schemas
 
 ### Medium Term
 1. Performance optimization
