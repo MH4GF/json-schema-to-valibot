@@ -71,8 +71,7 @@ async function main() {
     mkdirSync(dirname(options['output']), { recursive: true })
     writeFileSync(options['output'], valibotSchema)
   } else {
-    // biome-ignore lint/suspicious/noConsole: CLI needs to output to stdout
-    console.log(valibotSchema)
+    process.stdout.write(valibotSchema.trimEnd())
   }
 }
 

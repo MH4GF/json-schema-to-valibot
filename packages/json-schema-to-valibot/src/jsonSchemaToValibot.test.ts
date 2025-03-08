@@ -14,33 +14,31 @@ describe('jsonSchemaToValibot', () => {
               type: 'object',
               properties: {
                 level3: {
-                  type: 'string'
-                }
-              }
-            }
-          }
-        }
-      }
+                  type: 'string',
+                },
+              },
+            },
+          },
+        },
+      },
     } as JSONSchema4
 
     it('should parse full depth when depth is not set', () => {
       const result = jsonSchemaToValibot(nestedObject)
       expect(result).toMatchInlineSnapshot(
-        `"v.object({level1: v.optional(v.object({level2: v.optional(v.object({level3: v.optional(v.string())}))}))})"`
+        `"v.object({level1: v.optional(v.object({level2: v.optional(v.object({level3: v.optional(v.string())}))}))})"`,
       )
     })
 
     it('should limit parsing to specified depth', () => {
       const result = jsonSchemaToValibot(nestedObject, { depth: 1 })
-      expect(result).toMatchInlineSnapshot(
-        `"v.object({level1: v.optional(v.any())})"`
-      )
+      expect(result).toMatchInlineSnapshot(`"v.object({level1: v.optional(v.any())})"`)
     })
 
     it('should use v.any() at max depth', () => {
       const result = jsonSchemaToValibot(nestedObject, { depth: 2 })
       expect(result).toMatchInlineSnapshot(
-        `"v.object({level1: v.optional(v.object({level2: v.optional(v.any())}))})"`
+        `"v.object({level1: v.optional(v.object({level2: v.optional(v.any())}))})"`,
       )
     })
   })

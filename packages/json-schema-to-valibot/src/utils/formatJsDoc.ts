@@ -16,6 +16,6 @@ export function formatJsDoc(description: string): string {
   }
 
   // For multi-line descriptions
-  const formattedLines = lines.map(line => ` * ${line || ' '}`)
+  const formattedLines = lines.map((line) => ` * ${line || ' '}`)
   return `/**\n${formattedLines.join('\n')}\n */\n`
 }

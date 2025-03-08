@@ -168,37 +168,27 @@ describe('CLI', () => {
   })
 
   it('should respect depth option', () => {
-    const { stdout } = spawnSync(
-      'node',
-      [
-        '--no-warnings',
-        'src/cli.ts',
-        '--depth',
-        '1',
-      ],
-      {
-        input: JSON.stringify({
-          type: 'object',
-          properties: {
-            level1: {
-              type: 'object',
-              properties: {
-                level2: {
-                  type: 'string',
-                },
+    const { stdout } = spawnSync('node', ['--no-warnings', 'src/cli.ts', '--depth', '1'], {
+      input: JSON.stringify({
+        type: 'object',
+        properties: {
+          level1: {
+            type: 'object',
+            properties: {
+              level2: {
+                type: 'string',
               },
             },
           },
-        }),
-        encoding: 'utf8',
-      },
-    )
+        },
+      }),
+      encoding: 'utf8',
+    })
 
     expect(stdout).toMatchInlineSnapshot(`
       "import * as v from "valibot";
 
-      export default v.object({level1: v.optional(v.any())});
-      "
+      export default v.object({level1: v.optional(v.any())});"
     `)
   })
 

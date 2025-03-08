@@ -51,7 +51,9 @@ v.pipe(v.string(), v.description("A simple description"))"`,
         type: 'string',
         description: 'A simple description',
       }
-      expect(withDescription(schema, 'v.string()', { withJsdocs: true, withoutDescriptions: true })).toMatchInlineSnapshot(
+      expect(
+        withDescription(schema, 'v.string()', { withJsdocs: true, withoutDescriptions: true }),
+      ).toMatchInlineSnapshot(
         `"/**A simple description*/
 v.string()"`,
       )
