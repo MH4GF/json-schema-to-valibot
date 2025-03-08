@@ -1,7 +1,7 @@
 # Active Context
 
 ## Current Focus
-Successfully implemented depth option in both CLI and website interfaces. All tests are passing and the website implementation matches the CLI behavior. Implementation status of JSON Schema features continues to be tracked in json-schema-support.md.
+Successfully implemented depth option, noImport, and withJsdocs options in both CLI and website interfaces. All tests are passing and the website implementation matches the CLI behavior. The website's default JSON Schema example has been enhanced to better demonstrate the JSDoc feature with comprehensive descriptions. Implementation status of JSON Schema features continues to be tracked in json-schema-support.md.
 
 ## Implementation Plan
 

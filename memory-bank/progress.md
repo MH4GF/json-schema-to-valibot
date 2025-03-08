@@ -28,6 +28,17 @@
   - [x] Input validation
   - [x] Tooltip explanation
   - [x] Error handling
+- [x] noImport option implementation:
+  - [x] Toggle switch UI
+  - [x] Tooltip explanation
+  - [x] State management
+  - [x] Integration with core package
+- [x] withJsdocs option implementation:
+  - [x] Toggle switch UI
+  - [x] Tooltip explanation
+  - [x] State management
+  - [x] Integration with core package
+  - [x] Enhanced default schema example with descriptions
 
 ## In Progress
 ### Core Package

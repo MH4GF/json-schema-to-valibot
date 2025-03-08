@@ -35,10 +35,16 @@ export default function SchemaConverter() {
   const [module, setModule] = useState<Options['module']>('esm')
   const [recursionDepth, setRecursionDepth] = useState('')
   const [withType, setWithType] = useState(false)
+  const [noImport, setNoImport] = useState(false)
+  const [withJsdocs, setWithJsdocs] = useState(false)
   const [jsonSchema, setJsonSchema] = useState(`{
   "type": "object",
+  "description": "A user object containing personal information",
   "properties": {
-    "name": { "type": "string" }
+    "name": {
+      "type": "string",
+      "description": "The user's full name"
+    }
   }
 }`)
   const [result, setResult] = useState('')
@@ -60,6 +66,8 @@ export default function SchemaConverter() {
         name: schemaName || undefined,
         type: withType,
         depth,
+        noImport,
+        withJsdocs,
       }
 
       const converted = jsonSchemaToValibot(resolved, options)
@@ -75,7 +83,7 @@ export default function SchemaConverter() {
         variant: 'destructive',
       })
     }
-  }, [jsonSchema, module, schemaName, recursionDepth, toast, withType])
+  }, [jsonSchema, module, schemaName, recursionDepth, toast, withType, noImport, withJsdocs])
 
   useEffect(() => {
     convertSchema()
@@ -192,6 +200,48 @@ export default function SchemaConverter() {
               </TooltipProvider>
             </div>
             <Switch id="with-type" checked={withType} onCheckedChange={setWithType} />
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Label htmlFor="no-import" className="text-[#9290C3]">
+                No Import
+              </Label>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="ghost" size="icon" className="w-6 h-6 rounded-full p-0">
+                      <HelpCircle className="h-4 w-4 text-[#9290C3]" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent className="border-[#535C91]">
+                    <p>
+                      Removes the `import * as v from 'valibot';` or equivalent from the output.
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+            <Switch id="no-import" checked={noImport} onCheckedChange={setNoImport} />
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Label htmlFor="with-jsdocs" className="text-[#9290C3]">
+                With JSDoc
+              </Label>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="ghost" size="icon" className="w-6 h-6 rounded-full p-0">
+                      <HelpCircle className="h-4 w-4 text-[#9290C3]" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent className="border-[#535C91]">
+                    <p>Generate JSDoc comments from the description property.</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+            <Switch id="with-jsdocs" checked={withJsdocs} onCheckedChange={setWithJsdocs} />
           </div>
         </div>
 
