@@ -33,4 +33,28 @@ describe('parseSchema', () => {
     const schema: JSONSchema4 = { type: 'invalid' as JSONSchema4TypeName }
     expect(() => parseSchema(schema, {})).toThrow('Unsupported type: invalid')
   })
+
+  it('handles enum type', () => {
+    const schema: JSONSchema4 = {
+      enum: ['foo', 'bar', 'baz'],
+    }
+    expect(parseSchema(schema, {})).toMatchInlineSnapshot(
+      '"v.union([v.literal("foo"),v.literal("bar"),v.literal("baz")])"',
+    )
+  })
+
+  it('handles null type', () => {
+    const schema: JSONSchema4 = {
+      type: 'null',
+    }
+    expect(parseSchema(schema, {})).toMatchInlineSnapshot('"v.null()"')
+  })
+
+  it('handles array type', () => {
+    const schema: JSONSchema4 = {
+      type: 'array',
+      items: { type: 'string' },
+    }
+    expect(parseSchema(schema, {})).toMatchInlineSnapshot('"v.array(v.string())"')
+  })
 })
