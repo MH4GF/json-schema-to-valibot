@@ -148,8 +148,7 @@ describe('CLI', () => {
     `)
   })
 
-  // biome-ignore lint/suspicious/noSkippedTests: <explanation>
-  it.skip('should error on invalid module syntax', () => {
+  it('should error on invalid module syntax', () => {
     const { stderr } = spawnSync(
       'node',
       [

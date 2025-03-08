@@ -53,6 +53,11 @@ async function main() {
 
   const jsonSchema = parseOrReadJSON(input)
 
+  const moduleType = options['module']
+  if (moduleType && !['esm', 'cjs', 'none'].includes(moduleType)) {
+    program.error(`Invalid module syntax: ${moduleType}`)
+  }
+
   const valibotSchema = jsonSchemaToValibot(jsonSchema as JSONSchema4, {
     name: options['name'],
     module: options['module'],
