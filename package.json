@@ -4,7 +4,7 @@
 	"workspaces": ["packages/*"],
 	"scripts": {
 		"build": "npm run build --workspaces",
-		"test": "npm run test --workspaces",
+		"test": "npm run test -w json-schema-to-valibot",
 		"fmt": "npm run fmt --workspaces",
 		"lint": "npm run lint --workspaces"
 	},
