@@ -40,7 +40,7 @@ async function main() {
     .option('-n, --name <name>', 'The name of the schema in the output')
     .option('-m, --module <type>', "Module syntax: 'esm', 'cjs' or 'none'", 'esm')
     .option('-t, --type <name>', 'Export a named type along with the schema')
-    .option('--no-import', 'Removes the import statement from the output')
+    .option('--noImport', 'Removes the import statement from the output')
     .option('-j, --with-jsdocs', 'Generate jsdocs off of the description property')
     .parse()
 
@@ -61,7 +61,7 @@ async function main() {
   const valibotSchema = jsonSchemaToValibot(jsonSchema as JSONSchema4, {
     name: options['name'],
     module: options['module'],
-    noImport: !options['import'],
+    noImport: options['noImport'],
     type: options['type'],
     withJsdocs: options['withJsdocs'],
     depth: options['depth'] ? Number.parseInt(options['depth'], 10) : undefined,

@@ -55,7 +55,7 @@ json-refs resolve mySchema.json | json-schema-to-valibot | prettier --parser typ
 | `--depth`      | `-d`      | Maximum depth of recursion in schema before falling back to `v.any()`. Defaults to 0.          |
 | `--module`     | `-m`      | Module syntax; `esm`, `cjs` or none. Defaults to `esm` in the CLI and `none` programmatically. |
 | `--type`       | `-t`      | Export a named type along with the schema. Requires `name` to be set and `module` to be `esm`. |
-| `--no-import`  |           | Removes the `import * as v from 'valibot';` or equivalent from the output.                     |
+| `--noImport`   |           | Removes the `import * as v from 'valibot';` or equivalent from the output.                     |
 | `--withJsdocs` | `-j`      | Generate jsdocs off of the description property.                                               |
 
 ### Programmatic

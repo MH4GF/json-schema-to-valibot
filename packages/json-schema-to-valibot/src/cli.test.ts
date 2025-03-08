@@ -24,7 +24,7 @@ describe('CLI', () => {
         -n, --name <name>     The name of the schema in the output
         -m, --module <type>   Module syntax: 'esm', 'cjs' or 'none' (default: "esm")
         -t, --type <name>     Export a named type along with the schema
-        --no-import           Removes the import statement from the output
+        --noImport            Removes the import statement from the output
         -j, --with-jsdocs     Generate jsdocs off of the description property
         -h, --help            display help for command
       "
@@ -95,7 +95,7 @@ describe('CLI', () => {
         'test/fixtures/schemastore/src/schemas/json/package.json',
         '--output',
         outputPath,
-        '--no-import',
+        '--noImport',
       ],
       {
         encoding: 'utf8',

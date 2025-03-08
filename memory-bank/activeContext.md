@@ -35,8 +35,8 @@ flowchart TD
     D --> D2[Implement recursion limit]
     D --> D3[Update v.any fallback]
     
-    E --> E1[Add -ni shorthand]
-    E --> E2[Update -j documentation]
+    E --> E1[Update CLI flags]
+    E --> E2[Improve documentation]
     
     F --> F1[Add name validation]
     F --> F2[Add module validation]
@@ -53,7 +53,7 @@ flowchart TD
    - Fixed all test failures and updated snapshots
 
 2. **CLI Improvements**
-   - Added -ni shorthand for --noImport
+   - Updated --no-import to --noImport for consistency
    - Fixed -j shorthand documentation for --withJsdocs
    - Added validation for --type option requirements
 
@@ -77,8 +77,9 @@ flowchart TD
 5. Expand documentation with depth option examples
 
 ## Recent Changes
+- Updated `--no-import` flag to `--noImport` for consistency
 - Completed depth option implementation with all tests passing
-- Fixed CLI shorthand flags and documentation
+- Fixed CLI flags and documentation
 - Added type option validation
 - Updated parser functions to support depth tracking
 - Added and fixed tests for depth functionality
