@@ -2,3 +2,5 @@ node_modules
 dist
 coverage
 packages/json-schema-to-valibot/test/output
+.next
+next-env.d.ts

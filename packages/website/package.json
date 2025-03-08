@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "fmt": "biome check --fix --unsafe",
-    "lint": "npm run lint:biome && npm run lint:tsc",
-    "lint:biome": "biome check .",
+    "lint": "npm run lint:tsc",
     "lint:tsc": "tsc --noEmit"
   },
   "dependencies": {
@@ -36,7 +34,6 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
     "@mh4gf/configs": "0.4.1",
     "@types/node": "^20",
     "@types/react": "^18",

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "extends": ["node_modules/@mh4gf/configs/biome/index.jsonc"],
+  "linter": {
+    "rules": {
+      "performance": {
+        "noBarrelFile": "off"
+      },
+      "complexity": {
+        "useLiteralKeys": "off"
+      },
+      "correctness": {
+        "noNodejsModules": "off",
+        "noUndeclaredDependencies": "off"
+      },
+      "suspicious": {
+        "noReactSpecificProps": "off"
+      },
+      "style": {
+        "noDefaultExport": "off"
+      }
+    }
+  },
+  "files": {
+    "ignore": ["packages/json-schema-to-valibot/test/fixtures/**"]
+  }
+}

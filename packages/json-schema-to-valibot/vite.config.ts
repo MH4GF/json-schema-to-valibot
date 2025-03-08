@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitest/config'
 
-// biome-ignore lint/style/noDefaultExport: Because this is a config file
 export default defineConfig({
   test: {
     coverage: {
