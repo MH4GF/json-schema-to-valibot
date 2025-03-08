@@ -3,6 +3,61 @@ import { describe, expect, it } from 'vitest'
 import { withDescription } from './withDescription.ts'
 
 describe('withDescription', () => {
+  describe('JSDoc comments', () => {
+    it('adds single-line JSDoc when withJsdocs is true', () => {
+      const schema: JSONSchema4 = {
+        type: 'string',
+        description: 'A simple description',
+      }
+      expect(withDescription(schema, 'v.string()', { withJsdocs: true })).toMatchInlineSnapshot(
+        `"/**A simple description*/
+v.pipe(v.string(), v.description("A simple description"))"`,
+      )
+    })
+
+    it('adds multi-line JSDoc when withJsdocs is true', () => {
+      const schema: JSONSchema4 = {
+        type: 'string',
+        description: 'First line\nSecond line\n\nLast line',
+      }
+      expect(withDescription(schema, 'v.string()', { withJsdocs: true })).toMatchInlineSnapshot(
+        `
+        "/**
+         * First line
+         * Second line
+         *  
+         * Last line
+         */
+        v.pipe(v.string(), v.description("First line
+        Second line
+
+        Last line"))"
+      `,
+      )
+    })
+
+    it('does not add JSDoc when withJsdocs is false', () => {
+      const schema: JSONSchema4 = {
+        type: 'string',
+        description: 'A simple description',
+      }
+      expect(withDescription(schema, 'v.string()', { withJsdocs: false })).toMatchInlineSnapshot(
+        `"v.pipe(v.string(), v.description("A simple description"))"`,
+      )
+    })
+
+    it('handles both withJsdocs and withoutDescriptions options', () => {
+      const schema: JSONSchema4 = {
+        type: 'string',
+        description: 'A simple description',
+      }
+      expect(withDescription(schema, 'v.string()', { withJsdocs: true, withoutDescriptions: true })).toMatchInlineSnapshot(
+        `"/**A simple description*/
+v.string()"`,
+      )
+    })
+  })
+
   it('adds description to schema', () => {
     const schema: JSONSchema4 = {
       type: 'string',

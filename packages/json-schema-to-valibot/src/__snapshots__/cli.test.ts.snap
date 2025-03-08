@@ -29,6 +29,7 @@ export const PackageSchema = v.intersect([
       ),
     ),
     keywords: v.optional(
+      /**This helps people discover your package as it's listed in 'npm search'.*/
       v.pipe(
         v.array(v.string()),
         v.description("This helps people discover your package as it's listed in 'npm search'."),
@@ -37,6 +38,7 @@ export const PackageSchema = v.intersect([
     homepage: v.optional(v.pipe(v.string(), v.description('The url to the project homepage.'))),
     bugs: v.optional(
       v.union([
+        /**The url to your project's issue tracker and / or the email address to which issues should be reported. These are helpful for people who encounter issues with your package.*/
         v.pipe(
           v.object({
             url: v.optional(
@@ -96,6 +98,7 @@ export const PackageSchema = v.intersect([
       ]),
     ),
     licenses: v.optional(
+      /**DEPRECATED: Instead, use SPDX expressions, like this: { "license": "ISC" } or { "license": "(MIT OR Apache-2.0)" } see: 'https://docs.npmjs.com/files/package.json#license'.*/
       v.pipe(
         v.array(
           v.object({
@@ -138,6 +141,7 @@ export const PackageSchema = v.intersect([
     ),
     author: v.optional(
       v.union([
+        /**A person who has been involved in creating or maintaining this package.*/
         v.pipe(
           v.object({
             name: v.string(),
@@ -153,9 +157,11 @@ export const PackageSchema = v.intersect([
       ]),
     ),
     contributors: v.optional(
+      /**A list of people who contributed to this package.*/
       v.pipe(
         v.array(
           v.union([
+            /**A person who has been involved in creating or maintaining this package.*/
             v.pipe(
               v.object({
                 name: v.string(),
@@ -178,9 +184,11 @@ export const PackageSchema = v.intersect([
       ),
     ),
     maintainers: v.optional(
+      /**A list of people who maintains this package.*/
       v.pipe(
         v.array(
           v.union([
+            /**A person who has been involved in creating or maintaining this package.*/
             v.pipe(
               v.object({
                 name: v.string(),
@@ -203,6 +211,7 @@ export const PackageSchema = v.intersect([
       ),
     ),
     files: v.optional(
+      /**The 'files' field is an array of files to include in your project. If you name a folder in the array, then it will also include the files inside that folder.*/
       v.pipe(
         v.array(v.string()),
         v.description(
@@ -220,6 +229,7 @@ export const PackageSchema = v.intersect([
     ),
     exports: v.optional(v.any()),
     imports: v.optional(
+      /**The "imports" field is used to create private mappings that only apply to import specifiers from within the package itself.*/
       v.pipe(
         v.object({}),
         v.description(
@@ -228,7 +238,7 @@ export const PackageSchema = v.intersect([
       ),
     ),
     bin: v.optional(v.union([v.string(), v.object({})])),
-    type: v.pipe(
+    type /**When set to "module", the type field allows a package to specify all .js files within are ES modules. If the "type" field is omitted or set to "commonjs", all .js files are treated as CommonJS.*/: v.pipe(
       v.optional(v.union([v.literal('commonjs'), v.literal('module')]), 'commonjs'),
       v.description(
         'When set to "module", the type field allows a package to specify all .js files within are ES modules. If the "type" field is omitted or set to "commonjs", all .js files are treated as CommonJS.',
@@ -249,6 +259,7 @@ export const PackageSchema = v.intersect([
       ),
     ),
     typesVersions: v.optional(
+      /**The "typesVersions" field is used since TypeScript 3.1 to support features that were only made available in newer TypeScript versions.*/
       v.pipe(
         v.object({}),
         v.description(
@@ -258,6 +269,7 @@ export const PackageSchema = v.intersect([
     ),
     man: v.optional(
       v.union([
+        /**Specify either a single file or an array of filenames to put in place for the man program to find.*/
         v.pipe(
           v.array(v.string()),
           v.description(
@@ -319,6 +331,7 @@ export const PackageSchema = v.intersect([
     ),
     repository: v.optional(
       v.union([
+        /**Specify the place where your code lives. This is helpful for people who want to contribute.*/
         v.pipe(
           v.object({
             type: v.optional(v.string()),
@@ -339,6 +352,7 @@ export const PackageSchema = v.intersect([
     ),
     funding: v.optional(v.any()),
     scripts: v.optional(
+      /**The 'scripts' member is an object hash of script commands that are run at various times in the lifecycle of your package. The key is the lifecycle event, and the value is the command to run at that point.*/
       v.pipe(
         v.object({
           lint: v.optional(
@@ -467,6 +481,7 @@ export const PackageSchema = v.intersect([
       ),
     ),
     config: v.optional(
+      /**A 'config' hash can be used to set configuration parameters used in package scripts that persist across upgrades.*/
       v.pipe(
         v.object({}),
         v.description(
@@ -475,6 +490,7 @@ export const PackageSchema = v.intersect([
       ),
     ),
     dependencies: v.optional(
+      /**Dependencies are specified with a simple hash of package name to version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.*/
       v.pipe(
         v.object({}),
         v.description(
@@ -483,6 +499,7 @@ export const PackageSchema = v.intersect([
       ),
     ),
     devDependencies: v.optional(
+      /**Dependencies are specified with a simple hash of package name to version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.*/
       v.pipe(
         v.object({}),
         v.description(
@@ -491,6 +508,7 @@ export const PackageSchema = v.intersect([
       ),
     ),
     optionalDependencies: v.optional(
+      /**Dependencies are specified with a simple hash of package name to version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.*/
       v.pipe(
         v.object({}),
         v.description(
@@ -499,6 +517,7 @@ export const PackageSchema = v.intersect([
       ),
     ),
     peerDependencies: v.optional(
+      /**Dependencies are specified with a simple hash of package name to version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.*/
       v.pipe(
         v.object({}),
         v.description(
@@ -507,6 +526,7 @@ export const PackageSchema = v.intersect([
       ),
     ),
     peerDependenciesMeta: v.optional(
+      /**When a user installs your package, warnings are emitted if packages specified in "peerDependencies" are not already installed. The "peerDependenciesMeta" field serves to provide more information on how your peer dependencies are utilized. Most commonly, it allows peer dependencies to be marked as optional. Metadata for this field is specified with a simple hash of the package name to a metadata object.*/
       v.pipe(
         v.object({}),
         v.description(
@@ -517,6 +537,7 @@ export const PackageSchema = v.intersect([
     bundleDependencies: v.optional(v.any()),
     bundledDependencies: v.optional(v.any()),
     resolutions: v.optional(
+      /**Resolutions is used to support selective version resolutions using yarn, which lets you define custom package versions or ranges inside your dependencies. For npm, use overrides instead. See: https://classic.yarnpkg.com/en/docs/selective-version-resolutions*/
       v.pipe(
         v.object({}),
         v.description(
@@ -525,6 +546,7 @@ export const PackageSchema = v.intersect([
       ),
     ),
     overrides: v.optional(
+      /**Overrides is used to support selective version overrides using npm, which lets you define custom package versions or ranges inside your dependencies. For yarn, use resolutions instead. See: https://docs.npmjs.com/cli/v9/configuring-npm/package-json#overrides*/
       v.pipe(
         v.object({}),
         v.description(
@@ -543,6 +565,7 @@ export const PackageSchema = v.intersect([
     ),
     engines: v.optional(v.object({ node: v.optional(v.string()) })),
     volta: v.optional(
+      /**Defines which tools and versions are expected to be used when Volta is installed.*/
       v.pipe(
         v.object({
           extends: v.optional(
@@ -561,12 +584,14 @@ export const PackageSchema = v.intersect([
     ),
     engineStrict: v.optional(v.boolean()),
     os: v.optional(
+      /**Specify which operating systems your module will run on.*/
       v.pipe(
         v.array(v.string()),
         v.description('Specify which operating systems your module will run on.'),
       ),
     ),
     cpu: v.optional(
+      /**Specify that your code only runs on certain cpu architectures.*/
       v.pipe(
         v.array(v.string()),
         v.description('Specify that your code only runs on certain cpu architectures.'),
@@ -597,7 +622,7 @@ export const PackageSchema = v.intersect([
           v.description(
             'A module ID with untranspiled code that is the primary entry point to your program.',
           ),
-        ),
+        ) /**A module ID with untranspiled code that is the primary entry point to your program.*/,
         v.pipe(
           v.object({ main: v.optional(v.string()), browser: v.optional(v.string()) }),
           v.description(
@@ -607,20 +632,24 @@ export const PackageSchema = v.intersect([
       ]),
     ),
     workspaces: v.optional(
+      /**Allows packages within a directory to depend on one another using direct linking of local files. Additionally, dependencies within a workspace are hoisted to the workspace root when possible to reduce duplication. Note: It's also a good idea to set "private" to true when using this feature.*/
       v.pipe(
         v.union([
+          /**Workspace package paths. Glob patterns are supported.*/
           v.pipe(
             v.array(v.string()),
             v.description('Workspace package paths. Glob patterns are supported.'),
           ),
           v.object({
             packages: v.optional(
+              /**Workspace package paths. Glob patterns are supported.*/
               v.pipe(
                 v.array(v.string()),
                 v.description('Workspace package paths. Glob patterns are supported.'),
               ),
             ),
             nohoist: v.optional(
+              /**Packages to block from hoisting to the workspace root. Currently only supported in Yarn only.*/
               v.pipe(
                 v.array(v.string()),
                 v.description(
@@ -639,6 +668,7 @@ export const PackageSchema = v.intersect([
     eslintConfig: v.optional(
       v.object({
         ecmaFeatures: v.optional(
+          /**By default, ESLint supports only ECMAScript 5 syntax. You can override that setting to enable support for ECMAScript 6 as well as JSX by using configuration settings.*/
           v.pipe(
             v.object({
               arrowFunctions: v.optional(v.boolean()),
@@ -673,6 +703,7 @@ export const PackageSchema = v.intersect([
           ),
         ),
         env: v.optional(
+          /**An environment defines global variables that are predefined.*/
           v.pipe(
             v.object({
               amd: v.optional(v.boolean()),
@@ -706,6 +737,7 @@ export const PackageSchema = v.intersect([
         ),
         extends: v.optional(v.any()),
         globals: v.optional(
+          /**Set each global variable name equal to true to allow the variable to be overwritten or false to disallow overwriting.*/
           v.pipe(
             v.object({}),
             v.description(
@@ -717,9 +749,11 @@ export const PackageSchema = v.intersect([
         reportUnusedDisableDirectives: v.optional(v.boolean()),
         parser: v.optional(v.string()),
         parserOptions: v.optional(
+          /**The JavaScript language options to be supported*/
           v.pipe(
             v.object({
               ecmaFeatures: v.optional(
+                /**By default, ESLint supports only ECMAScript 5 syntax. You can override that setting to enable support for ECMAScript 6 as well as JSX by using configuration settings.*/
                 v.pipe(
                   v.object({
                     arrowFunctions: v.optional(v.boolean()),
@@ -753,53 +787,56 @@ export const PackageSchema = v.intersect([
                   ),
                 ),
               ),
-              ecmaVersion: v.pipe(
-                v.optional(
-                  v.union([
-                    v.literal(3),
-                    v.literal(5),
-                    v.literal(6),
-                    v.literal(2015),
-                    v.literal(7),
-                    v.literal(2016),
-                    v.literal(8),
-                    v.literal(2017),
-                    v.literal(9),
-                    v.literal(2018),
-                    v.literal(10),
-                    v.literal(2019),
-                    v.literal(11),
-                    v.literal(2020),
-                    v.literal(12),
-                    v.literal(2021),
-                    v.literal(13),
-                    v.literal(2022),
-                    v.literal(14),
-                    v.literal(2023),
-                    v.literal(15),
-                    v.literal(2024),
-                    v.literal('latest'),
-                  ]),
-                  5,
+              ecmaVersion /**Set to 3, 5 (default), 6, 7, 8, 9, 10, 11, 12, 13, 14, or 15 to specify the version of ECMAScript syntax you want to use. You can also set it to 2015 (same as 6), 2016 (same as 7), 2017 (same as 8), 2018 (same as 9), 2019 (same as 10), 2020 (same as 11), 2021 (same as 12), 2022 (same as 13), 2023 (same as 14), or 2024 (same as 15) to use the year-based naming. You can also set "latest" to use the most recently supported version.*/:
+                v.pipe(
+                  v.optional(
+                    v.union([
+                      v.literal(3),
+                      v.literal(5),
+                      v.literal(6),
+                      v.literal(2015),
+                      v.literal(7),
+                      v.literal(2016),
+                      v.literal(8),
+                      v.literal(2017),
+                      v.literal(9),
+                      v.literal(2018),
+                      v.literal(10),
+                      v.literal(2019),
+                      v.literal(11),
+                      v.literal(2020),
+                      v.literal(12),
+                      v.literal(2021),
+                      v.literal(13),
+                      v.literal(2022),
+                      v.literal(14),
+                      v.literal(2023),
+                      v.literal(15),
+                      v.literal(2024),
+                      v.literal('latest'),
+                    ]),
+                    5,
+                  ),
+                  v.description(
+                    'Set to 3, 5 (default), 6, 7, 8, 9, 10, 11, 12, 13, 14, or 15 to specify the version of ECMAScript syntax you want to use. You can also set it to 2015 (same as 6), 2016 (same as 7), 2017 (same as 8), 2018 (same as 9), 2019 (same as 10), 2020 (same as 11), 2021 (same as 12), 2022 (same as 13), 2023 (same as 14), or 2024 (same as 15) to use the year-based naming. You can also set "latest" to use the most recently supported version.',
+                  ),
                 ),
-                v.description(
-                  'Set to 3, 5 (default), 6, 7, 8, 9, 10, 11, 12, 13, 14, or 15 to specify the version of ECMAScript syntax you want to use. You can also set it to 2015 (same as 6), 2016 (same as 7), 2017 (same as 8), 2018 (same as 9), 2019 (same as 10), 2020 (same as 11), 2021 (same as 12), 2022 (same as 13), 2023 (same as 14), or 2024 (same as 15) to use the year-based naming. You can also set "latest" to use the most recently supported version.',
+              sourceType /**set to "script" (default), "commonjs", or "module" if your code is in ECMAScript modules*/:
+                v.pipe(
+                  v.optional(
+                    v.union([v.literal('script'), v.literal('module'), v.literal('commonjs')]),
+                    'script',
+                  ),
+                  v.description(
+                    'set to "script" (default), "commonjs", or "module" if your code is in ECMAScript modules',
+                  ),
                 ),
-              ),
-              sourceType: v.pipe(
-                v.optional(
-                  v.union([v.literal('script'), v.literal('module'), v.literal('commonjs')]),
-                  'script',
-                ),
-                v.description(
-                  'set to "script" (default), "commonjs", or "module" if your code is in ECMAScript modules',
-                ),
-              ),
             }),
             v.description('The JavaScript language options to be supported'),
           ),
         ),
         plugins: v.optional(
+          /**ESLint supports the use of third-party plugins. Before using the plugin, you have to install it using npm.*/
           v.pipe(
             v.array(v.string()),
             v.description(
@@ -810,6 +847,7 @@ export const PackageSchema = v.intersect([
         root: v.optional(v.boolean()),
         ignorePatterns: v.optional(v.any()),
         rules: v.optional(
+          /**ESLint comes with a large number of rules. You can modify which rules your project uses either using configuration comments or configuration files.*/
           v.pipe(
             v.object({}),
             v.description(
@@ -818,6 +856,7 @@ export const PackageSchema = v.intersect([
           ),
         ),
         settings: v.optional(
+          /**ESLint supports adding shared settings into configuration file. You can add settings object to ESLint configuration file and it will be supplied to every rule that will be executed. This may be useful if you are adding custom rules and want them to have access to the same information and be easily configurable.*/
           v.pipe(
             v.object({}),
             v.description(
@@ -826,6 +865,7 @@ export const PackageSchema = v.intersect([
           ),
         ),
         overrides: v.optional(
+          /**Allows to override configuration for files and folders, specified by glob patterns*/
           v.pipe(
             v.array(
               v.object({
@@ -833,6 +873,7 @@ export const PackageSchema = v.intersect([
                 extends: v.optional(v.any()),
                 excludedFiles: v.optional(v.any()),
                 ecmaFeatures: v.optional(
+                  /**By default, ESLint supports only ECMAScript 5 syntax. You can override that setting to enable support for ECMAScript 6 as well as JSX by using configuration settings.*/
                   v.pipe(
                     v.object({
                       arrowFunctions: v.optional(v.boolean()),
@@ -867,6 +908,7 @@ export const PackageSchema = v.intersect([
                   ),
                 ),
                 env: v.optional(
+                  /**An environment defines global variables that are predefined.*/
                   v.pipe(
                     v.object({
                       amd: v.optional(v.boolean()),
@@ -899,6 +941,7 @@ export const PackageSchema = v.intersect([
                   ),
                 ),
                 globals: v.optional(
+                  /**Set each global variable name equal to true to allow the variable to be overwritten or false to disallow overwriting.*/
                   v.pipe(
                     v.object({}),
                     v.description(
@@ -908,9 +951,11 @@ export const PackageSchema = v.intersect([
                 ),
                 parser: v.optional(v.string()),
                 parserOptions: v.optional(
+                  /**The JavaScript language options to be supported*/
                   v.pipe(
                     v.object({
                       ecmaFeatures: v.optional(
+                        /**By default, ESLint supports only ECMAScript 5 syntax. You can override that setting to enable support for ECMAScript 6 as well as JSX by using configuration settings.*/
                         v.pipe(
                           v.object({
                             arrowFunctions: v.optional(v.boolean()),
@@ -944,57 +989,60 @@ export const PackageSchema = v.intersect([
                           ),
                         ),
                       ),
-                      ecmaVersion: v.pipe(
-                        v.optional(
-                          v.union([
-                            v.literal(3),
-                            v.literal(5),
-                            v.literal(6),
-                            v.literal(2015),
-                            v.literal(7),
-                            v.literal(2016),
-                            v.literal(8),
-                            v.literal(2017),
-                            v.literal(9),
-                            v.literal(2018),
-                            v.literal(10),
-                            v.literal(2019),
-                            v.literal(11),
-                            v.literal(2020),
-                            v.literal(12),
-                            v.literal(2021),
-                            v.literal(13),
-                            v.literal(2022),
-                            v.literal(14),
-                            v.literal(2023),
-                            v.literal(15),
-                            v.literal(2024),
-                            v.literal('latest'),
-                          ]),
-                          5,
+                      ecmaVersion /**Set to 3, 5 (default), 6, 7, 8, 9, 10, 11, 12, 13, 14, or 15 to specify the version of ECMAScript syntax you want to use. You can also set it to 2015 (same as 6), 2016 (same as 7), 2017 (same as 8), 2018 (same as 9), 2019 (same as 10), 2020 (same as 11), 2021 (same as 12), 2022 (same as 13), 2023 (same as 14), or 2024 (same as 15) to use the year-based naming. You can also set "latest" to use the most recently supported version.*/:
+                        v.pipe(
+                          v.optional(
+                            v.union([
+                              v.literal(3),
+                              v.literal(5),
+                              v.literal(6),
+                              v.literal(2015),
+                              v.literal(7),
+                              v.literal(2016),
+                              v.literal(8),
+                              v.literal(2017),
+                              v.literal(9),
+                              v.literal(2018),
+                              v.literal(10),
+                              v.literal(2019),
+                              v.literal(11),
+                              v.literal(2020),
+                              v.literal(12),
+                              v.literal(2021),
+                              v.literal(13),
+                              v.literal(2022),
+                              v.literal(14),
+                              v.literal(2023),
+                              v.literal(15),
+                              v.literal(2024),
+                              v.literal('latest'),
+                            ]),
+                            5,
+                          ),
+                          v.description(
+                            'Set to 3, 5 (default), 6, 7, 8, 9, 10, 11, 12, 13, 14, or 15 to specify the version of ECMAScript syntax you want to use. You can also set it to 2015 (same as 6), 2016 (same as 7), 2017 (same as 8), 2018 (same as 9), 2019 (same as 10), 2020 (same as 11), 2021 (same as 12), 2022 (same as 13), 2023 (same as 14), or 2024 (same as 15) to use the year-based naming. You can also set "latest" to use the most recently supported version.',
+                          ),
                         ),
-                        v.description(
-                          'Set to 3, 5 (default), 6, 7, 8, 9, 10, 11, 12, 13, 14, or 15 to specify the version of ECMAScript syntax you want to use. You can also set it to 2015 (same as 6), 2016 (same as 7), 2017 (same as 8), 2018 (same as 9), 2019 (same as 10), 2020 (same as 11), 2021 (same as 12), 2022 (same as 13), 2023 (same as 14), or 2024 (same as 15) to use the year-based naming. You can also set "latest" to use the most recently supported version.',
+                      sourceType /**set to "script" (default), "commonjs", or "module" if your code is in ECMAScript modules*/:
+                        v.pipe(
+                          v.optional(
+                            v.union([
+                              v.literal('script'),
+                              v.literal('module'),
+                              v.literal('commonjs'),
+                            ]),
+                            'script',
+                          ),
+                          v.description(
+                            'set to "script" (default), "commonjs", or "module" if your code is in ECMAScript modules',
+                          ),
                         ),
-                      ),
-                      sourceType: v.pipe(
-                        v.optional(
-                          v.union([
-                            v.literal('script'),
-                            v.literal('module'),
-                            v.literal('commonjs'),
-                          ]),
-                          'script',
-                        ),
-                        v.description(
-                          'set to "script" (default), "commonjs", or "module" if your code is in ECMAScript modules',
-                        ),
-                      ),
                     }),
                     v.description('The JavaScript language options to be supported'),
                   ),
                 ),
                 plugins: v.optional(
+                  /**ESLint supports the use of third-party plugins. Before using the plugin, you have to install it using npm.*/
                   v.pipe(
                     v.array(v.string()),
                     v.description(
@@ -1011,6 +1059,7 @@ export const PackageSchema = v.intersect([
                   ),
                 ),
                 rules: v.optional(
+                  /**ESLint comes with a large number of rules. You can modify which rules your project uses either using configuration comments or configuration files.*/
                   v.pipe(
                     v.object({}),
                     v.description(
@@ -1019,6 +1068,7 @@ export const PackageSchema = v.intersect([
                   ),
                 ),
                 settings: v.optional(
+                  /**ESLint supports adding shared settings into configuration file. You can add settings object to ESLint configuration file and it will be supplied to every rule that will be executed. This may be useful if you are adding custom rules and want them to have access to the same information and be easily configurable.*/
                   v.pipe(
                     v.object({}),
                     v.description(
@@ -1045,6 +1095,7 @@ export const PackageSchema = v.intersect([
           v.pipe(v.string(), v.description('Specify a custom syntax to use on your code.')),
         ),
         overrides: v.optional(
+          /**Provide rule and behavior overrides for files that match particular glob patterns.*/
           v.pipe(
             v.array(
               v.object({
@@ -1059,6 +1110,7 @@ export const PackageSchema = v.intersect([
           ),
         ),
         processors: v.optional(
+          /**Processors are functions that hook into stylelint's pipeline, modifying code on its way into stylelint and modifying results on their way out*/
           v.pipe(
             v.array(v.union([v.string(), v.array(v.any())])),
             v.description(
@@ -1069,6 +1121,7 @@ export const PackageSchema = v.intersect([
         ignoreDisables: v.optional(v.boolean()),
         ignoreFiles: v.optional(v.union([v.string(), v.array(v.any())])),
         defaultSeverity: v.optional(
+          /**The default severity level for all rules that do not have a severity specified in their secondary options*/
           v.pipe(
             v.union([v.literal('warning'), v.literal('error')]),
             v.description(
@@ -1095,6 +1148,7 @@ export const PackageSchema = v.intersect([
       }),
     ),
     ava: v.optional(
+      /**Configuration Schema for the JavaScript test runner AVA*/
       v.pipe(
         v.object({
           files: v.optional(v.array(v.pipe(v.string(), v.minLength(1)))),
@@ -1106,6 +1160,7 @@ export const PackageSchema = v.intersect([
           failFast: v.optional(v.boolean(), false),
           failWithoutAssertions: v.optional(v.boolean(), true),
           environmentVariables: v.optional(
+            /**Specifies environment variables to be made available to the tests. The environment variables defined here override the ones from \`process.env\`*/
             v.pipe(
               v.object({}),
               v.description(
@@ -1117,29 +1172,33 @@ export const PackageSchema = v.intersect([
           tap: v.optional(v.boolean(), false),
           verbose: v.optional(v.boolean(), false),
           snapshotDir: v.optional(v.pipe(v.string(), v.minLength(1))),
-          extensions: v.pipe(
-            v.union([v.array(v.string()), v.object({})]),
-            v.description(
-              'Extensions of test files. Setting this overrides the default \`["cjs", "mjs", "js"]\` value, so make sure to include those extensions in the list. Experimentally you can configure how files are loaded',
+          extensions /**Extensions of test files. Setting this overrides the default \`["cjs", "mjs", "js"]\` value, so make sure to include those extensions in the list. Experimentally you can configure how files are loaded*/:
+            v.pipe(
+              v.union([v.array(v.string()), v.object({})]),
+              v.description(
+                'Extensions of test files. Setting this overrides the default \`["cjs", "mjs", "js"]\` value, so make sure to include those extensions in the list. Experimentally you can configure how files are loaded',
+              ),
             ),
-          ),
           require: v.optional(v.array(v.pipe(v.string(), v.minLength(1)))),
-          timeout: v.pipe(
-            v.union([
-              v.pipe(v.number(), v.minValue(0)),
-              v.pipe(v.string(), v.regex(/^(\\d+)(s|m)$/)),
-            ]),
-            v.description(
-              'Timeouts in AVA behave differently than in other test frameworks. AVA resets a timer after each test, forcing tests to quit if no new test results were received within the specified timeout. This can be used to handle stalled tests. See our timeout documentation for more options',
+          timeout /**Timeouts in AVA behave differently than in other test frameworks. AVA resets a timer after each test, forcing tests to quit if no new test results were received within the specified timeout. This can be used to handle stalled tests. See our timeout documentation for more options*/:
+            v.pipe(
+              v.union([
+                v.pipe(v.number(), v.minValue(0)),
+                v.pipe(v.string(), v.regex(/^(\\d+)(s|m)$/)),
+              ]),
+              v.description(
+                'Timeouts in AVA behave differently than in other test frameworks. AVA resets a timer after each test, forcing tests to quit if no new test results were received within the specified timeout. This can be used to handle stalled tests. See our timeout documentation for more options',
+              ),
             ),
-          ),
           nodeArguments: v.optional(v.array(v.string())),
           utilizeParallelBuilds: v.optional(v.boolean(), true),
           typescript: v.optional(
+            /**Configures @ava/typescript for projects that precompile TypeScript. Alternatively, you can use \`ts-node\` to do live testing without transpiling, in which case you shouldn't use the \`typescript\` property*/
             v.pipe(
               v.object({
                 extensions: v.optional(v.array(v.pipe(v.string(), v.minLength(1)))),
                 rewritePaths: v.optional(
+                  /**AVA searches your entire project for \`*.js\`, \`*.cjs\`, \`*.mjs\` and \`*.ts\` files (or other extensions you've configured). It will ignore such files found in the \`rewritePaths\` targets (e.g. \`build/\`). If you use more specific paths, for instance \`build/main/\`, you may need to change AVA's \`files\` configuration to ignore other directories. Paths are relative to your project directory*/
                   v.pipe(
                     v.object({}),
                     v.description(
@@ -1147,12 +1206,13 @@ export const PackageSchema = v.intersect([
                     ),
                   ),
                 ),
-                compile: v.pipe(
-                  v.optional(v.union([v.literal(false), v.literal('tsc')]), false),
-                  v.description(
-                    "If \`false\`, AVA will assume you have already compiled your project. If set to \`'tsc'\`, AVA will run the TypeScript compiler before running your tests. This can be inefficient when using AVA in watch mode",
+                compile /**If \`false\`, AVA will assume you have already compiled your project. If set to \`'tsc'\`, AVA will run the TypeScript compiler before running your tests. This can be inefficient when using AVA in watch mode*/:
+                  v.pipe(
+                    v.optional(v.union([v.literal(false), v.literal('tsc')]), false),
+                    v.description(
+                      "If \`false\`, AVA will assume you have already compiled your project. If set to \`'tsc'\`, AVA will run the TypeScript compiler before running your tests. This can be inefficient when using AVA in watch mode",
+                    ),
                   ),
-                ),
               }),
               v.description(
                 "Configures @ava/typescript for projects that precompile TypeScript. Alternatively, you can use \`ts-node\` to do live testing without transpiling, in which case you shouldn't use the \`typescript\` property",
@@ -1177,12 +1237,13 @@ export const PackageSchema = v.intersect([
           ),
           'v\${version}',
         ),
-        plugins: v.pipe(
-          v.array(v.union([v.string(), v.array(v.any())])),
-          v.description(
-            'Define the list of plugins to use. Plugins will run in series, in the order defined',
+        plugins /**Define the list of plugins to use. Plugins will run in series, in the order defined*/:
+          v.pipe(
+            v.array(v.union([v.string(), v.array(v.any())])),
+            v.description(
+              'Define the list of plugins to use. Plugins will run in series, in the order defined',
+            ),
           ),
-        ),
         dryRun: v.optional(v.boolean()),
         ci: v.optional(v.boolean(), true),
       }),
@@ -1191,28 +1252,31 @@ export const PackageSchema = v.intersect([
       v.object({
         minLines: v.optional(v.pipe(v.number(), v.integer()), 5),
         maxLines: v.optional(v.pipe(v.number(), v.integer()), 1000),
-        maxSize: v.pipe(
-          v.union([
-            v.pipe(v.string(), v.regex(/^\\+?[0-9]+(\\.[0-9]+)? *[kKmMgGtTpP][bB]$/)),
-            v.pipe(v.number(), v.integer()),
-          ]),
-          v.description(
-            'maximum size of source file in bytes to check for duplication (e.g.,: 1kb, 1mb, 120kb)',
+        maxSize /**maximum size of source file in bytes to check for duplication (e.g.,: 1kb, 1mb, 120kb)*/:
+          v.pipe(
+            v.union([
+              v.pipe(v.string(), v.regex(/^\\+?[0-9]+(\\.[0-9]+)? *[kKmMgGtTpP][bB]$/)),
+              v.pipe(v.number(), v.integer()),
+            ]),
+            v.description(
+              'maximum size of source file in bytes to check for duplication (e.g.,: 1kb, 1mb, 120kb)',
+            ),
           ),
-        ),
         minTokens: v.optional(v.pipe(v.number(), v.integer()), 50),
         threshold: v.optional(v.number()),
-        formatsExts: v.pipe(
-          v.object({}),
-          v.description(
-            'custom mapping from formats to file extensions (default: https://github.com/kucherenko/jscpd/blob/master/packages/tokenizer/src/formats.ts); see https://github.com/kucherenko/jscpd/blob/master/supported_formats.md',
+        formatsExts /**custom mapping from formats to file extensions (default: https://github.com/kucherenko/jscpd/blob/master/packages/tokenizer/src/formats.ts); see https://github.com/kucherenko/jscpd/blob/master/supported_formats.md*/:
+          v.pipe(
+            v.object({}),
+            v.description(
+              'custom mapping from formats to file extensions (default: https://github.com/kucherenko/jscpd/blob/master/packages/tokenizer/src/formats.ts); see https://github.com/kucherenko/jscpd/blob/master/supported_formats.md',
+            ),
           ),
-        ),
         output: v.optional(
           v.pipe(v.string(), v.description('path to directory for non-console reports')),
           './report',
         ),
         path: v.optional(
+          /**paths that should be included in duplicate detection (default: [process.cwd()])*/
           v.pipe(
             v.array(v.string()),
             v.description(
@@ -1229,21 +1293,22 @@ export const PackageSchema = v.intersect([
           ),
           '**/*',
         ),
-        ignorePattern: v.pipe(
+        ignorePattern /**ignore code blocks matching these regular expressions*/: v.pipe(
           v.array(v.string()),
           v.description('ignore code blocks matching these regular expressions'),
         ),
-        mode: v.pipe(
+        mode /**mode of detection quality; see https://github.com/kucherenko/jscpd/blob/master/packages/jscpd/README.md#mode*/: v.pipe(
           v.optional(v.union([v.literal('mild'), v.literal('strict'), v.literal('weak')]), 'mild'),
           v.description(
             'mode of detection quality; see https://github.com/kucherenko/jscpd/blob/master/packages/jscpd/README.md#mode',
           ),
         ),
-        ignore: v.pipe(
+        ignore /**glob pattern for files that should be excluded from duplicate detection*/: v.pipe(
           v.array(v.string()),
           v.description('glob pattern for files that should be excluded from duplicate detection'),
         ),
         format: v.optional(
+          /**list of formats for which to detect duplication (default: all); see https://github.com/kucherenko/jscpd/blob/master/supported_formats.md*/
           v.pipe(
             v.array(
               v.union([
@@ -1407,6 +1472,7 @@ export const PackageSchema = v.intersect([
           ),
         ),
         store: v.optional(
+          /**store used to collect information about code (default: in-memory store); install @jscpd/leveldb-store and use leveldb for big repositories*/
           v.pipe(
             v.union([v.literal('leveldb'), v.literal('redis')]),
             v.description(
@@ -1414,25 +1480,26 @@ export const PackageSchema = v.intersect([
             ),
           ),
         ),
-        reporters: v.pipe(
-          v.array(
-            v.union([
-              v.literal('xml'),
-              v.literal('json'),
-              v.literal('csv'),
-              v.literal('markdown'),
-              v.literal('consoleFull'),
-              v.literal('html'),
-              v.literal('console'),
-              v.literal('silent'),
-              v.literal('threshold'),
-              v.literal('xcode'),
-            ]),
+        reporters /**a list of reporters to use to output information about duplication; see https://github.com/kucherenko/jscpd/blob/master/packages/jscpd/README.md#reporters*/:
+          v.pipe(
+            v.array(
+              v.union([
+                v.literal('xml'),
+                v.literal('json'),
+                v.literal('csv'),
+                v.literal('markdown'),
+                v.literal('consoleFull'),
+                v.literal('html'),
+                v.literal('console'),
+                v.literal('silent'),
+                v.literal('threshold'),
+                v.literal('xcode'),
+              ]),
+            ),
+            v.description(
+              'a list of reporters to use to output information about duplication; see https://github.com/kucherenko/jscpd/blob/master/packages/jscpd/README.md#reporters',
+            ),
           ),
-          v.description(
-            'a list of reporters to use to output information about duplication; see https://github.com/kucherenko/jscpd/blob/master/packages/jscpd/README.md#reporters',
-          ),
-        ),
         blame: v.optional(v.boolean(), false),
         silent: v.optional(v.boolean(), false),
         verbose: v.optional(v.boolean(), false),
@@ -1471,7 +1538,7 @@ export const PackageSchema = v.intersect([
                 ),
               ),
               color: v.optional(v.any()),
-              style: v.pipe(
+              style /**badge look: flat or classic*/: v.pipe(
                 v.optional(v.union([v.literal('flat'), v.literal('classic')]), 'classic'),
                 v.description('badge look: flat or classic'),
               ),
@@ -1492,15 +1559,18 @@ export const PackageSchema = v.intersect([
       }),
     ),
     pnpm: v.optional(
+      /**Defines pnpm specific configuration.*/
       v.pipe(
         v.object({
           overrides: v.optional(
+            /**Used to override any dependency in the dependency graph.*/
             v.pipe(
               v.object({}),
               v.description('Used to override any dependency in the dependency graph.'),
             ),
           ),
           packageExtensions: v.optional(
+            /**Used to extend the existing package definitions with additional information.*/
             v.pipe(
               v.object({}),
               v.description(
@@ -1510,12 +1580,14 @@ export const PackageSchema = v.intersect([
           ),
           peerDependencyRules: v.optional(v.any()),
           neverBuiltDependencies: v.optional(
+            /**A list of dependencies to skip the builds.*/
             v.pipe(
               v.array(v.string()),
               v.description('A list of dependencies to skip the builds.'),
             ),
           ),
           onlyBuiltDependencies: v.optional(
+            /**A list of dependencies to skip the builds.*/
             v.pipe(
               v.array(v.string()),
               v.description('A list of dependencies to skip the builds.'),
@@ -1530,18 +1602,21 @@ export const PackageSchema = v.intersect([
             ),
           ),
           allowedDeprecatedVersions: v.optional(
+            /**A list of deprecated versions that the warnings are suppressed.*/
             v.pipe(
               v.object({}),
               v.description('A list of deprecated versions that the warnings are suppressed.'),
             ),
           ),
           patchedDependencies: v.optional(
+            /**A list of dependencies that are patched.*/
             v.pipe(v.object({}), v.description('A list of dependencies that are patched.')),
           ),
           allowNonAppliedPatches: v.optional(v.boolean()),
           updateConfig: v.optional(
             v.object({
               ignoreDependencies: v.optional(
+                /**A list of packages that should be ignored when running "pnpm outdated" or "pnpm update --latest".*/
                 v.pipe(
                   v.array(v.string()),
                   v.description(
@@ -1554,12 +1629,14 @@ export const PackageSchema = v.intersect([
           auditConfig: v.optional(
             v.object({
               ignoreCves: v.optional(
+                /**A list of CVE IDs that will be ignored by "pnpm audit".*/
                 v.pipe(
                   v.array(v.pipe(v.string(), v.regex(/^CVE-\\d{4}-\\d{4,7}$/))),
                   v.description('A list of CVE IDs that will be ignored by "pnpm audit".'),
                 ),
               ),
               ignoreGhsas: v.optional(
+                /**A list of GHSA Codes that will be ignored by "pnpm audit".*/
                 v.pipe(
                   v.array(v.pipe(v.string(), v.regex(/^GHSA(-[23456789cfghjmpqrvwx]{4}){3}$/))),
                   v.description('A list of GHSA Codes that will be ignored by "pnpm audit".'),
@@ -1568,12 +1645,14 @@ export const PackageSchema = v.intersect([
             }),
           ),
           requiredScripts: v.optional(
+            /**A list of scripts that must exist in each project.*/
             v.pipe(
               v.array(v.string()),
               v.description('A list of scripts that must exist in each project.'),
             ),
           ),
           supportedArchitectures: v.optional(
+            /**Specifies architectures for which you'd like to install optional dependencies, even if they don't match the architecture of the system running the install.*/
             v.pipe(
               v.object({
                 os: v.optional(v.array(v.string())),
@@ -1586,6 +1665,7 @@ export const PackageSchema = v.intersect([
             ),
           ),
           ignoredOptionalDependencies: v.optional(
+            /**A list of optional dependencies that the install should be skipped.*/
             v.pipe(
               v.array(v.string()),
               v.description('A list of optional dependencies that the install should be skipped.'),
