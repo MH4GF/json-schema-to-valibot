@@ -3,7 +3,7 @@
 exports[`CLI > SchemaStore Integration Tests > should convert package.json schema 1`] = `
 "import * as v from 'valibot'
 
-export default v.intersect([
+export const PackageSchema = v.intersect([
   v.object({
     name: v.optional(
       v.pipe(
@@ -1616,7 +1616,7 @@ export default v.intersect([
 exports[`CLI > SchemaStore Integration Tests > should convert tbls.schema.json_schema.json schema 1`] = `
 "import * as v from 'valibot'
 
-export default v.object({
+export const TblsSchema = v.object({
   name: v.optional(v.string()),
   desc: v.optional(v.string()),
   tables: v.array(
