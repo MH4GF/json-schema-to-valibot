@@ -30,7 +30,7 @@ const editorTheme = vscodeDarkInit({
   },
 })
 
-export function SchemaConverter() {
+export default function SchemaConverter() {
   const [schemaName, setSchemaName] = useState('')
   const [module, setModule] = useState<Options['module']>('esm')
   const [recursionDepth, setRecursionDepth] = useState('0')
@@ -162,11 +162,7 @@ export function SchemaConverter() {
                 </Tooltip>
               </TooltipProvider>
             </div>
-            <Switch
-              id="with-type"
-              checked={withType}
-              onCheckedChange={setWithType}
-            />
+            <Switch id="with-type" checked={withType} onCheckedChange={setWithType} />
           </div>
         </div>
 

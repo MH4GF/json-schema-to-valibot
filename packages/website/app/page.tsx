@@ -1,6 +1,10 @@
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
-import { SchemaConverter } from '@/components/schema-converter'
+import dynamic from 'next/dynamic'
+
+const SchemaConverter = dynamic(() => import('@/components/schema-converter'), {
+  ssr: false,
+})
 
 export default function Page() {
   return (
