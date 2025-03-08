@@ -3,6 +3,19 @@ import { describe, expect, it } from 'vitest'
 import { parseSchema } from './parseSchema.ts'
 
 describe('parseSchema', () => {
+  it('handles schema with both type and anyOf', () => {
+    const schema: JSONSchema4 = {
+      type: 'string',
+      anyOf: [
+        { pattern: '^foo' },
+        { pattern: '^bar' }
+      ]
+    }
+    expect(parseSchema(schema, {})).toMatchInlineSnapshot(
+      `"v.intersect([v.string(), v.union([v.pipe(v.string(), v.regex(/^foo/)), v.pipe(v.string(), v.regex(/^bar/))])])"`
+    )
+  })
+
   it('handles schema without type', () => {
     const schema: JSONSchema4 = {}
     expect(parseSchema(schema, {})).toMatchInlineSnapshot('"v.any()"')

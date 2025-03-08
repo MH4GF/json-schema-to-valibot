@@ -57,8 +57,7 @@ describe('CLI', () => {
     expect(stderr).toBeFalsy()
   })
 
-  // biome-ignore lint/suspicious/noSkippedTests: <explanation>
-  it.skip('should write to output file', () => {
+  it('should write to output file', () => {
     const outputPath = 'test/output/default.js'
     mkdirSync(dirname(outputPath), { recursive: true })
 
@@ -83,8 +82,7 @@ describe('CLI', () => {
     expect(output).toMatchSnapshot()
   })
 
-  // biome-ignore lint/suspicious/noSkippedTests: <explanation>
-  it.skip('should write to output file without import', () => {
+  it('should write to output file without import', () => {
     const outputPath = 'test/output/default-no-import.js'
     mkdirSync(dirname(outputPath), { recursive: true })
 
@@ -110,8 +108,7 @@ describe('CLI', () => {
     expect(output).toMatchSnapshot()
   })
 
-  // biome-ignore lint/suspicious/noSkippedTests: <explanation>
-  it.skip('should write to output file with JSDoc comments', () => {
+  it('should write to output file with JSDoc comments', () => {
     const outputPath = 'test/output/default-with-jsdoc.js'
     mkdirSync(dirname(outputPath), { recursive: true })
 

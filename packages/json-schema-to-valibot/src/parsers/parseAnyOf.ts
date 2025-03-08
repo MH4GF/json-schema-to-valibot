@@ -8,7 +8,13 @@ export function parseAnyOf(schema: JSONSchema4, options: Options): string {
     throw new Error('anyOf must be a non-empty array')
   }
 
-  const subSchemas = schema.anyOf.map((subSchema) => parseSchema(subSchema, options))
+  const subSchemas = schema.anyOf.map((subSchema) => {
+    // If the subschema only has a pattern, treat it as a string schema with that pattern
+    if (subSchema.pattern && Object.keys(subSchema).length === 1) {
+      return parseSchema({ type: 'string', pattern: subSchema.pattern }, options)
+    }
+    return parseSchema(subSchema, options)
+  })
   const unionSchema = `v.union([${subSchemas.join(', ')}])`
 
   return withDescription(schema, unionSchema, options)

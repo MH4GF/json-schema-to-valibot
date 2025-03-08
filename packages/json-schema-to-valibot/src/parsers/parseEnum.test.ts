@@ -3,6 +3,11 @@ import { describe, expect, it } from 'vitest'
 import { parseEnum } from './parseEnum.ts'
 
 describe('parseEnum', () => {
+  it('handles undefined enum', () => {
+    const schema: JSONSchema4 = {}
+    expect(parseEnum(schema, {})).toMatchInlineSnapshot(`"v.union([])"`)
+  })
+
   it('converts mixed type array', () => {
     const schema: JSONSchema4 = {
       enum: ['a', 1, true, null],
