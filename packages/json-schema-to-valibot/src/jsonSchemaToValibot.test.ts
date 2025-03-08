@@ -121,4 +121,39 @@ describe('jsonSchemaToValibot', () => {
       }),
     ).toThrow()
   })
+
+  it('should generate ESM module with custom type name', () => {
+    const result = jsonSchemaToValibot(myObject, {
+      name: 'mySchema',
+      module: 'esm',
+      type: 'CustomType',
+    })
+    expect(result).toMatchInlineSnapshot(`
+      "import * as v from "valibot";
+
+      export const mySchema = v.object({hello: v.optional(v.string())});
+      export type CustomType = v.Input<typeof mySchema>;"
+    `)
+  })
+
+  it('should generate module without imports', () => {
+    const result = jsonSchemaToValibot(myObject, {
+      module: 'esm',
+      noImport: true,
+    })
+    expect(result).toMatchInlineSnapshot(`
+      "export default v.object({hello: v.optional(v.string())});"
+    `)
+  })
+
+  it('should generate default CJS module export', () => {
+    const result = jsonSchemaToValibot(myObject, {
+      module: 'cjs',
+    })
+    expect(result).toMatchInlineSnapshot(`
+      "const v = require("valibot");
+
+      module.exports = v.object({hello: v.optional(v.string())});"
+    `)
+  })
 })
