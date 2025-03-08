@@ -2,6 +2,7 @@
 
 [![NPM Version](https://img.shields.io/npm/v/json-schema-to-valibot.svg)](https://npmjs.org/package/json-schema-to-valibot)
 [![NPM Downloads](https://img.shields.io/npm/dw/json-schema-to-valibot.svg)](https://npmjs.org/package/json-schema-to-valibot)
+[![CI](https://github.com/liam-hq/json-schema-to-valibot/actions/workflows/ci.yml/badge.svg)](https://github.com/liam-hq/json-schema-to-valibot/actions/workflows/ci.yml)
 
 This is a Valibot version of [json-schema-to-zod](https://github.com/StefanTerdell/json-schema-to-zod), which converts JSON Schema to Valibot schemas instead of Zod schemas.
 
