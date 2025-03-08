@@ -4,6 +4,8 @@ The user is better at programming than Cline, but the user ask Cline to code for
 
 When a test fails two or more times in a row, we will sort out the current situation and work together to find a solution.
 
+Do not update snapshot test cases. If necessary, let the user decide.
+
 ## Git Context Management
 
 Before starting any task, I will:
